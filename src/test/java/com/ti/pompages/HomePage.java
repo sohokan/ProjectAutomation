@@ -77,14 +77,15 @@ public class HomePage {
     }
 
     public void LoggedUser() throws InterruptedException {
+        String UserId= "";
         disableAds();
        boolean checkexistent= driver.findElements(userLocator).size()>0;
 if (checkexistent){
             labeluser=driver.findElement(userLocator);
-
-        System.out.println("User Register: "+labeluser.getText());}
-
-        System.out.println("User is shown:"+checkexistent);
+        UserId=labeluser.getText();
+        System.out.println("User Register: "+UserId);}
+else{
+        System.out.println("User "+UserId +"exist:"+checkexistent);}
 
     }
 

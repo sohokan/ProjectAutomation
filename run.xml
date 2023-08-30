@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite" parallel="false" thread-count="1"  >
+<suite name="Automation Exercise" parallel="false" thread-count="1"  >
     <parameter name="browser" value="CHROME"/>
 
-    <test name=" Test">
+    <test name="TestCases">
 
         <classes>
 
-            <class name="com.ti.tests.RegisterTests"/>
-            <class name="com.ti.tests.HomeTests"/>
-            <class name="com.ti.tests.ProductsTests"/>
-
+            <class name="com.ti.tests.TC1"/>
 
 
         </classes>
     </test>
+
+
 
 </suite>
