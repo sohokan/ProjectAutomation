@@ -11,9 +11,10 @@ public class RegisterTests  extends Base {
     }
 
     @Test(priority = 2)
-    void BeginRegister() {
+    void BeginRegister() throws InterruptedException {
 
         Login.AccountInformation();
         Login.AccountCreated();
+
     }
 }

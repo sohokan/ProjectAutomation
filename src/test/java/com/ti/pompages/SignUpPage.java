@@ -5,6 +5,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.time.Duration;
 import java.util.UUID;
@@ -62,15 +63,9 @@ public class SignUpPage extends HomePage{
 
     By continueLocator=By.xpath("//a[contains(@data-qa,'continue')]");
 
-    By userLocator=By.xpath("//i[contains(@class,'user')]");
-
-    By deleteUserLocator=By.xpath("//a[contains(@href,'delete')]");
 
 
 
-
-
-    By ads= By.xpath("//div[contains(@id,'ad')]");
 
 
 
@@ -120,9 +115,9 @@ public class SignUpPage extends HomePage{
 
     WebElement btnContinue;
 
-    WebElement labeluser;
 
-    WebElement iconDeleteUser;
+
+
 
     JavascriptExecutor js = (JavascriptExecutor) driver;
 
@@ -198,6 +193,7 @@ public class SignUpPage extends HomePage{
 
         assertThat(labelAccountInformation.getText(), containsString("ACCOUNT"));
         radioTitle.click();
+
         textBoxPassword.sendKeys(generateRandomPassword(8));
 
 
@@ -234,13 +230,23 @@ public class SignUpPage extends HomePage{
     }
 
 
-    public void AccountCreated() {
+    public void AccountCreated() throws InterruptedException {
         labelaccountCreated=driver.findElement(accountCreatedLocator);
 
+        btnContinue=driver.findElement(continueLocator);
+
         assertThat(labelaccountCreated.getText(), containsString("CREATED"));
+        btnContinue.click();
+
+        disableAds();
+        if(driver.getCurrentUrl().contains("google_vignette"))
+        btnContinue.click();
 
 
     }
+
+//    17. Verify that 'Logged in as username' is visible
+
 
 
 
