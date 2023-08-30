@@ -1,6 +1,9 @@
 package com.ti.pompages;
 
 import org.apache.commons.lang3.RandomStringUtils;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -116,10 +119,14 @@ public class SignUpPage extends HomePage{
     WebElement btnContinue;
 
 
+//    private static Logger log = LogManager.getLogger(SignUpPage.class);
+
+    public static String email = "";
+
+    public static String password = "";
 
 
 
-    JavascriptExecutor js = (JavascriptExecutor) driver;
 
     String random = UUID.randomUUID()
             .toString()
@@ -256,10 +263,11 @@ public class SignUpPage extends HomePage{
     public static String generateRandomEmail(int length) {
 
         String allowedChars = "abcdefghijklmnopqrstuvwxyz" + "1234567890" + "_-.";
-        String email = "";
+
         String temp = RandomStringUtils.random(length, allowedChars);
         email = temp.substring(0, temp.length()) + "@testdata.com";
         System.out.println(email);
+//        log.info(email);
         return email;
     }
 
@@ -267,10 +275,11 @@ public class SignUpPage extends HomePage{
     public static String generateRandomPassword(int length) {
 //        System.out.println("Generating a Random PW ");
         String allowedChars = "abcdefghijklmnopqrstuvwxyz" +"ABCDEFGHIJKLMNOPQRSTUVWXYZ"+ "1234567890" + "$";
-        String password = "";
+
         String temp = RandomStringUtils.random(length, allowedChars);
         password = temp.substring(0, temp.length());
         System.out.println(password);
+//        log.info(password);
         return password;
     }
 

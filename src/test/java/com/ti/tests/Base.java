@@ -26,8 +26,11 @@ public class Base {
     @BeforeSuite
     @Parameters("browser")
     public void setup(String browser) {
+
+//        String LogFile=System.getProperty("user.dir")+"\\imgs\\"+;
         DriverFactory.getInstance().setDriver(BrowserType.valueOf(browser));
         DriverFactory.getInstance().getDriver().navigate().to(baseUrl);
+//        System.setProperty("log4j2.configuration", "C:\\Users\\scointe\\Documents\\Eclipse\\SeleniumPractice\\properties\\log4j2.xml");
 
 
     }
@@ -40,6 +43,8 @@ public class Base {
         Home= new HomePage();
 
     }
+
+
 
 
 //    @AfterSuite

@@ -1,5 +1,6 @@
 package com.ti.tests;
 
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
 public class TC1 extends Base {
@@ -33,13 +34,20 @@ public class TC1 extends Base {
 
 
 
-    @Test(priority = 4,dependsOnMethods = {"BeginNewRegister"})
+    @Test(priority = 4,dependsOnMethods = {"BeginNewRegister"},enabled = true)
     void VerifyUserisDeleted() throws InterruptedException {
 
 
         Home.clickonDeleteUser();
         Home.VerifyAccountDeleted();
         Home.LoggedUser(); //verify if user is logged
+    }
+
+    @AfterClass
+    public void Logger()
+    {
+        Home.GenerateLogs();
+
     }
 
 }

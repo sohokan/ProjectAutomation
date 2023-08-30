@@ -1,5 +1,7 @@
 package com.ti.pompages;
 
+import com.ti.pompages.SignUpPage ;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -9,9 +11,15 @@ import org.ti.DriverFactory;
 
 import java.util.List;
 
+import static com.ti.pompages.SignUpPage.email;
+import static com.ti.pompages.SignUpPage.password;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalToIgnoringCase;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 
 public class HomePage {
 
@@ -49,7 +57,9 @@ public class HomePage {
 
     WebElement iconDelete;
 
+    private static Logger log = LogManager.getLogger(HomePage.class);
 
+    boolean checkexistent;
 
     public void HomePageTitle()
 
@@ -79,7 +89,7 @@ public class HomePage {
     public void LoggedUser() throws InterruptedException {
         String UserId= "";
         disableAds();
-       boolean checkexistent= driver.findElements(userLocator).size()>0;
+        checkexistent= driver.findElements(userLocator).size()>0;
 if (checkexistent){
             labeluser=driver.findElement(userLocator);
         UserId=labeluser.getText();
@@ -104,7 +114,7 @@ else{
         labelaccountDeleted=driver.findElement(accountDeletedLocator);
 
         btnContinue=driver.findElement(continueLocator);
-
+        log.info("User deleted");
         assertThat(labelaccountDeleted.getText(), containsString("DELETED"));
         btnContinue.click();
 
@@ -112,6 +122,16 @@ else{
         if(driver.getCurrentUrl().contains("google_vignette"))
             btnContinue.click();
 
+
+    }
+
+    public  void GenerateLogs(){
+
+
+        log.info("User exist: "+ checkexistent);
+        log.info(email);
+        log.info(password);
+        log.info("________________________________________________________");
 
     }
 
