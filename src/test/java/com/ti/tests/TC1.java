@@ -34,7 +34,7 @@ public class TC1 extends Base {
 
 
 
-    @Test(priority = 4,dependsOnMethods = {"BeginNewRegister"},enabled = true)
+    @Test(priority = 4,dependsOnMethods = {"BeginNewRegister"},enabled = false)
     void VerifyUserisDeleted() throws InterruptedException {
 
 

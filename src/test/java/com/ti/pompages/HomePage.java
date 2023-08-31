@@ -64,6 +64,7 @@ public class HomePage {
     private static Logger log = LogManager.getLogger(HomePage.class);
 
     boolean checkexistent;
+    String UserId= "";
 
     public void HomePageTitle()
 
@@ -91,15 +92,15 @@ public class HomePage {
     }
 
     public void LoggedUser() throws InterruptedException {
-        String UserId= "";
+
         disableAds();
         checkexistent= driver.findElements(userLocator).size()>0;
 if (checkexistent){
             labeluser=driver.findElement(userLocator);
         UserId=labeluser.getText();
-        System.out.println("User Register: "+UserId);}
+       System.out.println("User "+UserId +" is Logged:"+checkexistent);}
 else{
-        System.out.println("User "+UserId +"exist:"+checkexistent);}
+        System.out.println("User "+UserId +"is Logged:"+checkexistent);}
 
     }
     public void Logout()

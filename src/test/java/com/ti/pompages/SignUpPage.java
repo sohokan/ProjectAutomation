@@ -74,6 +74,8 @@ By LoginBtnLocator=By.cssSelector("button[data-qa='login-button']");
 
  By incorrectloginLocator=By.xpath("//p[contains(normalize-space(),' incorrect!')]");
 
+ By LoginLocator=By.cssSelector("div[class='login-form'] h2");
+
 
 
     WebElement txtBoxEmailLogin;
@@ -128,6 +130,8 @@ By LoginBtnLocator=By.cssSelector("button[data-qa='login-button']");
     WebElement btnContinue;
 
     WebElement msgInvalidcred;
+
+    WebElement msgLoginPage;
 
 
 //    private static Logger log = LogManager.getLogger(SignUpPage.class);
@@ -293,6 +297,13 @@ By LoginBtnLocator=By.cssSelector("button[data-qa='login-button']");
         btnContinue.click();
 
 
+    }
+
+    public void VerifyLoginPage()
+    {
+        msgLoginPage=driver.findElement(LoginLocator);
+        System.out.println(msgLoginPage.getText());
+        assertThat(msgLoginPage.getText(), containsString("Login"));
     }
 
 
