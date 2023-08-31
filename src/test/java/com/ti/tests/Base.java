@@ -19,6 +19,9 @@ public class Base {
 
     HomePage Home;
 
+    String email="ke6_mfpr-q@testdata.com";
+    String password="LgANrY3B";
+
 
 
 

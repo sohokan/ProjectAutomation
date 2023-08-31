@@ -43,6 +43,8 @@ public class HomePage {
     By accountDeletedLocator=By.xpath("//h2[contains(@data-qa,'deleted')]");
 
     By iconDeletedLocator=By.xpath("//a[contains(@href,'delete')]");
+
+    By LogoutLocator=By.cssSelector("a[href='/logout']");
     WebDriver driver = DriverFactory.getInstance().getDriver();
 
     WebElement WebsiteText;
@@ -56,6 +58,8 @@ public class HomePage {
     WebElement btnContinue;
 
     WebElement iconDelete;
+
+    WebElement linkLogout;
 
     private static Logger log = LogManager.getLogger(HomePage.class);
 
@@ -96,6 +100,12 @@ if (checkexistent){
         System.out.println("User Register: "+UserId);}
 else{
         System.out.println("User "+UserId +"exist:"+checkexistent);}
+
+    }
+    public void Logout()
+    {
+        linkLogout=driver.findElement(LogoutLocator);
+        linkLogout.click();
 
     }
 

@@ -23,6 +23,12 @@ public class SignUpPage extends HomePage{
     By NewUserNameLocator =By.cssSelector("input[placeholder='Name']");
     By NewEmailLocator= By.cssSelector("input[data-qa='signup-email']");
 
+    By LoginEmailLocator=By.cssSelector("input[data-qa='login-email']");
+
+    By LoginPasswordLocator=By.cssSelector("input[data-qa='login-password']");
+
+By LoginBtnLocator=By.cssSelector("button[data-qa='login-button']");
+
     By SignupLocator=By.cssSelector("button[data-qa^='signup']");
 
     By AccountLocator=By.xpath("(//h2[@class='title text-center'])[1]");
@@ -66,14 +72,17 @@ public class SignUpPage extends HomePage{
 
     By continueLocator=By.xpath("//a[contains(@data-qa,'continue')]");
 
+ By incorrectloginLocator=By.xpath("//p[contains(normalize-space(),' incorrect!')]");
 
 
 
-
-
+    WebElement txtBoxEmailLogin;
+    WebElement txtBoxPassword;
 
     WebElement txtBoxNewEmail;
     WebElement txtBoxNewName;
+
+    WebElement btnLogin;
 
     WebElement btnSignup;
 
@@ -118,6 +127,8 @@ public class SignUpPage extends HomePage{
 
     WebElement btnContinue;
 
+    WebElement msgInvalidcred;
+
 
 //    private static Logger log = LogManager.getLogger(SignUpPage.class);
 
@@ -131,6 +142,38 @@ public class SignUpPage extends HomePage{
     String random = UUID.randomUUID()
             .toString()
             .substring(0, 6);
+
+
+    public void VerifyLogin(String email, String password)
+    {
+
+
+        WebElement LinkLogin= driver.findElement(Login);
+        LinkLogin.click();
+
+
+        new WebDriverWait(driver, Duration.ofSeconds(15))
+                .until(ExpectedConditions.visibilityOfAllElements(driver.findElements(By.xpath("(//h2[normalize-space()='New User Signup!'])[1]"))));
+
+
+        txtBoxEmailLogin=driver.findElement(LoginEmailLocator);
+        txtBoxEmailLogin.sendKeys(email);
+
+        txtBoxPassword=driver.findElement(LoginPasswordLocator);
+        txtBoxPassword.sendKeys(password);
+
+        btnLogin=driver.findElement(LoginBtnLocator);
+        btnLogin.click();
+    }
+
+  public void VerifyincorretLoginMessage()
+    {
+        msgInvalidcred=driver.findElement(incorrectloginLocator);
+        System.out.println(msgInvalidcred.getText());
+        assertThat("Message is presented",msgInvalidcred.getText(), containsString("incorrect"));
+
+    }
+
 
     public void RegisterNewEmail()  {
 
@@ -252,7 +295,6 @@ public class SignUpPage extends HomePage{
 
     }
 
-//    17. Verify that 'Logged in as username' is visible
 
 
 
