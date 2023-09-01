@@ -76,6 +76,8 @@ By LoginBtnLocator=By.cssSelector("button[data-qa='login-button']");
 
  By LoginLocator=By.cssSelector("div[class='login-form'] h2");
 
+ By EmailexistLocator=By.xpath("//p[contains(normalize-space(),'exist!')]");
+
 
 
     WebElement txtBoxEmailLogin;
@@ -133,6 +135,8 @@ By LoginBtnLocator=By.cssSelector("button[data-qa='login-button']");
 
     WebElement msgLoginPage;
 
+    WebElement msgEmailExist;
+
 
 //    private static Logger log = LogManager.getLogger(SignUpPage.class);
 
@@ -179,7 +183,7 @@ By LoginBtnLocator=By.cssSelector("button[data-qa='login-button']");
     }
 
 
-    public void RegisterNewEmail()  {
+    public void RegisterNewEmail(String... email)  {
 
 
 
@@ -199,8 +203,22 @@ By LoginBtnLocator=By.cssSelector("button[data-qa='login-button']");
 
 
         txtBoxNewName.sendKeys(random);
-        txtBoxNewEmail.sendKeys(generateRandomEmail(10));
+        if (email.length>0) {
+            txtBoxNewEmail.sendKeys(email[0]);
+       }
+        else{
+            txtBoxNewEmail.sendKeys(generateRandomEmail(10));
+
+        }
         btnSignup.click();
+
+    }
+
+    public void EmailExist()
+    {
+        msgEmailExist=driver.findElement(EmailexistLocator);
+        System.out.println(msgEmailExist.getText());
+        assertThat(msgEmailExist.getText(),containsString("exist"));
 
     }
 

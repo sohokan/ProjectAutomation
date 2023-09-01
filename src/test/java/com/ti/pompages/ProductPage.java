@@ -1,4 +1,4 @@
 package com.ti.pompages;
 
-public class ProductPage {
+public class ProductPage extends HomePage {
 }

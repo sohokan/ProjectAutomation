@@ -1,5 +1,6 @@
 package com.ti.tests;
 
+import com.ti.pompages.ContactUsPage;
 import com.ti.pompages.HomePage;
 import com.ti.pompages.SignUpPage;
 import com.ti.pompages.ProductPage;
@@ -18,6 +19,7 @@ public class Base {
     ProductPage Products;
 
     HomePage Home;
+    ContactUsPage ContactUs;
 
     String email="d4xk7f.be6@testdata.com";
     String password="FH9tg$NZ";
@@ -44,6 +46,7 @@ public class Base {
         Login =new SignUpPage();
         Products= new ProductPage();
         Home= new HomePage();
+        ContactUs= new ContactUsPage();
 
     }
 
