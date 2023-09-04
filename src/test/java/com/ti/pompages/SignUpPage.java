@@ -147,9 +147,7 @@ By LoginBtnLocator=By.cssSelector("button[data-qa='login-button']");
 
 
 
-    String random = UUID.randomUUID()
-            .toString()
-            .substring(0, 6);
+
 
 
     public void VerifyLogin(String email, String password)

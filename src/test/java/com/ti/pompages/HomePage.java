@@ -10,6 +10,7 @@ import org.testng.Assert;
 import org.ti.DriverFactory;
 
 import java.util.List;
+import java.util.UUID;
 
 import static com.ti.pompages.SignUpPage.email;
 import static com.ti.pompages.SignUpPage.password;
@@ -61,6 +62,10 @@ public class HomePage {
 
     WebElement linkLogout;
 
+    String random = UUID.randomUUID()
+            .toString()
+            .substring(0, 6);
+
     private static Logger log = LogManager.getLogger(HomePage.class);
 
     boolean checkexistent;
@@ -70,6 +75,7 @@ public class HomePage {
 
     {
         WebsiteText=driver.findElement(AutomationImageLocator);
+        System.out.println(WebsiteText.getAttribute("alt"));
         assertThat(WebsiteText.getAttribute("alt"), containsString("automation"));
 
     }
