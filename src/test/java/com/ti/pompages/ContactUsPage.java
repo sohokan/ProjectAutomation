@@ -13,16 +13,16 @@ public class ContactUsPage extends HomePage {
 
 
 
-    By ContactUsLocator= By.cssSelector("a[href='/contact_us']");
+    By contactUsLocator= By.cssSelector("a[href='/contact_us']");
 
-    By GetInTouchLocator=By.xpath("//h2[contains(normalize-space(),' Touch')]");
+    By getInTouchLocator=By.xpath("//h2[contains(normalize-space(),' Touch')]");
 
-    By NameLocator= By.cssSelector("input[placeholder='Name']");
-    By EmailLocator= By.cssSelector("input[placeholder='Email']");
+    By nameLocator= By.cssSelector("input[placeholder='Name']");
+    By emailLocator= By.cssSelector("input[placeholder='Email']");
 
-    By SubjectLocator=By.cssSelector("input[placeholder='Subject']");
+    By subjectLocator=By.cssSelector("input[placeholder='Subject']");
 
-    By MessageLocator=By.id("message");
+    By messageLocator=By.id("message");
 
     By uploadfileLocator=By.cssSelector("input[name='upload_file']");
 
@@ -35,7 +35,7 @@ public class ContactUsPage extends HomePage {
 
     WebElement linkContactUs;
 
-    WebElement GetInTouch;
+    WebElement getInTouch;
 
     WebElement inputName;
 
@@ -57,28 +57,28 @@ public class ContactUsPage extends HomePage {
         String File ="Testing-3-2.jpg";
 
         String filetoUpload=System.getProperty("user.dir")+"\\imgs\\"+File;
-        linkContactUs=driver.findElement(ContactUsLocator);
+        linkContactUs=driver.findElement(contactUsLocator);
         linkContactUs.click();
 
-        GetInTouch= driver.findElement(GetInTouchLocator);
+        getInTouch= driver.findElement(getInTouchLocator);
 
-        System.out.println(GetInTouch.getText());
+        System.out.println(getInTouch.getText());
 
-        assertThat(GetInTouch.getText(),containsString("TOUCH"));
+        assertThat(getInTouch.getText(),containsString("TOUCH"));
 
-        inputName=driver.findElement(NameLocator);
-        inputEmail=driver.findElement(EmailLocator);
-        inputSubject=driver.findElement(SubjectLocator);
-        inputMessage=driver.findElement(MessageLocator);
+        inputName=driver.findElement(nameLocator);
+        inputEmail=driver.findElement(emailLocator);
+        inputSubject=driver.findElement(subjectLocator);
+        inputMessage=driver.findElement(messageLocator);
         inputName.sendKeys(random);
-        inputEmail.sendKeys(SignUpPage.generateRandomEmail(10));
+        inputEmail.sendKeys(SignUpPage.GenerateRandomEmail(10));
         inputSubject.sendKeys(random);
         inputMessage.sendKeys(random);
         uploadFile=driver.findElement(uploadfileLocator);
         uploadFile.sendKeys(filetoUpload);
         btnSubmit=driver.findElement(submitlocator);
         btnSubmit.click();
-        System.out.println("Theres alert "+isAlertPresent());
+        System.out.println("Theres alert "+IsAlertPresent());
         sucessMessage= driver.findElement(sucessMessagelocator);
 
         System.out.println(sucessMessage.getText());
@@ -88,7 +88,7 @@ public class ContactUsPage extends HomePage {
         btnHome.click();
         try {
 
-            disableAds();
+            DisableAds();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -96,7 +96,7 @@ public class ContactUsPage extends HomePage {
     }
 
 
-    public boolean isAlertPresent()
+    public boolean IsAlertPresent()
     {
         try
         {

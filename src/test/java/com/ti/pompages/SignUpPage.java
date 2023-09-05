@@ -27,7 +27,7 @@ public class SignUpPage extends HomePage{
 
     By LoginPasswordLocator=By.cssSelector("input[data-qa='login-password']");
 
-By LoginBtnLocator=By.cssSelector("button[data-qa='login-button']");
+    By LoginBtnLocator=By.cssSelector("button[data-qa='login-button']");
 
     By SignupLocator=By.cssSelector("button[data-qa^='signup']");
 
@@ -72,11 +72,11 @@ By LoginBtnLocator=By.cssSelector("button[data-qa='login-button']");
 
     By continueLocator=By.xpath("//a[contains(@data-qa,'continue')]");
 
- By incorrectloginLocator=By.xpath("//p[contains(normalize-space(),' incorrect!')]");
+    By incorrectloginLocator=By.xpath("//p[contains(normalize-space(),' incorrect!')]");
 
- By LoginLocator=By.cssSelector("div[class='login-form'] h2");
+    By LoginLocator=By.cssSelector("div[class='login-form'] h2");
 
- By EmailexistLocator=By.xpath("//p[contains(normalize-space(),'exist!')]");
+    By EmailexistLocator=By.xpath("//p[contains(normalize-space(),'exist!')]");
 
 
 
@@ -108,7 +108,7 @@ By LoginBtnLocator=By.cssSelector("button[data-qa='login-button']");
 
     WebElement textBoxFirstName;
 
-     WebElement textBoxLastName;
+    WebElement textBoxLastName;
 
     WebElement textBoxCompany;
 
@@ -172,7 +172,7 @@ By LoginBtnLocator=By.cssSelector("button[data-qa='login-button']");
         btnLogin.click();
     }
 
-  public void VerifyincorretLoginMessage()
+    public void VerifyincorretLoginMessage()
     {
         msgInvalidcred=driver.findElement(incorrectloginLocator);
         System.out.println(msgInvalidcred.getText());
@@ -203,9 +203,9 @@ By LoginBtnLocator=By.cssSelector("button[data-qa='login-button']");
         txtBoxNewName.sendKeys(random);
         if (email.length>0) {
             txtBoxNewEmail.sendKeys(email[0]);
-       }
+        }
         else{
-            txtBoxNewEmail.sendKeys(generateRandomEmail(10));
+            txtBoxNewEmail.sendKeys(GenerateRandomEmail(10));
 
         }
         btnSignup.click();
@@ -220,7 +220,7 @@ By LoginBtnLocator=By.cssSelector("button[data-qa='login-button']");
 
     }
 
-   public void AccountInformation()
+    public void AccountInformation()
     {
 
         labelAccountInformation=  driver.findElement(AccountLocator);
@@ -264,7 +264,7 @@ By LoginBtnLocator=By.cssSelector("button[data-qa='login-button']");
         assertThat(labelAccountInformation.getText(), containsString("ACCOUNT"));
         radioTitle.click();
 
-        textBoxPassword.sendKeys(generateRandomPassword(8));
+        textBoxPassword.sendKeys(GenerateRandomPassword(8));
 
 
 
@@ -308,9 +308,9 @@ By LoginBtnLocator=By.cssSelector("button[data-qa='login-button']");
         assertThat(labelaccountCreated.getText(), containsString("CREATED"));
         btnContinue.click();
 
-        disableAds();
+        DisableAds();
         if(driver.getCurrentUrl().contains("google_vignette"))
-        btnContinue.click();
+            btnContinue.click();
 
 
     }
@@ -329,7 +329,7 @@ By LoginBtnLocator=By.cssSelector("button[data-qa='login-button']");
 
 
 
-    public static String generateRandomEmail(int length) {
+    public static String GenerateRandomEmail(int length) {
 
         String allowedChars = "abcdefghijklmnopqrstuvwxyz" + "1234567890" + "_-.";
 
@@ -341,7 +341,7 @@ By LoginBtnLocator=By.cssSelector("button[data-qa='login-button']");
     }
 
 
-    public static String generateRandomPassword(int length) {
+    public static String GenerateRandomPassword(int length) {
 //        System.out.println("Generating a Random PW ");
         String allowedChars = "abcdefghijklmnopqrstuvwxyz" +"ABCDEFGHIJKLMNOPQRSTUVWXYZ"+ "1234567890" + "$";
 

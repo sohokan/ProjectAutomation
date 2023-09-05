@@ -8,7 +8,7 @@
         <classes>
 
 
-            <class name="com.ti.tests.TC6"/>
+            <class name="com.ti.tests.TC8"/>
 
         </classes>
     </test>

@@ -24,11 +24,11 @@ import org.apache.logging.log4j.Logger;
 
 public class HomePage {
 
-    By AutomationImageLocator= By.cssSelector("img[alt*='automation']");
+    By automationImageLocator= By.cssSelector("img[alt*='automation']");
 
-    By AutomationCarouselLocator=By.xpath("//li[contains(@data-target,'carousel')]");
+    By automationCarouselLocator=By.xpath("//li[contains(@data-target,'carousel')]");
 
-    By AutomationCarouselTextLocator=By.xpath("//h2[contains(text(), 'Automation')]");
+    By automationCarouselTextLocator=By.xpath("//h2[contains(text(), 'Automation')]");
 
     By userLocator=By.cssSelector("ul[class='nav navbar-nav'] li a b");
 
@@ -74,7 +74,7 @@ public class HomePage {
     public void HomePageTitle()
 
     {
-        WebsiteText=driver.findElement(AutomationImageLocator);
+        WebsiteText=driver.findElement(automationImageLocator);
         System.out.println(WebsiteText.getAttribute("alt"));
         assertThat(WebsiteText.getAttribute("alt"), containsString("automation"));
 
@@ -82,11 +82,11 @@ public class HomePage {
 
     public void Clickoncarousel()
     {
-        CarrouselDot=driver.findElements(AutomationCarouselLocator);
+        CarrouselDot=driver.findElements(automationCarouselLocator);
 
         for ( var carrousel:CarrouselDot) {
             carrousel.click();
-            assertThat(driver.findElement(AutomationCarouselTextLocator).getText(), containsString("Automation"));
+            assertThat(driver.findElement(automationCarouselTextLocator).getText(), containsString("Automation"));
 
 
         }
@@ -99,14 +99,14 @@ public class HomePage {
 
     public void LoggedUser() throws InterruptedException {
 
-        disableAds();
+        DisableAds();
         checkexistent= driver.findElements(userLocator).size()>0;
-if (checkexistent){
+        if (checkexistent){
             labeluser=driver.findElement(userLocator);
-        UserId=labeluser.getText();
-       System.out.println("User "+UserId +" is Logged:"+checkexistent);}
-else{
-        System.out.println("User "+UserId +"is Logged:"+checkexistent);}
+            UserId=labeluser.getText();
+            System.out.println("User "+UserId +" is Logged:"+checkexistent);}
+        else{
+            System.out.println("User "+UserId +"is Logged:"+checkexistent);}
 
     }
     public void Logout()
@@ -118,7 +118,7 @@ else{
 
 
 
-    public void clickonDeleteUser()
+    public void ClickonDeleteUser()
     {
 
         iconDelete= driver.findElement(iconDeletedLocator);
@@ -135,7 +135,7 @@ else{
         assertThat(labelaccountDeleted.getText(), containsString("DELETED"));
         btnContinue.click();
 
-        disableAds();
+        DisableAds();
         if(driver.getCurrentUrl().contains("google_vignette"))
             btnContinue.click();
 
@@ -154,7 +154,7 @@ else{
 
 
 
-    void disableAds() throws InterruptedException {
+    void DisableAds() throws InterruptedException {
 
         if(driver.getCurrentUrl().contains("google_vignette"))  {
 // Comparing the web URL

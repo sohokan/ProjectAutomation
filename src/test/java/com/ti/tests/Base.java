@@ -1,9 +1,6 @@
 package com.ti.tests;
 
-import com.ti.pompages.ContactUsPage;
-import com.ti.pompages.HomePage;
-import com.ti.pompages.SignUpPage;
-import com.ti.pompages.ProductPage;
+import com.ti.pompages.*;
 
 import org.testng.annotations.*;
 import org.ti.DriverFactory;
@@ -20,6 +17,8 @@ public class Base {
 
     HomePage Home;
     ContactUsPage ContactUs;
+
+    TestCasePage TestCase;
 
     String email="d4xk7f.be6@testdata.com";
     String password="FH9tg$NZ";
@@ -47,6 +46,7 @@ public class Base {
         Products= new ProductPage();
         Home= new HomePage();
         ContactUs= new ContactUsPage();
+        TestCase= new TestCasePage();
 
     }
 

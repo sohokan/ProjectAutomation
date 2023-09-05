@@ -32,7 +32,7 @@ public class HomeTests extends Base{
     void VerifyDeleteUser() throws InterruptedException {
 
 
-        Home.clickonDeleteUser();
+        Home.ClickonDeleteUser();
         Home.VerifyAccountDeleted();
         Home.LoggedUser(); //verify if user is logged
     }

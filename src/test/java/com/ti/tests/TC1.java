@@ -38,9 +38,9 @@ public class TC1 extends Base {
     void VerifyUserisDeleted() throws InterruptedException {
 
 
-        Home.clickonDeleteUser();
+        Home.ClickonDeleteUser();
         Home.VerifyAccountDeleted();
-        Home.LoggedUser(); //verify if user is logged
+        Home.LoggedUser(); //verify if user is logged or not
     }
 
     @AfterClass
