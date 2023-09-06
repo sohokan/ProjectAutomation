@@ -20,6 +20,8 @@ public class Base {
 
     TestCasePage TestCase;
 
+    ProductDetailPage productDetail;
+
     String email="d4xk7f.be6@testdata.com";
     String password="FH9tg$NZ";
 
@@ -47,6 +49,7 @@ public class Base {
         Home= new HomePage();
         ContactUs= new ContactUsPage();
         TestCase= new TestCasePage();
+        productDetail=new ProductDetailPage();
 
     }
 

@@ -6,8 +6,15 @@ public class TC8 extends Base{
 
 
     @Test
-    void VerifyProductsVisible(){
+    void VerifyProductsVisible() throws InterruptedException {
         Products.VerifyProductList();
+        Products.SelecttoViewProducts(33);//first one
+
+    }
+
+    @Test(dependsOnMethods = {"VerifyProductsVisible"})
+    void VerifyProductsDetails(){
+        productDetail.CheckProductDetail();
 
     }
 }

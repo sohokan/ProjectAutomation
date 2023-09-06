@@ -1,5 +1,6 @@
 package com.ti.pompages;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
@@ -19,20 +20,20 @@ public class ProductPage extends HomePage {
 
     List<WebElement> linkViewProducts;
 
-    public void VerifyProductList()
-    {
+    JavascriptExecutor jse = (JavascriptExecutor)driver;
+
+    public void VerifyProductList() throws InterruptedException {
         int countViewProducts=0;
 
         linkProductsPage=driver.findElement(productsPageLocator);
         linkProductsPage.click();
-        try {
-            DisableAds();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+     DisableAds();
 
         if(driver.getCurrentUrl().contains("google_vignette"))
             linkProductsPage.click();
+
+        jse.executeScript("window.scrollBy(0,400)");
+        DisableAds();
 
         productItems=driver.findElements(productsLocator);
 
@@ -53,8 +54,26 @@ public class ProductPage extends HomePage {
 
         }
 //verify click 1st
-//productItems.get(0).findElement( By.xpath("//a[contains(text(),'Add to cart')]")).click();
-        linkViewProducts.get(1).click();
+//productItems.get(0).findElement( By.xpath("//a[contains(text(),'Add to cart')]")).click()
+
+
+
+
+
+    }
+
+    public void SelecttoViewProducts(int i) throws InterruptedException {
+        linkViewProducts.get(i).click();
+
+
+        DisableAds();
+
+        if (driver.getCurrentUrl().contains("google_vignette"))
+            linkViewProducts.get(i).click();
+
+        DisableAds();
+
+
 
 
 
