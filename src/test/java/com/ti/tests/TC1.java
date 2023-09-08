@@ -13,20 +13,20 @@ public class TC1 extends Base {
 
     }
 
-    @Test(priority = 1)
+    @Test(priority = 2)
     void CreateNewRegistration() {
 
         Login.RegisterNewEmail();
     }
 
-    @Test(priority = 2)
+    @Test(priority = 3)
     void BeginNewRegister() throws InterruptedException {
 
         Login.AccountInformation();
         Login.AccountCreated();
 
     }
-    @Test(priority = 3,dependsOnMethods = {"BeginNewRegister"})
+    @Test(priority = 4,dependsOnMethods = {"BeginNewRegister"})
     void VerifyUserisLogged() throws InterruptedException {
 
         Home.LoggedUser();
@@ -34,7 +34,7 @@ public class TC1 extends Base {
 
 
 
-    @Test(priority = 4,dependsOnMethods = {"BeginNewRegister"},enabled = false)
+    @Test(priority = 5,dependsOnMethods = {"BeginNewRegister"},enabled = false)
     void VerifyUserisDeleted() throws InterruptedException {
 
 

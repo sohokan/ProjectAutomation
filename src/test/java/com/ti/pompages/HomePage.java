@@ -99,7 +99,7 @@ public class HomePage {
 
     public void LoggedUser() throws InterruptedException {
 
-        DisableAds();
+
         checkexistent= driver.findElements(userLocator).size()>0;
         if (checkexistent){
             labeluser=driver.findElement(userLocator);
@@ -109,12 +109,18 @@ public class HomePage {
             System.out.println("User "+UserId +"is Logged:"+checkexistent);}
 
     }
+
+
+
     public void Logout()
     {
-        linkLogout=driver.findElement(LogoutLocator);
-        linkLogout.click();
-
+        if (checkexistent) {
+            linkLogout = driver.findElement(LogoutLocator);
+            linkLogout.click();
+        }
     }
+
+
 
 
 

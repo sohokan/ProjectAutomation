@@ -11,6 +11,8 @@ public class TC2 extends Base {
 
     @Test(priority = 1,enabled = true)
     void LoginUserValidCreds() throws InterruptedException {
+        Home.LoggedUser();
+        Home.Logout();
         Login.VerifyLogin(email,password);
         Home.LoggedUser();
 

@@ -22,8 +22,8 @@ public class Base {
 
     ProductDetailPage productDetail;
 
-    String email="d4xk7f.be6@testdata.com";
-    String password="FH9tg$NZ";
+    String email="pdg1_qph.-@testdata.com";
+    String password="ovO8wy9Z";
 
 
 
