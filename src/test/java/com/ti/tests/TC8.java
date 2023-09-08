@@ -5,16 +5,19 @@ import org.testng.annotations.Test;
 public class TC8 extends Base{
 
 
-    @Test
+    @Test(priority = 1)
     void VerifyProductsVisible() throws InterruptedException {
+        Products.GotoProductPage();
         Products.VerifyProductList();
-        Products.SelecttoViewProducts(33);//first one
+        Products.SelecttoViewProducts(0);//first one
 
     }
 
-    @Test(dependsOnMethods = {"VerifyProductsVisible"})
+    @Test(priority = 2,dependsOnMethods = {"VerifyProductsVisible"})
     void VerifyProductsDetails(){
         productDetail.CheckProductDetail();
 
     }
+
+
 }

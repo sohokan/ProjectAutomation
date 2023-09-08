@@ -14,23 +14,33 @@ public class ProductPage extends HomePage {
 
     By viewProductLocator=By.cssSelector("a[href *='/product_details/']");
 
+     By searchProductLocator=By.id("search_product");
+
+     By submit_search=By.id("submit_search");
+
     WebElement linkProductsPage;
 
     List<WebElement> productItems;
 
     List<WebElement> linkViewProducts;
 
+    WebElement inputSearchProduct;
+    WebElement btnSearchProduct;
+
     JavascriptExecutor jse = (JavascriptExecutor)driver;
+
+    public void GotoProductPage() throws InterruptedException {
+        linkProductsPage=driver.findElement(productsPageLocator);
+        linkProductsPage.click();
+        DisableAds();
+        if(driver.getCurrentUrl().contains("google_vignette"))
+            linkProductsPage.click();
+
+    }
 
     public void VerifyProductList() throws InterruptedException {
         int countViewProducts=0;
 
-        linkProductsPage=driver.findElement(productsPageLocator);
-        linkProductsPage.click();
-     DisableAds();
-
-        if(driver.getCurrentUrl().contains("google_vignette"))
-            linkProductsPage.click();
 
         jse.executeScript("window.scrollBy(0,400)");
         DisableAds();
@@ -76,6 +86,16 @@ public class ProductPage extends HomePage {
 
 
 
+
+    }
+
+    public void SearchProducts(String searchitem) throws InterruptedException {
+
+        inputSearchProduct=driver.findElement(searchProductLocator);
+        inputSearchProduct.sendKeys(searchitem);
+
+        btnSearchProduct=driver.findElement(submit_search);
+        btnSearchProduct.click();
 
     }
 }
