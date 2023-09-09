@@ -3,6 +3,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -37,6 +38,8 @@ public class ProductPage extends HomePage {
 
     JavascriptExecutor jse = (JavascriptExecutor)driver;
 
+    List<ProductsObjects> products = new ArrayList<>();
+
     public void GotoProductPage() throws InterruptedException {
         linkProductsPage=driver.findElement(productsPageLocator);
         linkProductsPage.click();
@@ -69,6 +72,9 @@ public class ProductPage extends HomePage {
 
             System.out.println(addCart.get(countViewProducts));
             System.out.println(linkViewProducts.get(countViewProducts).getText());
+
+            products.add(new ProductsObjects(item.findElement( By.tagName("p")).getText(),item.findElement( By.tagName("p")).getText(),addCart.get(countViewProducts),linkViewProducts.get(countViewProducts)));
+
             countViewProducts++;
 
 
@@ -83,7 +89,7 @@ public class ProductPage extends HomePage {
     }
 
     public void SelecttoViewProducts(int i) throws InterruptedException {
-        linkViewProducts.get(i).click();
+        products.get(i).viewProduct.click();
 
 
         DisableAds();
@@ -100,7 +106,7 @@ public class ProductPage extends HomePage {
     }
 
     public void AddtoCart(int i) throws InterruptedException {
-        addCart.get(i).click();
+        products.get(i).addToCart.click();
 
 
         DisableAds();
