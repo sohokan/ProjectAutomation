@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 public class TC10  extends Base{
 
     @Test
-void VerifySubscription()
+void VerifySubscriptionHomePage()
 {
 Home.GotoHomePage();
 Home.CheckSubscription();
