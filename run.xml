@@ -18,7 +18,7 @@
 <!--            <class name="com.ti.tests.TC8"/>-->
 <!--            <class name="com.ti.tests.TC9"/>-->
 <!--            <class name="com.ti.tests.TC10"/>-->
-            <class name="com.ti.tests.TC11"/>
+            <class name="com.ti.tests.TC12"/>
         </classes>
     </test>
 

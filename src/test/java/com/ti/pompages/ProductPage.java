@@ -14,18 +14,26 @@ public class ProductPage extends HomePage {
 
     By viewProductLocator=By.cssSelector("a[href *='/product_details/']");
 
+    By addCartLocator=By.xpath("//div[@class='productinfo text-center']//i[contains(@class,'cart')]");
+
      By searchProductLocator=By.id("search_product");
 
      By submit_search=By.id("submit_search");
+
+     By continueshoppingLocator=By.xpath("//button[normalize-space()='Continue Shopping']");
 
     WebElement linkProductsPage;
 
     List<WebElement> productItems;
 
+    List<WebElement> addCart;
+
     List<WebElement> linkViewProducts;
 
     WebElement inputSearchProduct;
     WebElement btnSearchProduct;
+
+    WebElement btnContinueShopping;
 
     JavascriptExecutor jse = (JavascriptExecutor)driver;
 
@@ -50,14 +58,16 @@ public class ProductPage extends HomePage {
         System.out.println("Total Items: "+productItems.size());
 
         linkViewProducts=driver.findElements(viewProductLocator);
+        addCart=driver.findElements(addCartLocator);
+
 
         for (var item:productItems) {
 
 
             System.out.println(item.findElement( By.tagName("h2")).getText());
             System.out.println(item.findElement( By.tagName("p")).getText());
-            System.out.println(item.findElement( By.xpath("//a[contains(text(),'Add to cart')]")).getText());
 
+            System.out.println(addCart.get(countViewProducts));
             System.out.println(linkViewProducts.get(countViewProducts).getText());
             countViewProducts++;
 
@@ -86,6 +96,26 @@ public class ProductPage extends HomePage {
 
 
 
+
+    }
+
+    public void AddtoCart(int i) throws InterruptedException {
+        addCart.get(i).click();
+
+
+        DisableAds();
+
+        if (driver.getCurrentUrl().contains("google_vignette"))
+            addCart.get(i).click();
+
+        DisableAds();
+        btnContinueShopping= driver.findElement(continueshoppingLocator);
+        driver.switchTo().activeElement();
+
+        Thread.sleep(3000);
+
+        driver.findElement(By.xpath("//div[@id='cartModal']//button[normalize-space()='Continue Shopping']")).click();
+//        Thread.sleep(3000);
 
     }
 
