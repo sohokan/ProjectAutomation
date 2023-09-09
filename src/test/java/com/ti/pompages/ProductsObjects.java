@@ -10,12 +10,14 @@ public class ProductsObjects {
     WebElement addToCart;
     WebElement viewProduct;
 
+    int  intquantity;
 
-    public ProductsObjects(String strItemType, String strItemPrice, WebElement addToCart, WebElement viewProduct) {
+    public ProductsObjects(String strItemType, String strItemPrice, WebElement addToCart, WebElement viewProduct, int intquantity) {
         this.strItemType = strItemType;
         this.strItemPrice = strItemPrice;
         this.addToCart = addToCart;
         this.viewProduct = viewProduct;
+        this.intquantity = intquantity;
     }
 
 
@@ -49,6 +51,14 @@ public class ProductsObjects {
 
     public void setViewProduct() {
         this.viewProduct = viewProduct;
+    }
+
+    public int getIntquantity() {
+        return intquantity;
+    }
+
+    public void setIntquantity() {
+        this.intquantity = intquantity;
     }
 }
 

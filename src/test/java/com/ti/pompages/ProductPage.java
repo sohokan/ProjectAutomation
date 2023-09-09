@@ -38,7 +38,7 @@ public class ProductPage extends HomePage {
 
     JavascriptExecutor jse = (JavascriptExecutor)driver;
 
-    List<ProductsObjects> products = new ArrayList<>();
+
 
     public void GotoProductPage() throws InterruptedException {
         linkProductsPage=driver.findElement(productsPageLocator);
@@ -73,7 +73,7 @@ public class ProductPage extends HomePage {
             System.out.println(addCart.get(countViewProducts));
             System.out.println(linkViewProducts.get(countViewProducts).getText());
 
-            products.add(new ProductsObjects(item.findElement( By.tagName("p")).getText(),item.findElement( By.tagName("p")).getText(),addCart.get(countViewProducts),linkViewProducts.get(countViewProducts)));
+            products.add(new ProductsObjects(item.findElement( By.tagName("p")).getText(),item.findElement( By.tagName("h2")).getText(),addCart.get(countViewProducts),linkViewProducts.get(countViewProducts),0));
 
             countViewProducts++;
 
@@ -92,6 +92,7 @@ public class ProductPage extends HomePage {
         products.get(i).viewProduct.click();
 
 
+
         DisableAds();
 
         if (driver.getCurrentUrl().contains("google_vignette"))
@@ -107,7 +108,9 @@ public class ProductPage extends HomePage {
 
     public void AddtoCart(int i) throws InterruptedException {
         products.get(i).addToCart.click();
-
+        products.get(i).intquantity=products.get(i).intquantity+1;
+//        System.out.println(products.get(i).strItemType);
+//        System.out.println("Add"+products.get(i).intquantity);
 
         DisableAds();
 

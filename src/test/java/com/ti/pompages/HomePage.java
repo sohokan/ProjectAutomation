@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.ti.DriverFactory;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -84,6 +85,8 @@ public class HomePage {
 
     boolean checkexistent;
     String UserId= "";
+
+    static public List<ProductsObjects> products = new ArrayList<>();
 
     public void GotoHomePage()
     {

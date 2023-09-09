@@ -12,5 +12,6 @@ public class TC12 extends Base{
        Products.AddtoCart(0);//first one
         Products.AddtoCart(1);//second one
         Carts.GotoCart();
+        Carts.CheckCartProducts();
     }
 }
