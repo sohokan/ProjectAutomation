@@ -9,14 +9,21 @@ public class ProductDetailPage extends HomePage {
 
 //    Verify that detail detail is visible: product name, category, price, availability, condition, brand
 
-By productDetailPage=By.cssSelector(".product-information");
+By productDetailLocator=By.cssSelector(".product-information");
+
+By productquantityLocator=By.id("quantity");
+
+By productaddtocartLocator=By.cssSelector("button[type='button']");
 
 List<WebElement> productDetail;
 
+WebElement inputQuantity;
+
+WebElement btnAddtoCart;
 public void CheckProductDetail()
 {
 
-    productDetail=driver.findElements(productDetailPage);
+    productDetail=driver.findElements(productDetailLocator);
 
     for ( var detail:productDetail
          ) {
@@ -29,6 +36,26 @@ public void CheckProductDetail()
         System.out.println(detail.findElements(By.tagName("p")).get(2).getText());
         System.out.println(detail.findElements(By.tagName("p")).get(3).getText());
     }
+
+
+}
+
+public void AddProducttoCart(int amount, int position) throws InterruptedException {
+
+    inputQuantity=driver.findElement(productquantityLocator);
+    inputQuantity.clear();
+    inputQuantity.sendKeys(String.valueOf(amount));
+
+
+    products.get(position).intquantity=amount;
+    btnAddtoCart=driver.findElement(productaddtocartLocator);
+    btnAddtoCart.click();
+    driver.switchTo().activeElement();
+
+    Thread.sleep(3000);
+
+    driver.findElement(By.xpath("//div[@id='cartModal']//button[normalize-space()='Continue Shopping']")).click();
+
 
 }
 

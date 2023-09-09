@@ -118,7 +118,7 @@ public class ProductPage extends HomePage {
             addCart.get(i).click();
 
         DisableAds();
-        btnContinueShopping= driver.findElement(continueshoppingLocator);
+
         driver.switchTo().activeElement();
 
         Thread.sleep(3000);

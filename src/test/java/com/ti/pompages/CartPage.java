@@ -5,10 +5,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
-import java.util.regex.Matcher;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
+import static org.testng.AssertJUnit.assertTrue;
 
 public class CartPage extends HomePage{
 
@@ -51,17 +51,19 @@ public class CartPage extends HomePage{
         {
 
             lscart=objcart.findElements( By.tagName("td"));
-//            System.out.println(lscart.get(2).getText());
-//            System.out.println(lscart.get(3).getText());
-//            System.out.println(lscart.get(4).getText());
+            System.out.println(lscart.get(2).getText());
+            System.out.println(lscart.get(3).getText());
+            System.out.println(lscart.get(4).getText());
 //            System.out.println(objcart.findElement( By.xpath("//td[@class='cart_total']")).getText());
 
-            assertThat(products.get(counterProductSelected).strItemType,containsString(objcart.findElement( By.tagName("h4")).getText())); //compare name
-            assertThat(products.get(counterProductSelected).strItemPrice,containsString(lscart.get(2).getText())); //compare price
+//            assertThat(products.get(counterProductSelected).strItemType,containsString(objcart.findElement( By.tagName("h4")).getText())); //compare name
+//            assertThat(products.get(counterProductSelected).strItemPrice,containsString(lscart.get(2).getText())); //compare price
 //            System.out.println(objcart.findElement( By.tagName("h4")).getText());
 //            System.out.println(objcart.findElement( By.tagName("p")).getText());
 
 
+            System.out.println(compareProductsName(products,objcart.findElement( By.tagName("h4")).getText(),lscart.get(2).getText(),lscart.get(3).getText()));
+            assertTrue(compareProductsName(products,objcart.findElement( By.tagName("h4")).getText(),lscart.get(2).getText(),lscart.get(3).getText()));
             strItemPrice= lscart.get(2).getText().split("Rs. ");
 
             dItemPrice= Integer.parseInt(strItemPrice[1]);
@@ -76,5 +78,14 @@ public class CartPage extends HomePage{
 
             counterProductSelected++;
         }
+
+
     }
+
+
+    public boolean compareProductsName( List<ProductsObjects> list,  String itemname,  String itemprice ,String quantity){
+        return list.stream().anyMatch(o -> itemname.contains(o.getStrItemType()) && itemprice.contains(o.getStrItemPrice()) && quantity.contains(String.valueOf(o.getIntquantity())));
+    }
+
+
 }
