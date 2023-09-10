@@ -88,6 +88,8 @@ public class HomePage {
 
     static public List<ProductsObjects> products = new ArrayList<>();
 
+    static public int position;
+
     public void GotoHomePage()
     {
         iconHome= driver.findElement(HomePageLocator);

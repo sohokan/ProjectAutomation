@@ -40,7 +40,7 @@ public void CheckProductDetail()
 
 }
 
-public void AddProducttoCart(int amount, int position) throws InterruptedException {
+public void AddProducttoCart(int amount) throws InterruptedException {
 
     inputQuantity=driver.findElement(productquantityLocator);
     inputQuantity.clear();

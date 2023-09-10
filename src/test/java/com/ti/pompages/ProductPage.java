@@ -89,6 +89,7 @@ public class ProductPage extends HomePage {
     }
 
     public void SelecttoViewProducts(int i) throws InterruptedException {
+        position=i;
         products.get(i).viewProduct.click();
 
 
