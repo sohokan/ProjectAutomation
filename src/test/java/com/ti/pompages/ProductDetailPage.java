@@ -52,7 +52,7 @@ public void AddProducttoCart(int amount) throws InterruptedException {
     btnAddtoCart.click();
     driver.switchTo().activeElement();
 
-    Thread.sleep(3000);
+    Thread.sleep(2000);
 
     driver.findElement(By.xpath("//div[@id='cartModal']//button[normalize-space()='Continue Shopping']")).click();
 

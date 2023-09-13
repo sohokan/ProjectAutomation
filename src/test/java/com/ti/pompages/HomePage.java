@@ -196,7 +196,7 @@ public class HomePage {
     public  void GenerateLogs(){
 
 
-        log.info("User exist: "+ checkexistent);
+        log.info("User is Register: "+ checkexistent);
         log.info(email);
         log.info(password);
         log.info("________________________________________________________");
@@ -217,6 +217,7 @@ public class HomePage {
 
 
             Thread.sleep(1000);
+
 
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("const elements = document.getElementsByClassName('adsbygoogle adsbygoogle-noablate'); while (elements.length > 0) elements[0].remove()");

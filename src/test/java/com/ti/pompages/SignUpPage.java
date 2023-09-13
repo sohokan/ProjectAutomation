@@ -1,5 +1,6 @@
 package com.ti.pompages;
 
+import com.github.javafaker.Faker;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import org.apache.logging.log4j.LogManager;
@@ -11,6 +12,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -145,10 +148,10 @@ public class SignUpPage extends HomePage{
     public static String password = "";
 
 
+    static Faker faker = new Faker();
 
 
-
-
+    static public List<UserObjects> users = new ArrayList<>();
 
     public void VerifyLogin(String email, String password)
     {
@@ -277,22 +280,25 @@ public class SignUpPage extends HomePage{
         checkBoxNews.click();
         checkBoxOffer.click();
 
-        textBoxFirstName.sendKeys(random);
-        textBoxLastName.sendKeys(random);
-        textBoxCompany.sendKeys(random);
-        textBoxAddress1.sendKeys(random);
+        users.add(new UserObjects(GenerateRandomFName(),GenerateRandomLName(),GenerateRandomComponany(),GenerateRandomFullAddress(),GenerateRandomBuilding(),GenerateRandomCapital(),GenerateRandomCity(),GenerateRandomZipcode(),"Canada",GenerateRandomPhoneNumber()));
 
-        textBoxAddress2.sendKeys(random);
+        textBoxFirstName.sendKeys(users.get(0).strUserFirstName);
+        textBoxLastName.sendKeys(users.get(0).strUserLastName);
+        textBoxCompany.sendKeys(users.get(0).strCompany);
+        textBoxAddress1.sendKeys(users.get(0).strAddress1);
+
+        textBoxAddress2.sendKeys(users.get(0).strAddress2);
 
         selectCountry.selectByVisibleText("Canada");
 
-        textBoxState.sendKeys(random);
+        textBoxState.sendKeys(users.get(0).strState);
 
-        textBoxCity.sendKeys(random);
+        textBoxCity.sendKeys(users.get(0).strCity);
 
-        textBoxZipcode.sendKeys(random);
+        textBoxZipcode.sendKeys(users.get(0).strZipecode);
 
-        textBoxMobile_Number.sendKeys(random);
+        textBoxMobile_Number.sendKeys(users.get(0).strPhoneNumber);
+
 
         btnCreate.click();
 
@@ -350,6 +356,89 @@ public class SignUpPage extends HomePage{
         System.out.println(password);
 //        log.info(password);
         return password;
+    }
+
+
+    public final String GenerateRandomFName()
+    {
+        String strFname= faker.name().firstName();
+
+        return strFname;
+
+    }
+
+    public final String GenerateRandomLName()
+    {
+        String strLname= faker.name().lastName();
+
+        return strLname;
+
+    }
+
+
+    public final String GenerateRandomFullAddress()
+    {
+        String strAddress= faker.address().fullAddress();
+
+        return strAddress;
+
+    }
+
+
+    public final String GenerateRandomBuilding()
+    {
+        String strAddress= faker.address().buildingNumber();
+
+        return strAddress;
+
+    }
+
+    public final String GenerateRandomComponany()
+    {
+        String strCompany= faker.company().name();
+
+        return strCompany;
+
+    }
+
+    public final String GenerateRandomCountry()
+    {
+        String strCountry= faker.country().name();
+
+        return strCountry;
+
+    }
+
+    public final String GenerateRandomCapital()
+    {
+        String strCapital= faker.country().capital();
+
+        return strCapital;
+
+    }
+
+
+    public final String GenerateRandomCity()
+    {
+        String strCapital= faker.country().countryCode2();
+
+        return strCapital;
+
+    }
+    public final String GenerateRandomZipcode()
+    {
+        String strZipcode= faker.address().zipCode();
+
+        return strZipcode;
+
+    }
+
+    public final String GenerateRandomPhoneNumber()
+    {
+        String strPhoneNumber= faker.phoneNumber().phoneNumber();
+
+        return strPhoneNumber;
+
     }
 
 

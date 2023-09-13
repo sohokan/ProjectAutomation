@@ -15,11 +15,17 @@ public class CartPage extends HomePage{
     By cartLocator= By.xpath("//a[normalize-space()='Cart']");
     By productscartLocator=By.xpath("//tr[contains(@id,'product')]");
 
+    By checkoutLocator=By.cssSelector(".btn.btn-default.check_out");
+
+    By CartRegisterLocator=By.xpath("//div[@id='checkoutModal']//u[contains(.,'Register')]");
+
     WebElement iconCart;
 
     List<WebElement> productsCart;
 
     List<WebElement> lscart;
+
+    WebElement btnCheckout;
 
 
 
@@ -51,9 +57,9 @@ public class CartPage extends HomePage{
         {
 
             lscart=objcart.findElements( By.tagName("td"));
-            System.out.println(lscart.get(2).getText());
-            System.out.println(lscart.get(3).getText());
-            System.out.println(lscart.get(4).getText());
+//            System.out.println(lscart.get(2).getText());
+//            System.out.println(lscart.get(3).getText());
+//            System.out.println(lscart.get(4).getText());
 //            System.out.println(objcart.findElement( By.xpath("//td[@class='cart_total']")).getText());
 
 //            assertThat(products.get(counterProductSelected).strItemType,containsString(objcart.findElement( By.tagName("h4")).getText())); //compare name
@@ -62,7 +68,7 @@ public class CartPage extends HomePage{
 //            System.out.println(objcart.findElement( By.tagName("p")).getText());
 
 
-            System.out.println(compareProductsName(products,objcart.findElement( By.tagName("h4")).getText(),lscart.get(2).getText(),lscart.get(3).getText()));
+//            System.out.println(compareProductsName(products,objcart.findElement( By.tagName("h4")).getText(),lscart.get(2).getText(),lscart.get(3).getText()));
             assertTrue(compareProductsName(products,objcart.findElement( By.tagName("h4")).getText(),lscart.get(2).getText(),lscart.get(3).getText()));
             strItemPrice= lscart.get(2).getText().split("Rs. ");
 
@@ -82,6 +88,17 @@ public class CartPage extends HomePage{
 
     }
 
+    public void ProceedtoCheckout() throws InterruptedException {
+
+        btnCheckout=driver.findElement(checkoutLocator);
+        btnCheckout.click();
+
+//        Thread.sleep(1000);
+
+        if (driver.findElements(CartRegisterLocator).size()>0) // if user is not logged in
+            driver.findElement(CartRegisterLocator).click();
+
+    }
 
     public boolean compareProductsName( List<ProductsObjects> list,  String itemname,  String itemprice ,String quantity){
         return list.stream().anyMatch(o -> itemname.contains(o.getStrItemType()) && itemprice.contains(o.getStrItemPrice()) && quantity.contains(String.valueOf(o.getIntquantity())));
