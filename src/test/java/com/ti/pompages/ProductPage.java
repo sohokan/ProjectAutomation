@@ -2,7 +2,10 @@ package com.ti.pompages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -108,6 +111,8 @@ public class ProductPage extends HomePage {
     }
 
     public void AddtoCart(int i) throws InterruptedException {
+
+        WebElement latestId = driver.findElement(By.xpath("//div[@id='cartModal']//button[normalize-space()='Continue Shopping']"));
         products.get(i).addToCart.click();
         products.get(i).intquantity=products.get(i).intquantity+1;
 //        System.out.println(products.get(i).strItemType);
@@ -120,12 +125,19 @@ public class ProductPage extends HomePage {
 
         DisableAds();
 
-        driver.switchTo().activeElement();
+//        driver.switchTo().activeElement();
 
-        Thread.sleep(3000);
 
-        driver.findElement(By.xpath("//div[@id='cartModal']//button[normalize-space()='Continue Shopping']")).click();
+
 //        Thread.sleep(3000);
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(latestId));
+        driver.switchTo().activeElement();
+        latestId.click();
+
+
+
 
     }
 

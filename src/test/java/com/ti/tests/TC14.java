@@ -26,6 +26,7 @@ public class TC14 extends Base {
         Carts.CheckCartProducts(); //this in checkoutpage
         CheckOutPage.inputComment();
         CheckOutPage.PlaceOrder();
+        Payment.PlacePayment();
     }
 
 

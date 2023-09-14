@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import static com.ti.pompages.SignUpPage.users;
@@ -152,8 +153,6 @@ public class CheckOutPage extends HomePage {
         btnPlaceOrder.click();
 
     }
-
-
 
 
 }

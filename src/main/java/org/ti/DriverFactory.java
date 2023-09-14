@@ -3,6 +3,7 @@ package org.ti;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -20,7 +21,11 @@ public class DriverFactory {
     }
 
     public void setDriver(BrowserType browserType) {
+//        ChromeOptions options = new ChromeOptions();
+//        options.addArguments("--headless");
         switch (browserType) {
+
+//            case CHROME -> driver.set(new ChromeDriver(options));
             case CHROME -> driver.set(new ChromeDriver());
             case EDGE -> driver.set(new EdgeDriver());
             case FIREFOX -> driver.set(new FirefoxDriver());
