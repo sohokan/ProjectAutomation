@@ -196,7 +196,7 @@ public class HomePage {
     public  void GenerateLogs(){
 
 
-        log.info("User is Register: "+ checkexistent);
+//        log.info("User is Register: "+ checkexistent);
         log.info(email);
         log.info(password);
         log.info("________________________________________________________");
