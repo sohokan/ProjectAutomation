@@ -87,7 +87,10 @@ public class CheckOutPage extends HomePage {
     {
         listAddressDelivery =element.findElements(By.tagName("li"));
 
+        System.out.println("size"+listAddressDelivery.size());
 
+        if (users.size()>0) // only can be user was register in the execution you can cross check the registration screen
+        {
 
          verifyCorrectFirstName = listAddressDelivery.stream().filter((e) -> e.getText().contains(users.get(0).strUserFirstName)).findFirst().orElse(null);
         assertTrue(verifyCorrectFirstName.isDisplayed());
@@ -122,7 +125,7 @@ public class CheckOutPage extends HomePage {
 
         verifyWebelementPhoneNumber = listAddressDelivery.stream().filter((e) -> e.getText().contains(users.get(0).strPhoneNumber)).findFirst().orElse(null);
         assertTrue(verifyWebelementPhoneNumber.isDisplayed());
-//
+        }
 //
 //        for (int i=1;i<listAddressDelivery.size();i++)
 //        {

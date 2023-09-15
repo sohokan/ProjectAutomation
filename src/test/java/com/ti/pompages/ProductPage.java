@@ -91,22 +91,16 @@ public class ProductPage extends HomePage {
 
     }
 
-    public void SelecttoViewProducts(int i) throws InterruptedException {
-        position=i;
-        products.get(i).viewProduct.click();
-
-
+    public void SelecttoViewProducts(int selecteditem) throws InterruptedException {
+        position=selecteditem;
+        products.get(selecteditem).viewProduct.click();
 
         DisableAds();
 
         if (driver.getCurrentUrl().contains("google_vignette"))
-            linkViewProducts.get(i).click();
+            linkViewProducts.get(selecteditem).click();
 
         DisableAds();
-
-
-
-
 
     }
 

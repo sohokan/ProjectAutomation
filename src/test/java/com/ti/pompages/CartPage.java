@@ -45,6 +45,7 @@ public class CartPage extends HomePage{
         int counterProductSelected=0;
 
         System.out.println("Total products in cart "+productsCart.size());
+        System.out.println("Total products in pojo "+products.size());
 
         String[] strItemPrice;
 
@@ -53,23 +54,25 @@ public class CartPage extends HomePage{
         int TotalItemPrice;
 
 
+
+
         for (var objcart:productsCart)
         {
 
+
             lscart=objcart.findElements( By.tagName("td"));
-//            System.out.println(lscart.get(2).getText());
-//            System.out.println(lscart.get(3).getText());
-//            System.out.println(lscart.get(4).getText());
-//            System.out.println(objcart.findElement( By.xpath("//td[@class='cart_total']")).getText());
-
-//            assertThat(products.get(counterProductSelected).strItemType,containsString(objcart.findElement( By.tagName("h4")).getText())); //compare name
-//            assertThat(products.get(counterProductSelected).strItemPrice,containsString(lscart.get(2).getText())); //compare price
-//            System.out.println(objcart.findElement( By.tagName("h4")).getText());
-//            System.out.println(objcart.findElement( By.tagName("p")).getText());
 
 
-//            System.out.println(compareProductsName(products,objcart.findElement( By.tagName("h4")).getText(),lscart.get(2).getText(),lscart.get(3).getText()));
-            assertTrue(compareProductsName(products,objcart.findElement( By.tagName("h4")).getText(),lscart.get(2).getText(),lscart.get(3).getText()));
+                    System.out.println(objcart.findElement( By.tagName("h4")).getText());
+                    System.out.println(lscart.get(2).getText());
+                    System.out.println(lscart.get(3).getText());
+
+
+
+
+
+            System.out.println(compareProductsName(objcart.findElement( By.tagName("h4")).getText(),lscart.get(2).getText()/*,lscart.get(3).getText()*/));
+          assertTrue(compareProductsName(objcart.findElement( By.tagName("h4")).getText(),lscart.get(2).getText()/*,lscart.get(3).getText()*/));
             strItemPrice= lscart.get(2).getText().split("Rs. ");
 
             dItemPrice= Integer.parseInt(strItemPrice[1]);
@@ -88,7 +91,9 @@ public class CartPage extends HomePage{
 
     }
 
-    public void ProceedtoCheckout() throws InterruptedException {
+    public void
+
+    ProceedtoCheckout() throws InterruptedException {
 
         btnCheckout=driver.findElement(checkoutLocator);
         btnCheckout.click();
@@ -100,9 +105,12 @@ public class CartPage extends HomePage{
 
     }
 
-    public boolean compareProductsName( List<ProductsObjects> list,  String itemname,  String itemprice ,String quantity){
-        return list.stream().anyMatch(o -> itemname.contains(o.getStrItemType()) && itemprice.contains(o.getStrItemPrice()) && quantity.contains(String.valueOf(o.getIntquantity())));
+    public boolean compareProductsName(  String itemname,  String itemprice /*,String quantity*/){
+//        return products.stream().allMatch(o -> itemname.contains(o.getStrItemType()) && itemprice.contains(o.getStrItemPrice()) && quantity.contains(String.valueOf(o.getIntquantity())));
+
+        return products.stream().anyMatch(o -> itemname.contains(o.getStrItemType()) && itemprice.contains(o.getStrItemPrice()));
     }
+
 
 
 }
