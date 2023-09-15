@@ -27,6 +27,11 @@ public class TC14 extends Base {
         CheckOutPage.inputComment();
         CheckOutPage.PlaceOrder();
         Payment.PlacePayment();
+        Payment.SuccessMsg();
+        PaymentDone.ContinuetoHome();
+        Home.ClickonDeleteUser();
+        Home.VerifyAccountDeleted();
+
     }
 
 

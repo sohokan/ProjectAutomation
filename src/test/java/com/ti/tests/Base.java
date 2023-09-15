@@ -27,6 +27,8 @@ public class Base {
 
     PaymentPage Payment;
 
+    PaymentDonePage PaymentDone;
+
     String email="pdg1_qph.-@testdata.com";
     String password="ovO8wy9Z";
 
@@ -58,6 +60,7 @@ public class Base {
         Carts=new CartPage();
         CheckOutPage=new CheckOutPage();
         Payment= new PaymentPage();
+        PaymentDone=new PaymentDonePage();
 
     }
 
