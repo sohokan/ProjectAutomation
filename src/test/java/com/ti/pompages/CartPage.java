@@ -1,14 +1,20 @@
 package com.ti.pompages;
 
-import org.openqa.selenium.By;
+import org.checkerframework.checker.units.qual.A;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-import org.openqa.selenium.WebElement;
-
-import java.util.List;
+import java.time.Duration;
+import java.util.*;
+import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 import static org.testng.AssertJUnit.assertTrue;
+
+
 
 public class CartPage extends HomePage{
 
@@ -19,6 +25,13 @@ public class CartPage extends HomePage{
 
     By CartRegisterLocator=By.xpath("//div[@id='checkoutModal']//u[contains(.,'Register')]");
 
+    By deleteProductLocator ;
+            //By.xpath("/parent::*/parent::td/following-sibling::td[4]//a//i");
+
+    //a[contains(.,'Fancy Green Top')]/parent::*/parent::td/following-sibling::td[4]//a//i
+
+    By prodsNameDeletedLocator=By.xpath("//a[contains(@href,'product_detail')]");
+
     WebElement iconCart;
 
     List<WebElement> productsCart;
@@ -26,6 +39,10 @@ public class CartPage extends HomePage{
     List<WebElement> lscart;
 
     WebElement btnCheckout;
+
+     WebElement  iconDeleteProduct;
+
+    ArrayList<String> arrayclothes= new ArrayList<>(10) ;
 
 
 
@@ -44,6 +61,8 @@ public class CartPage extends HomePage{
 
         int counterProductSelected=0;
 
+
+
         System.out.println("Total products in cart "+productsCart.size());
         System.out.println("Total products in pojo "+products.size());
 
@@ -53,9 +72,6 @@ public class CartPage extends HomePage{
         int iItemQuantity;
         int TotalItemPrice;
 
-
-
-
         for (var objcart:productsCart)
         {
 
@@ -63,15 +79,11 @@ public class CartPage extends HomePage{
             lscart=objcart.findElements( By.tagName("td"));
 
 
-                    System.out.println(objcart.findElement( By.tagName("h4")).getText());
-                    System.out.println(lscart.get(2).getText());
-                    System.out.println(lscart.get(3).getText());
-
-
-
-
-
-            System.out.println(compareProductsName(objcart.findElement( By.tagName("h4")).getText(),lscart.get(2).getText()/*,lscart.get(3).getText()*/));
+//                    System.out.println(objcart.findElement( By.tagName("h4")).getText());
+//                    System.out.println(lscart.get(2).getText());
+//                    System.out.println(lscart.get(3).getText());
+//
+//            System.out.println(compareProductsName(objcart.findElement( By.tagName("h4")).getText(),lscart.get(2).getText()/*,lscart.get(3).getText()*/));
           assertTrue(compareProductsName(objcart.findElement( By.tagName("h4")).getText(),lscart.get(2).getText()/*,lscart.get(3).getText()*/));
             strItemPrice= lscart.get(2).getText().split("Rs. ");
 
@@ -84,16 +96,67 @@ public class CartPage extends HomePage{
             System.out.println("Total Price: "+TotalItemPrice);
 
             assertThat(lscart.get(4).getText(),containsString(String.valueOf(TotalItemPrice))); //compare price from website with Total Price (calculated)
-
+            arrayclothes.add(objcart.findElement( By.tagName("h4")).getText());
             counterProductSelected++;
+
+
         }
+
+    arrayclothes.forEach(System.out::println);
 
 
     }
 
-    public void
+    public void DeleteProduct(int i)
+    {
 
-    ProceedtoCheckout() throws InterruptedException {
+        String completeDeletexpath= "//a[contains(.,'"+products.get(i).strItemType +
+                "')]/parent::*/parent::td/following-sibling::td[4]//a//i";
+
+        deleteProductLocator=By.xpath(completeDeletexpath);
+
+
+//        iconDeleteProduct=driver.findElements(deleteProductLocator);
+
+      WebElement deleteProduct=driver.findElement( deleteProductLocator);
+        System.out.println(deleteProduct.getAttribute("class"));
+
+        JavascriptExecutor executor = (JavascriptExecutor)driver;
+        executor.executeScript("window.scrollBy(0,300)");
+
+        executor.executeScript("arguments[0].click();", deleteProduct);
+
+
+//        deleteProduct.click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.invisibilityOf(deleteProduct));
+
+    }
+
+    public void VerifyDeleteProduct() throws InterruptedException {
+
+
+
+//       List<WebElement> newproductsCart=getStaleElement(prodsNameDeletedLocator);
+
+        List<WebElement> newproductsCart=driver.findElements(prodsNameDeletedLocator);
+        ArrayList<String> NewCartProducts = new ArrayList<String>();
+        for (WebElement p : newproductsCart ) {
+            NewCartProducts.add(p.getText());
+        }
+//        System.out.println("Old Products");
+//       arrayclothes.forEach(System.out::println);
+//        System.out.println("New Products");
+//        newproductsCart.forEach(p-> System.out.println(p.getText()));
+//        System.out.println(arrayclothes.containsAll(NewCartProducts));
+
+
+        }
+
+
+
+
+    public void ProceedtoCheckout() throws InterruptedException {
 
         btnCheckout=driver.findElement(checkoutLocator);
         btnCheckout.click();
@@ -112,5 +175,14 @@ public class CartPage extends HomePage{
     }
 
 
+    public List <WebElement> getStaleElement(By by) {
+        try {
+
+            return driver.findElements(by);
+        } catch (StaleElementReferenceException | NoSuchElementException e) {
+            System.out.println("Attempting to recover from " + e.getClass().getSimpleName() + "...");
+            return getStaleElement(by);
+        }
+    }
 
 }
