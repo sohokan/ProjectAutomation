@@ -10,7 +10,7 @@ public  class TC3 extends Base{
     void LoginUserInValidCreds() throws InterruptedException {
         Home.LoggedUser();
         Home.Logout();
-        Login.VerifyLogin(email,"passw");
+        Login.VerifyLogin(inputemail,"passw");
         Login.VerifyincorretLoginMessage();
 
     }

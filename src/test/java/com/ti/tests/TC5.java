@@ -8,7 +8,7 @@ public class TC5 extends Base{
 
     void RegisteredUser()
     {
-        Login.RegisterNewEmail(email);
+        Login.RegisterNewEmail(inputemail);
         Login.EmailExist();
 
 

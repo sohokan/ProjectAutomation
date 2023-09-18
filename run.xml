@@ -18,16 +18,16 @@
 <!--            <class name="com.ti.tests.TC8"/>-->
 <!--            <class name="com.ti.tests.TC9"/>-->
 <!--            <class name="com.ti.tests.TC10"/>-->
-<!--            <class name="com.ti.tests.TC16"/>-->
+            <class name="com.ti.tests.TC17"/>
         </classes>
     </test>
 
 
 
-<test preserve-order="true" name="User Endpoint Tests">
-    <parameter name="endpoint" value="api/"></parameter>
-    <classes>
-        <class name="com.ti.restapi.FetchUserDetailsInfo"></class>
-    </classes>
-</test>
+<!--<test preserve-order="true" name="User Endpoint Tests">-->
+<!--    <parameter name="endpoint" value="api/"></parameter>-->
+<!--    <classes>-->
+<!--        <class name="com.ti.restapi.FetchUserDetailsInfo"></class>-->
+<!--    </classes>-->
+<!--</test>-->
 </suite>

@@ -13,7 +13,7 @@ public class TC2 extends Base {
     void LoginUserValidCreds() throws InterruptedException {
         Home.LoggedUser();
         Home.Logout();
-        Login.VerifyLogin(email,password);
+        Login.VerifyLogin(inputemail,password);
         Home.LoggedUser();
 
     }

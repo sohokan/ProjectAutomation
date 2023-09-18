@@ -1,13 +1,24 @@
 package com.ti.tests;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 public class TC16 extends Base{
 
-@Test
+   @Test(priority = 1)
+
+   void GetUserData() throws JsonProcessingException {
+
+      AutomationApi.givenDeserializing();
+
+   }
+
+@Test(priority = 2)
     void PlaceOrderLoginBeforeCheckout() throws InterruptedException {
      Home.HomePageTitle();
-        Login.VerifyLogin(email,password);
+        Login.VerifyLogin(inputemail,password);
         Products.GotoProductPage();
         Products.VerifyProductList();
         Products.SelecttoViewProducts(6);

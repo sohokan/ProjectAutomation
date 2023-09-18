@@ -5,18 +5,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.text.SimpleDateFormat;
-import java.time.Duration;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.NoSuchElementException;
-import java.util.concurrent.TimeUnit;
-
-import static com.ti.pompages.SignUpPage.faker;
 import static com.ti.pompages.SignUpPage.users;
+import static com.ti.restapi.HttpsMethod.usersgo;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 
@@ -55,6 +48,7 @@ public class PaymentPage extends HomePage{
     {
 
 
+
         inputCardName=driver.findElement(cardNameLocator);
 
         inputCardNumber=driver.findElement(cardNumberLocator);
@@ -67,7 +61,19 @@ public class PaymentPage extends HomePage{
         btnPay=driver.findElement(payConfirmLocator);
 
 
-        inputCardName.sendKeys(users.get(0).strUserFirstName+" "+users.get(0).strUserLastName);
+//        inputCardName.sendKeys(users.get(0).strUserFirstName+" "+users.get(0).strUserLastName);
+
+        if(users.size()>0)
+        {
+            inputCardName.sendKeys(users.get(0).strUserFirstName+" "+users.get(0).strUserLastName);
+
+
+        }
+        else {
+
+            inputCardName.sendKeys( usersgo.users.firstName+" "+usersgo.users.lastName);
+
+        }
 
         inputCardNumber.sendKeys(card.number().digits(16));
 
@@ -124,13 +130,5 @@ public class PaymentPage extends HomePage{
 
     }
 
-    WebElement getStaleElement(By by) {
-        try {
 
-            return driver.findElement(by);
-        } catch (StaleElementReferenceException | NoSuchElementException e) {
-            System.out.println("Attempting to recover from " + e.getClass().getSimpleName() + "...");
-            return getStaleElement(by);
-        }
-    }
 }

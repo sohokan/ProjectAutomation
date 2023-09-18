@@ -2,6 +2,7 @@ package com.ti.tests;
 
 import com.ti.pompages.*;
 
+import com.ti.restapi.HttpsMethod;
 import org.testng.annotations.*;
 import org.ti.DriverFactory;
 import org.ti.BrowserType;
@@ -29,11 +30,10 @@ public class Base {
 
     PaymentDonePage PaymentDone;
 
-    String email="za_kvirgoe@testdata.com";
-    String password="GXulV9PM";
+    HttpsMethod AutomationApi;
 
-
-
+    public static String inputemail="15.chqqsby@testdata.com";
+    String password="JXVdWkg2";
 
 
     @BeforeSuite
@@ -61,6 +61,7 @@ public class Base {
         CheckOutPage=new CheckOutPage();
         Payment= new PaymentPage();
         PaymentDone=new PaymentDonePage();
+        AutomationApi=new HttpsMethod();
 
     }
 
