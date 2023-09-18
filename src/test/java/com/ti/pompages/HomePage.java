@@ -17,6 +17,7 @@ import static com.ti.pompages.SignUpPage.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalToIgnoringCase;
+import static org.testng.AssertJUnit.assertTrue;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -50,6 +51,10 @@ public class HomePage {
     By subscribeLocator=By.id("subscribe");
 
     By sucessalertLocator=By.xpath("//div[@class='alert-success alert']");
+
+    By categoryLocator=By.id("accordian");
+
+    By dressLocator=By.xpath("//div[@id=\"Women\"]//a[contains(text(),\"Dress\")]");
     WebDriver driver = DriverFactory.getInstance().getDriver();
 
     WebElement WebsiteText;
@@ -75,6 +80,10 @@ public class HomePage {
     WebElement btnsubscribe;
 
     WebElement alertSuscribe;
+
+    List<WebElement> panelCategory;
+    WebElement panelDress;
+
     String random = UUID.randomUUID()
             .toString()
             .substring(0, 6);
@@ -191,6 +200,37 @@ public class HomePage {
         alertSuscribe=driver.findElement(sucessalertLocator);
         System.out.println( alertSuscribe.getText());
         assertThat(alertSuscribe.getText(), containsString("success"));
+    }
+
+    public void CategoryVisibility()
+
+    {
+        js.executeScript("window.scrollBy(0,300)");
+
+        panelCategory=driver.findElements(categoryLocator);
+
+
+
+
+        panelCategory.forEach(c-> System.out.println(c.getText()));
+
+        panelCategory.forEach(c-> assertTrue(c.isDisplayed()));
+
+
+
+
+
+    }
+
+    public void SelectWomanCategory() throws InterruptedException {
+
+
+        panelDress=driver.findElement(dressLocator);
+
+        js.executeScript("arguments[0].click();", panelDress);
+
+        DisableAds();
+
     }
 
     public  void GenerateLogs(){
