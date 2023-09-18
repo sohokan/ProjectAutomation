@@ -10,6 +10,7 @@ import java.util.*;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
+import static java.util.function.Predicate.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 import static org.testng.AssertJUnit.assertTrue;
@@ -42,7 +43,7 @@ public class CartPage extends HomePage{
 
      WebElement  iconDeleteProduct;
 
-    ArrayList<String> arrayclothes= new ArrayList<>(10) ;
+    ArrayList<String> arrayclothes= new ArrayList<>();
 
 
 
@@ -147,8 +148,20 @@ public class CartPage extends HomePage{
 //        System.out.println("Old Products");
 //       arrayclothes.forEach(System.out::println);
 //        System.out.println("New Products");
+//        NewCartProducts.forEach(System.out::println);
+
 //        newproductsCart.forEach(p-> System.out.println(p.getText()));
 //        System.out.println(arrayclothes.containsAll(NewCartProducts));
+
+
+//        List<String> result = arrayclothes.stream()
+//                .filter(not(new HashSet<>(NewCartProducts)::contains))
+//                .collect(Collectors.toList());
+
+        List<String> result = arrayclothes.stream().filter(elem -> !NewCartProducts.contains(elem)).collect(Collectors.toList());
+
+
+        result.forEach(p-> System.out.println(p+" was removed for the Cart Page"));
 
 
         }

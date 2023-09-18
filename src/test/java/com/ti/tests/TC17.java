@@ -13,7 +13,7 @@ public class TC17 extends Base{
         Products.AddtoCart(7);
         Carts.GotoCart();
         Carts.CheckCartProducts();
-        Carts.DeleteProduct(4);
+        Carts.DeleteProduct(20);
         Carts.VerifyDeleteProduct();
 
 
