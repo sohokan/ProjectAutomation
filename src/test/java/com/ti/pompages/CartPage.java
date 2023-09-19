@@ -65,7 +65,7 @@ public class CartPage extends HomePage{
 
 
         System.out.println("Total products in cart "+productsCart.size());
-        System.out.println("Total products in pojo "+products.size());
+//        System.out.println("Total products in pojo "+products.size());
 
         String[] strItemPrice;
 
@@ -80,12 +80,10 @@ public class CartPage extends HomePage{
             lscart=objcart.findElements( By.tagName("td"));
 
 
-//                    System.out.println(objcart.findElement( By.tagName("h4")).getText());
-//                    System.out.println(lscart.get(2).getText());
-//                    System.out.println(lscart.get(3).getText());
-//
-//            System.out.println(compareProductsName(objcart.findElement( By.tagName("h4")).getText(),lscart.get(2).getText()/*,lscart.get(3).getText()*/));
-          assertTrue(compareProductsName(objcart.findElement( By.tagName("h4")).getText(),lscart.get(2).getText()/*,lscart.get(3).getText()*/));
+
+//          assertTrue(compareProductsInfo(objcart.findElement( By.tagName("h4")).getText(),lscart.get(2).getText(),lscart.get(3).getText()));
+            compareProducts(objcart.findElement( By.tagName("h4")).getText(),lscart.get(2).getText(),lscart.get(3).getText());
+
             strItemPrice= lscart.get(2).getText().split("Rs. ");
 
             dItemPrice= Integer.parseInt(strItemPrice[1]);
@@ -94,7 +92,7 @@ public class CartPage extends HomePage{
 
             TotalItemPrice=dItemPrice*iItemQuantity;
 
-            System.out.println("Total Price: "+TotalItemPrice);
+            System.out.println(objcart.findElement( By.tagName("h4")).getText()+" has a Total Price "+TotalItemPrice);
 
             assertThat(lscart.get(4).getText(),containsString(String.valueOf(TotalItemPrice))); //compare price from website with Total Price (calculated)
             arrayclothes.add(objcart.findElement( By.tagName("h4")).getText());
@@ -103,7 +101,7 @@ public class CartPage extends HomePage{
 
         }
 
-    arrayclothes.forEach(System.out::println);
+
 
 
     }
@@ -181,10 +179,16 @@ public class CartPage extends HomePage{
 
     }
 
-    public boolean compareProductsName(  String itemname,  String itemprice /*,String quantity*/){
-//        return products.stream().allMatch(o -> itemname.contains(o.getStrItemType()) && itemprice.contains(o.getStrItemPrice()) && quantity.contains(String.valueOf(o.getIntquantity())));
+    public boolean compareProductsInfo(  String itemname,  String itemprice ,String quantity){
+        return products.stream().allMatch(o -> itemname.contains(o.getStrItemType()) && itemprice.contains(o.getStrItemPrice()) && quantity.contains(String.valueOf(o.getIntquantity())));
 
-        return products.stream().anyMatch(o -> itemname.contains(o.getStrItemType()) && itemprice.contains(o.getStrItemPrice()));
+//        return products.stream().anyMatch(o -> itemname.contains(o.getStrItemType()) && itemprice.contains(o.getStrItemPrice()));
+    }
+
+    public void compareProducts(  String itemname,  String itemprice ,String quantity){
+        products.forEach(o ->{ if(Integer.parseInt(quantity)==o.getIntquantity() && itemname.contains(o.getStrItemType()) && itemprice.contains(o.getStrItemPrice()))
+            System.out.println("The Quantity  and Price match for "+o.strItemType);
+        });
     }
 
 

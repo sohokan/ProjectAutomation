@@ -34,24 +34,6 @@ public class ProductBrandPage extends HomePage {
 
 
    public void VerifyCategoryTitle(String s) throws InterruptedException {
-       By xpathLocator;
-       if (driver.getCurrentUrl().equals("#google_vignette") || driver.getCurrentUrl().equals("products"))
-       {
-           if (s.equals("Madame"))
-
-               xpathLocator=By.xpath( "//a[@href=\"/brand_products/Madame\"]");
-
-           else
-               xpathLocator=By.xpath( "//a[@href='/brand_products/Babyhug']");
-
-
-               js.executeScript("arguments[0].click();", driver.findElement(xpathLocator));
-
-
-           DisableAds();
-
-
-       }
 
 
        DisableAds();
@@ -63,12 +45,6 @@ public class ProductBrandPage extends HomePage {
     public void VerifyBrandPageisDisplayed() throws InterruptedException {
 
 
-        if (driver.getCurrentUrl().equals("#google_vignette"))
-        {
-            driver.navigate().refresh();
-            DisableAds();
-
-        }
 
         urlCategoryPage= driver.getCurrentUrl();
 

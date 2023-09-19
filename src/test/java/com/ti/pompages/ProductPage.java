@@ -160,20 +160,9 @@ public class ProductPage extends HomePage {
     }
 
     public  void SelectBrand() throws InterruptedException {
-        DisableAds();
+
         panelBrand.get(2).click();
         DisableAds();
-
-        if (driver.getCurrentUrl().contains("google_vignette") ||driver.getCurrentUrl().equals("https://automationexercise.com/products") )
-        {
-//            driver.navigate().refresh();
-
-            panelBrand.get(2).click();
-//            js.executeScript("arguments[0].click();", panelBrand);
-            DisableAds();
-
-        }
-
 
 
     }
