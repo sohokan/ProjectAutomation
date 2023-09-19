@@ -34,6 +34,8 @@ public class Base {
 
     ProductCategoryPage ProductCategory;
 
+    ProductBrandPage ProductBrand;
+
     public static String inputemail="15.chqqsby@testdata.com";
     String password="JXVdWkg2";
 
@@ -65,6 +67,8 @@ public class Base {
         PaymentDone=new PaymentDonePage();
         AutomationApi=new HttpsMethod();
         ProductCategory=new ProductCategoryPage();
+        ProductBrand= new ProductBrandPage();
+
 
     }
 

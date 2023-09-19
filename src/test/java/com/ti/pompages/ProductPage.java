@@ -9,6 +9,8 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.testng.AssertJUnit.assertTrue;
+
 
 public class ProductPage extends HomePage {
 
@@ -26,6 +28,8 @@ public class ProductPage extends HomePage {
 
      By continueshoppingLocator=By.xpath("//button[normalize-space()='Continue Shopping']");
 
+     By panelBrandLocator=By.cssSelector("a[href*=\"brand_products\"]");
+
     WebElement linkProductsPage;
 
     List<WebElement> productItems;
@@ -39,11 +43,15 @@ public class ProductPage extends HomePage {
 
     WebElement btnContinueShopping;
 
+    List<WebElement> panelBrand;
+
     JavascriptExecutor jse = (JavascriptExecutor)driver;
 
 
 
     public void GotoProductPage() throws InterruptedException {
+        ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(0));
         linkProductsPage=driver.findElement(productsPageLocator);
         linkProductsPage.click();
         DisableAds();
@@ -73,8 +81,8 @@ public class ProductPage extends HomePage {
             System.out.println(item.findElement( By.tagName("h2")).getText());
             System.out.println(item.findElement( By.tagName("p")).getText());
 
-            System.out.println(addCart.get(countViewProducts));
-            System.out.println(linkViewProducts.get(countViewProducts).getText());
+//            System.out.println(addCart.get(countViewProducts));
+//            System.out.println(linkViewProducts.get(countViewProducts).getText());
 
             products.add(new ProductsObjects(item.findElement( By.tagName("p")).getText(),item.findElement( By.tagName("h2")).getText(),addCart.get(countViewProducts),linkViewProducts.get(countViewProducts),0));
 
@@ -109,8 +117,6 @@ public class ProductPage extends HomePage {
         WebElement latestId = driver.findElement(By.xpath("//div[@id='cartModal']//button[normalize-space()='Continue Shopping']"));
         products.get(i).addToCart.click();
         products.get(i).intquantity=products.get(i).intquantity+1;
-//        System.out.println(products.get(i).strItemType);
-//        System.out.println("Add"+products.get(i).intquantity);
 
         DisableAds();
 
@@ -119,18 +125,11 @@ public class ProductPage extends HomePage {
 
         DisableAds();
 
-//        driver.switchTo().activeElement();
-
-
-
-//        Thread.sleep(3000);
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.elementToBeClickable(latestId));
         driver.switchTo().activeElement();
         latestId.click();
-
-
 
 
     }
@@ -142,6 +141,40 @@ public class ProductPage extends HomePage {
 
         btnSearchProduct=driver.findElement(submit_search);
         btnSearchProduct.click();
+
+    }
+
+    public void VerifyBrand()
+
+    {
+
+        js.executeScript("window.scrollBy(0,400)");
+        panelBrand=driver.findElements(panelBrandLocator);
+
+//        System.out.println(panelBrand.size());
+
+        panelBrand.forEach(c-> System.out.println(c.getText()));
+
+        panelBrand.forEach(c-> assertTrue(c.isDisplayed()));
+
+    }
+
+    public  void SelectBrand() throws InterruptedException {
+        DisableAds();
+        panelBrand.get(2).click();
+        DisableAds();
+
+        if (driver.getCurrentUrl().contains("google_vignette") ||driver.getCurrentUrl().equals("https://automationexercise.com/products") )
+        {
+//            driver.navigate().refresh();
+
+            panelBrand.get(2).click();
+//            js.executeScript("arguments[0].click();", panelBrand);
+            DisableAds();
+
+        }
+
+
 
     }
 }
