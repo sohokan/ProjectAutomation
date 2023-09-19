@@ -21,7 +21,7 @@ public class Base {
 
     TestCasePage TestCase;
 
-    ProductDetailPage productDetail;
+    ProductDetailPage ProductDetail;
     CartPage Carts;
 
     CheckOutPage CheckOutPage;
@@ -36,8 +36,8 @@ public class Base {
 
     ProductBrandPage ProductBrand;
 
-    public static String inputemail="15.chqqsby@testdata.com";
-    String password="JXVdWkg2";
+    public static String inputemail="0n3xmd1wu-@testdata.com";
+    String password="krT41EiW";
 
 
     @BeforeSuite
@@ -60,7 +60,7 @@ public class Base {
         Home= new HomePage();
         ContactUs= new ContactUsPage();
         TestCase= new TestCasePage();
-        productDetail=new ProductDetailPage();
+        ProductDetail=new ProductDetailPage();
         Carts=new CartPage();
         CheckOutPage=new CheckOutPage();
         Payment= new PaymentPage();

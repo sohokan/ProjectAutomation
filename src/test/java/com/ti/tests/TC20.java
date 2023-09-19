@@ -10,8 +10,11 @@ public class TC20 extends Base {
         Products.GotoProductPage();
         Products.SearchProducts("tshirt");
         Products.VerifyProductList();
-        Products.AddtoCart(0);//first one
-        Products.AddtoCart(1);//second one
+        Products.AddtoCart(2);//first one
+        Products.AddtoCart(3);//second one
+        Carts.GotoCart();
+        Carts.CheckCartProducts();
+        Login.VerifyLogin(inputemail,password);
         Carts.GotoCart();
         Carts.CheckCartProducts();
     }

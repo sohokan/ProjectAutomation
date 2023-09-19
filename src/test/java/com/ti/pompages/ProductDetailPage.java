@@ -1,5 +1,6 @@
 package com.ti.pompages;
 
+import com.github.javafaker.Faker;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -7,6 +8,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.containsStringIgnoringCase;
 
 public class ProductDetailPage extends HomePage {
 
@@ -18,11 +23,43 @@ By productquantityLocator=By.id("quantity");
 
 By productaddtocartLocator=By.cssSelector("button[type='button']");
 
+By labelReviewLocator=By.cssSelector("a[href=\"#reviews\"]");
+
+By nameLocator=By.id("name");
+
+By emailLocator=By.id("email");
+
+By textAreaReviewLocator=By.id("review");
+
+By btnReviewLocator=By.id("button-review");
+
+By successAlertLocator=By.cssSelector("div[class=\"alert-success alert\"] span");
+
 List<WebElement> productDetail;
 
 WebElement inputQuantity;
 
 WebElement btnAddtoCart;
+
+WebElement labelReview;
+
+WebElement inputName;
+
+WebElement inputemail;
+
+WebElement textAreaReview;
+
+WebElement btnReview;
+
+WebElement successAlert;
+
+
+
+Faker reviewdata = new Faker();
+
+
+
+
 public void CheckProductDetail()
 {
 
@@ -57,14 +94,40 @@ public void AddProducttoCart(int amount) throws InterruptedException {
     btnAddtoCart.click();
 
 
-//    Thread.sleep(2000);
-
-
-
     WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
     wait.until(ExpectedConditions.elementToBeClickable(latestId));
     driver.switchTo().activeElement();
     latestId.click();
+
+
+}
+
+public void VerifyReviewLabel()
+
+    {
+        labelReview=driver.findElement(labelReviewLocator);
+
+
+        assertThat(labelReview.getText(), containsStringIgnoringCase("Write Your Review"));
+
+
+
+    }
+
+public void AddReview()
+
+{
+    inputName=driver.findElement(nameLocator);
+    inputemail=driver.findElement(emailLocator);
+    textAreaReview=driver.findElement(textAreaReviewLocator);
+    btnReview=driver.findElement(btnReviewLocator);
+    inputName.sendKeys(reviewdata.name().firstName()+ " "+reviewdata.name().lastName());
+    inputemail.sendKeys(reviewdata.internet().emailAddress());
+    textAreaReview.sendKeys(random);
+    btnReview.click();
+
+    successAlert=driver.findElement(successAlertLocator);
+    assertThat(successAlert.getText(), containsStringIgnoringCase("Thank you for your review"));
 
 
 }

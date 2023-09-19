@@ -22,8 +22,8 @@ public class TC16 extends Base{
         Products.GotoProductPage();
         Products.VerifyProductList();
         Products.SelecttoViewProducts(6);
-        productDetail.CheckProductDetail();
-        productDetail.AddProducttoCart(2);
+        ProductDetail.CheckProductDetail();
+        ProductDetail.AddProducttoCart(2);
         Carts.GotoCart();
         Carts.CheckCartProducts();
         Carts.ProceedtoCheckout();

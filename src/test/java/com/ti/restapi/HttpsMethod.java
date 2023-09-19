@@ -46,6 +46,6 @@ public class HttpsMethod {
         objectMapper.configure(SerializationFeature.WRAP_ROOT_VALUE, true);
 
          usersgo = objectMapper.readValue(getUserDetailByEmail()  , Root.class);
-        System.out.println(usersgo.users.firstName);
+//        System.out.println(usersgo.users.firstName);
     }
 }

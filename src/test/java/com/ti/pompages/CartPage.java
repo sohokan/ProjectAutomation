@@ -187,7 +187,7 @@ public class CartPage extends HomePage{
 
     public void compareProducts(  String itemname,  String itemprice ,String quantity){
         products.forEach(o ->{ if(Integer.parseInt(quantity)==o.getIntquantity() && itemname.contains(o.getStrItemType()) && itemprice.contains(o.getStrItemPrice()))
-            System.out.println("The Quantity  and Price match for "+o.strItemType);
+            System.out.println("The Quantity and Price match for "+o.strItemType);
         });
     }
 

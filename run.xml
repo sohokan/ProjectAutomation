@@ -21,7 +21,8 @@
 <!--            <class name="com.ti.tests.TC18"/>-->
 
 <!--            <class name="com.ti.tests.TC19"/>-->
-            <class name="com.ti.tests.TC20"/>
+<!--            <class name="com.ti.tests.TC20"/>-->
+            <class name="com.ti.tests.TC21"/>
         </classes>
     </test>
 

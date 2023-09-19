@@ -64,7 +64,7 @@ public class ProductPage extends HomePage {
         int countViewProducts=0;
 
 
-        jse.executeScript("window.scrollBy(0,400)");
+        jse.executeScript("window.scrollBy(0,500)");
         DisableAds();
 
         productItems=driver.findElements(productsLocator);

@@ -10,8 +10,8 @@ public class TC13 extends Base {
         Products.GotoProductPage();
         Products.VerifyProductList();
         Products.SelecttoViewProducts(3);
-        productDetail.CheckProductDetail();
-        productDetail.AddProducttoCart(4);
+        ProductDetail.CheckProductDetail();
+        ProductDetail.AddProducttoCart(4);
         Carts.GotoCart();
         Carts.CheckCartProducts();
     }
