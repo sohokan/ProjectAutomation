@@ -15,6 +15,7 @@ import org.ti.DriverFactory;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import static com.ti.pompages.SignUpPage.*;
@@ -117,10 +118,33 @@ public class HomePage {
 
     static public int position;
 
+
+    public void WaitForAdblocker()
+
+    {
+        Set<String> AllWindowHandles = driver.getWindowHandles();
+//        ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
+//        driver.switchTo().window(tabs.get(1));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.numberOfWindowsToBe(2));
+        String window1 = (String) AllWindowHandles.toArray()[0];
+        String window2 = (String) AllWindowHandles.toArray()[1];
+
+        driver.switchTo().window(window2);
+
+        WebElement Adblock = driver.findElement(By.xpath("//h2[@class='installed__heading']"));
+
+        wait.until(ExpectedConditions.visibilityOf(Adblock));
+        driver.close();
+
+        driver.switchTo().window(window1);
+
+
+    }
     public void GotoHomePage()
     {
-        ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
-        driver.switchTo().window(tabs.get(0));
+
+
         iconHome= driver.findElement(HomePageLocator);
         iconHome.click();
 

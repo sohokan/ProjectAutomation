@@ -68,6 +68,7 @@ public class Base {
         AutomationApi=new HttpsMethod();
         ProductCategory=new ProductCategoryPage();
         ProductBrand= new ProductBrandPage();
+        Home.WaitForAdblocker();
 
 
     }

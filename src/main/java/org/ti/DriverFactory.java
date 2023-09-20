@@ -38,12 +38,15 @@ public class DriverFactory {
         ChromeOptions options=new ChromeOptions() ;
         options.addExtensions(new File(ExtensionFile) );
         options.addArguments("start-maximized");
+        options.addArguments("disable-notifications");
 
 
         Map<String, Object> prefs = new HashMap<String, Object>();
         prefs.put("credentials_enable_service", false);
         prefs.put("profile.password_manager_enabled", false);
-
+        prefs.put("download.prompt_for_download", false);
+        prefs.put("disable-popup-blocking", true);
+        prefs.put("autofill.profile_enabled", false);
         options.setExperimentalOption("prefs", prefs);
 
 
