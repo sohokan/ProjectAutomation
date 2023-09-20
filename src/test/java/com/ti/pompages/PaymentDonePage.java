@@ -23,4 +23,11 @@ public class PaymentDonePage extends HomePage{
         btnContinue.click();
 
     }
+
+    public void DownloadInvoice()
+    {
+        btnDownLoad=driver.findElement(btnDownLoadLocator);
+        btnDownLoad.click();
+
+    }
 }

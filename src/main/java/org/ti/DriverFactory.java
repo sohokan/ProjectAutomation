@@ -30,6 +30,8 @@ public class DriverFactory {
 
         String ExtensionFile=System.getProperty("user.dir")+"\\Extensions\\"+"Adblock.crx";
 
+        String downloadPath=System.getProperty("user.dir")+"\\Downloads";
+
 //        ChromeOptions options = new ChromeOptions();
 //        options.addArguments("--headless");
 //        ChromeOptions options = new ChromeOptions();
@@ -47,6 +49,7 @@ public class DriverFactory {
         prefs.put("download.prompt_for_download", false);
         prefs.put("disable-popup-blocking", true);
         prefs.put("autofill.profile_enabled", false);
+        prefs.put("download.default_directory", downloadPath);
         options.setExperimentalOption("prefs", prefs);
 
 

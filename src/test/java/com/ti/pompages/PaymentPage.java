@@ -94,18 +94,6 @@ public class PaymentPage extends HomePage{
         String hiddenText = (String)((JavascriptExecutor)driver).executeScript(
                 "return arguments[0].textContent;", elem);
 
-//        JavascriptExecutor js = (JavascriptExecutor)driver;
-//        js.executeScript("arguments[0].click();", element);
-
-
-//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
-
-
-//        getStaleElement(sucessMsgLocator);
-//        wait.until(ExpectedConditions.stalenessOf(driver.findElement(sucessMsgLocator)));
-
-
         btnPay.click();
         assertThat(hiddenText, containsString("successfully"));
 

@@ -1,9 +1,9 @@
 package com.ti.tests;
 
-import org.testng.annotations.AfterClass;
+import com.ti.pompages.PaymentDonePage;
 import org.testng.annotations.Test;
 
-public class TC23 extends Base{
+public class TC24  extends Base {
 
 
     @Test
@@ -14,7 +14,7 @@ public class TC23 extends Base{
         Login.AccountCreated();
         Products.GotoProductPage();
         Products.VerifyProductList();
-        Products.SelecttoViewProducts(5);
+        Products.SelecttoViewProducts(6);
         ProductDetail.CheckProductDetail();
         ProductDetail.AddProducttoCart(2);
         Carts.GotoCart();
@@ -22,17 +22,10 @@ public class TC23 extends Base{
         Carts.ProceedtoCheckout();
         CheckOutPage.VerifyCheckoutAddress();
         Carts.CheckCartProducts(); //this in checkoutpage
-        Home.ClickonDeleteUser();
-        Home.VerifyAccountDeleted();
-
+        CheckOutPage.inputComment();
+        CheckOutPage.PlaceOrder();
+        Payment.PlacePayment();
+        Payment.SuccessMsg();
+        PaymentDone.DownloadInvoice();
     }
-
-
-    @AfterClass
-    public void Logger()
-    {
-        Home.GenerateLogs();
-
-    }
-
 }
