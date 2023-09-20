@@ -6,17 +6,19 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.ti.DriverFactory;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 import static com.ti.pompages.SignUpPage.*;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.containsString;
-import static org.hamcrest.Matchers.equalToIgnoringCase;
+import static org.hamcrest.Matchers.*;
 import static org.testng.AssertJUnit.assertTrue;
 
 import org.apache.logging.log4j.LogManager;
@@ -55,7 +57,14 @@ public class HomePage {
     By categoryLocator=By.id("accordian");
 
     By dressLocator=By.xpath("//div[@id=\"Women\"]//a[contains(text(),\"Dress\")]");
-    WebDriver driver = DriverFactory.getInstance().getDriver();
+
+   By lblRecommendedLocator=By.cssSelector("div[class=\"recommended_items\"] h2[class=\"title text-center\"]");
+
+   By carouselRecommendedProductLocator=By.xpath("//div[contains(@class,'carousel slide')]//div[@class='productinfo text-center']");
+
+   By btnContinueLocator=By.xpath("//div[@class='modal-content']//button[normalize-space()='Continue Shopping']");
+
+   WebDriver driver = DriverFactory.getInstance().getDriver();
 
     WebElement WebsiteText;
     List<WebElement> CarrouselDot;
@@ -84,6 +93,12 @@ public class HomePage {
     List<WebElement> panelCategory;
     WebElement panelDress;
 
+    WebElement lblRecommended;
+
+    WebElement btnContinueShooping;
+
+    List<WebElement> carouselRecommendedProduct;
+
     String random = UUID.randomUUID()
             .toString()
             .substring(0, 6);
@@ -101,6 +116,8 @@ public class HomePage {
 
     public void GotoHomePage()
     {
+        ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(0));
         iconHome= driver.findElement(HomePageLocator);
         iconHome.click();
 
@@ -186,11 +203,6 @@ public class HomePage {
     public void CheckSubscription()
     {
 
-
-
-
-        js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
-        txtSubscription=driver.findElement(SubsLocator);
         System.out.println(txtSubscription.getText());
         assertThat(txtSubscription.getText(), containsString("SUBSCRIPTION"));
         inputsusbscribeEmail=driver.findElement(suscribeemailLocator);
@@ -201,6 +213,68 @@ public class HomePage {
         System.out.println( alertSuscribe.getText());
         assertThat(alertSuscribe.getText(), containsString("success"));
     }
+
+    public void ScrolltoBotom()
+
+    {
+        js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        txtSubscription=driver.findElement(SubsLocator);
+
+    }
+
+
+    public void ScrapRecommendedProduct(int itemSelection)
+
+    {
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        List<WebElement> addToCart = new ArrayList<>();
+
+
+        String hiddenPrice;
+
+        String hiddenName;
+        lblRecommended=driver.findElement(lblRecommendedLocator);
+
+        assertThat(lblRecommended.getText(), containsStringIgnoringCase("recommended items"));
+
+
+        carouselRecommendedProduct=driver.findElements(carouselRecommendedProductLocator);
+
+        System.out.println("size "+carouselRecommendedProduct.size());
+
+
+        for (var products:carouselRecommendedProduct){
+
+             hiddenPrice=   (String)((JavascriptExecutor)driver).executeScript(
+                    "return arguments[0].textContent;", products.findElement(By.tagName("h2")));
+
+            hiddenName=   (String)((JavascriptExecutor)driver).executeScript(
+                    "return arguments[0].textContent;", products.findElement(By.tagName("p")));
+            System.out.println(hiddenPrice);
+            System.out.println(hiddenName);
+//            products.findElement(By.tagName("a"));
+
+             addToCart.add(products.findElement(By.tagName("a")));
+
+        }
+        js.executeScript("arguments[0].click();", addToCart.get(itemSelection));
+
+
+        btnContinueShooping= driver.findElement(btnContinueLocator);
+        wait.until(ExpectedConditions.elementToBeClickable(btnContinueShooping));
+   driver.switchTo().activeElement();
+        btnContinueShooping.click();
+
+//        js.executeScript("arguments[0].click();", btnContinueShooping);
+
+
+    }
+
+
+
+
 
     public void CategoryVisibility()
 

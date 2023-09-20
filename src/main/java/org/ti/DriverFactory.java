@@ -39,6 +39,7 @@ public class DriverFactory {
         options.addExtensions(new File(ExtensionFile) );
         options.addArguments("start-maximized");
 
+
         Map<String, Object> prefs = new HashMap<String, Object>();
         prefs.put("credentials_enable_service", false);
         prefs.put("profile.password_manager_enabled", false);
@@ -54,6 +55,7 @@ public class DriverFactory {
             case FIREFOX -> driver.set(new FirefoxDriver());
         }
         driver.get().manage().window().maximize();
+
     }
 
     public void removeDriver() {

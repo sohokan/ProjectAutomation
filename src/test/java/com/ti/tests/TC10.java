@@ -8,6 +8,7 @@ public class TC10  extends Base{
 void VerifySubscriptionHomePage()
 {
 Home.GotoHomePage();
+Home.ScrolltoBotom();
 Home.CheckSubscription();
 
 }

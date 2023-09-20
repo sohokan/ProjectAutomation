@@ -114,6 +114,8 @@ public class ProductPage extends HomePage {
 
     public void AddtoCart(int i) throws InterruptedException {
 
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
         WebElement latestId = driver.findElement(By.xpath("//div[@id='cartModal']//button[normalize-space()='Continue Shopping']"));
         products.get(i).addToCart.click();
         products.get(i).intquantity=products.get(i).intquantity+1;
@@ -126,7 +128,7 @@ public class ProductPage extends HomePage {
         DisableAds();
 
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
         wait.until(ExpectedConditions.elementToBeClickable(latestId));
         driver.switchTo().activeElement();
         latestId.click();
