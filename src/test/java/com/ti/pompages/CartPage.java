@@ -82,6 +82,8 @@ public class CartPage extends HomePage{
 
 
 //          assertTrue(compareProductsInfo(objcart.findElement( By.tagName("h4")).getText(),lscart.get(2).getText(),lscart.get(3).getText()));
+
+
             compareProducts(objcart.findElement( By.tagName("h4")).getText(),lscart.get(2).getText(),lscart.get(3).getText());
 
             strItemPrice= lscart.get(2).getText().split("Rs. ");
@@ -186,11 +188,24 @@ public class CartPage extends HomePage{
     }
 
     public void compareProducts(  String itemname,  String itemprice ,String quantity){
-        products.forEach(o ->{ if(Integer.parseInt(quantity)==o.getIntquantity() && itemname.contains(o.getStrItemType()) && itemprice.contains(o.getStrItemPrice()))
-            System.out.println("The Quantity and Price match for "+o.strItemType);
-        });
+        if (products.size()>0)
+
+            ReturnMatch(products,itemname,itemprice,quantity, "The");
+
+        if(recommendProducts.size()>0)
+
+            ReturnMatch(recommendProducts,itemname,itemprice,quantity, "The Recommended");
     }
 
+
+     void ReturnMatch(List<ProductsObjects> object,String itemname,  String itemprice ,String quantity, String text)
+
+    {
+        object.forEach(o ->{ if(Integer.parseInt(quantity)==o.getIntquantity() && itemname.contains(o.getStrItemType()) && itemprice.contains(o.getStrItemPrice()))
+            System.out.println(text+" Quantity and Price match for "+o.strItemType);
+        });
+
+    }
 
     public List <WebElement> getStaleElement(By by) {
         try {

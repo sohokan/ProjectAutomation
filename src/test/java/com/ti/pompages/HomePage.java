@@ -2,6 +2,7 @@ package com.ti.pompages;
 
 import com.ti.pompages.SignUpPage ;
 
+import org.apache.commons.lang3.ObjectUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -111,6 +112,8 @@ public class HomePage {
     String UserId= "";
 
     static public List<ProductsObjects> products = new ArrayList<>();
+
+    static public List<ProductsObjects> recommendProducts = new ArrayList<>();
 
     static public int position;
 
@@ -222,12 +225,20 @@ public class HomePage {
 
     }
 
+    public void ScrolltoTop()
 
-    public void ScrapRecommendedProduct(int itemSelection)
+    {
+         js.executeScript("window.scrollTo(0, -document.body.scrollHeight)");;
+
+
+    }
+
+
+    public void ScrapRecommendedProduct()
 
     {
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
 
         List<WebElement> addToCart = new ArrayList<>();
 
@@ -242,32 +253,47 @@ public class HomePage {
 
         carouselRecommendedProduct=driver.findElements(carouselRecommendedProductLocator);
 
-        System.out.println("size "+carouselRecommendedProduct.size());
+        System.out.println("Recommend Product total items "+carouselRecommendedProduct.size());
 
 
-        for (var products:carouselRecommendedProduct){
+        for (var p:carouselRecommendedProduct){
 
              hiddenPrice=   (String)((JavascriptExecutor)driver).executeScript(
-                    "return arguments[0].textContent;", products.findElement(By.tagName("h2")));
+                    "return arguments[0].textContent;", p.findElement(By.tagName("h2")));
 
             hiddenName=   (String)((JavascriptExecutor)driver).executeScript(
-                    "return arguments[0].textContent;", products.findElement(By.tagName("p")));
+                    "return arguments[0].textContent;", p.findElement(By.tagName("p")));
             System.out.println(hiddenPrice);
             System.out.println(hiddenName);
 //            products.findElement(By.tagName("a"));
 
-             addToCart.add(products.findElement(By.tagName("a")));
+             addToCart.add(p.findElement(By.tagName("a")));
+
+
+            recommendProducts.add(new ProductsObjects(hiddenPrice,hiddenName,p.findElement(By.tagName("a")),null,0));
+
+
 
         }
-        js.executeScript("arguments[0].click();", addToCart.get(itemSelection));
+
+
+//        js.executeScript("arguments[0].click();", btnContinueShooping);
+
+    }
+
+    public void AddtoCartRecommendProduct(int itemSelection)
+    {
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        js.executeScript("arguments[0].click();", recommendProducts.get(itemSelection).addToCart);
 
 
         btnContinueShooping= driver.findElement(btnContinueLocator);
         wait.until(ExpectedConditions.elementToBeClickable(btnContinueShooping));
-   driver.switchTo().activeElement();
+        driver.switchTo().activeElement();
         btnContinueShooping.click();
-
-//        js.executeScript("arguments[0].click();", btnContinueShooping);
+        recommendProducts.get(itemSelection).intquantity=1;
 
 
     }

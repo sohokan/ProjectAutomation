@@ -10,8 +10,12 @@ public class TC22 extends Base{
     {
         Home.GotoHomePage();
         Home.ScrolltoBotom();
-        Home.ScrapRecommendedProduct(0);
-        Home.ScrapRecommendedProduct(1);
+        Home.ScrapRecommendedProduct();
+        Home.AddtoCartRecommendProduct(0);
+        Home.AddtoCartRecommendProduct(1);
+        Home.ScrolltoTop();
+        Carts.GotoCart();
+        Carts.CheckCartProducts();
 
 
 

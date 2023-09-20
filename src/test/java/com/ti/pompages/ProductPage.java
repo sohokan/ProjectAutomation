@@ -49,6 +49,8 @@ public class ProductPage extends HomePage {
 
 
 
+
+
     public void GotoProductPage() throws InterruptedException {
         ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
         driver.switchTo().window(tabs.get(0));
