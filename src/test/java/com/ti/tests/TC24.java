@@ -27,5 +27,6 @@ public class TC24  extends Base {
         Payment.PlacePayment();
         Payment.SuccessMsg();
         PaymentDone.DownloadInvoice();
+        PaymentDone.CheckFileWasDownloaded();
     }
 }
