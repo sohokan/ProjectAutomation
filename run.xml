@@ -22,7 +22,7 @@
 
 <!--            <class name="com.ti.tests.TC19"/>-->
 <!--            <class name="com.ti.tests.TC20"/>-->
-            <class name="com.ti.tests.TC24"/>
+            <class name="com.ti.tests.TC25"/>
         </classes>
     </test>
 

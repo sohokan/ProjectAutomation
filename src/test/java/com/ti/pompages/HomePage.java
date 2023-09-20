@@ -33,7 +33,7 @@ public class HomePage {
 
     By automationImageLocator= By.cssSelector("img[alt*='automation']");
 
-    By automationCarouselLocator=By.xpath("//li[contains(@data-target,'carousel')]");
+    By automationCarouselLocator=By.xpath("//div[contains(@class,'item')]//h2[contains(text(),'Full-Fledged')]");
 
     By automationCarouselTextLocator=By.xpath("//h2[contains(text(), 'Automation')]");
 
@@ -66,10 +66,12 @@ public class HomePage {
 
    By btnContinueLocator=By.xpath("//div[@class='modal-content']//button[normalize-space()='Continue Shopping']");
 
+
+   By btnAngelUpLocator=By.cssSelector(".fa.fa-angle-up");
    WebDriver driver = DriverFactory.getInstance().getDriver();
 
     WebElement WebsiteText;
-    List<WebElement> CarrouselDot;
+    List<WebElement> carrouselText;
 
     WebElement labeluser;
 
@@ -98,6 +100,8 @@ public class HomePage {
     WebElement lblRecommended;
 
     WebElement btnContinueShooping;
+
+    WebElement btnAngelUp;
 
     List<WebElement> carouselRecommendedProduct;
 
@@ -159,14 +163,15 @@ public class HomePage {
 
     }
 
-    public void Clickoncarousel()
+    public void CheckCarouselText()
     {
-        CarrouselDot=driver.findElements(automationCarouselLocator);
+        carrouselText=driver.findElements(automationCarouselLocator);
+        String hiddenText ;
 
-        for ( var carrousel:CarrouselDot) {
-            carrousel.click();
-            assertThat(driver.findElement(automationCarouselTextLocator).getText(), containsString("Automation"));
-
+        for ( var carrousel:carrouselText) {
+            hiddenText = (String)((JavascriptExecutor)driver).executeScript(
+                    "return arguments[0].textContent;", carrousel);
+            assertThat(hiddenText, containsStringIgnoringCase("Full-Fledged"));
 
         }
 
@@ -246,6 +251,7 @@ public class HomePage {
     {
         js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
         txtSubscription=driver.findElement(SubsLocator);
+        assertThat(txtSubscription.getText(), containsString("SUBSCRIPTION"));
 
     }
 
@@ -253,6 +259,14 @@ public class HomePage {
 
     {
          js.executeScript("window.scrollTo(0, -document.body.scrollHeight)");;
+
+    }
+
+    public void btnScrolltoUp()
+    {
+
+        btnAngelUp=driver.findElement(btnAngelUpLocator);
+        btnAngelUp.click();
 
 
     }
