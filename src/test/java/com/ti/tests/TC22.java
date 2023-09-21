@@ -6,8 +6,7 @@ public class TC22 extends Base{
 
 
     @Test
-    void VerifyAddtoCartRecommended()
-    {
+    void VerifyAddtoCartRecommended() throws InterruptedException {
         Home.GotoHomePage();
         Home.ScrolltoBotom();
         Home.ScrapRecommendedProduct();

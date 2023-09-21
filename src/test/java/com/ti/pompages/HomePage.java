@@ -246,24 +246,21 @@ public class HomePage {
         assertThat(alertSuscribe.getText(), containsString("success"));
     }
 
-    public void ScrolltoBotom()
-
-    {
-        js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+    public void ScrolltoBotom() throws InterruptedException {
+        Thread.sleep(2000);
+        js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
         txtSubscription=driver.findElement(SubsLocator);
         assertThat(txtSubscription.getText(), containsString("SUBSCRIPTION"));
 
     }
 
-    public void ScrolltoTop()
-
-    {
-         js.executeScript("window.scrollTo(0, -document.body.scrollHeight)");;
+    public void ScrolltoTop() throws InterruptedException {
+        Thread.sleep(2000);
+        js.executeScript("scroll(0, -250);");
 
     }
 
-    public void btnScrolltoUp()
-    {
+    public void btnScrolltoUp()  {
 
         btnAngelUp=driver.findElement(btnAngelUpLocator);
         btnAngelUp.click();

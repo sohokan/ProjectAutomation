@@ -5,10 +5,10 @@ import org.testng.annotations.Test;
 public class TC25 extends Base{
 
 @Test
-    public void VerifyScrollUpArrowbutton()
-    {
+    public void VerifyScrollUpArrowbutton() throws InterruptedException {
       Home.HomePageTitle();
       Home.ScrolltoBotom();
+
       Home.btnScrolltoUp();
       Home.CheckCarouselText();
     }

@@ -32,16 +32,12 @@ public class DriverFactory {
 
         String downloadPath=System.getProperty("user.dir")+"\\Downloads";
 
-//        ChromeOptions options = new ChromeOptions();
-//        options.addArguments("--headless");
-//        ChromeOptions options = new ChromeOptions();
-//
+        ChromeOptions options = new ChromeOptions();
 
-        ChromeOptions options=new ChromeOptions() ;
         options.addExtensions(new File(ExtensionFile) );
         options.addArguments("start-maximized");
         options.addArguments("disable-notifications");
-
+//        options.addArguments("--headless");
 
         Map<String, Object> prefs = new HashMap<String, Object>();
         prefs.put("credentials_enable_service", false);

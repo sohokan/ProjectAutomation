@@ -5,8 +5,7 @@ import org.testng.annotations.Test;
 public class TC10  extends Base{
 
     @Test
-void VerifySubscriptionHomePage()
-{
+void VerifySubscriptionHomePage() throws InterruptedException {
 Home.GotoHomePage();
 Home.ScrolltoBotom();
 Home.CheckSubscription();
