@@ -21,7 +21,7 @@ import static org.hamcrest.Matchers.*;
 
 public class SignUpPage extends HomePage{
 
-    By Login= By.xpath("//a[contains(text(),'Login')]");
+    By loginLocator= By.cssSelector("a[href=\"/login\"]");
 
     By NewUserNameLocator =By.cssSelector("input[placeholder='Name']");
     By NewEmailLocator= By.cssSelector("input[data-qa='signup-email']");
@@ -77,7 +77,7 @@ public class SignUpPage extends HomePage{
 
     By incorrectloginLocator=By.xpath("//p[contains(normalize-space(),' incorrect!')]");
 
-    By LoginLocator=By.cssSelector("div[class='login-form'] h2");
+    By LoginLocator=By.xpath("(//h2[normalize-space()='Login to your account'])[1]");
 
     By EmailexistLocator=By.xpath("//p[contains(normalize-space(),'exist!')]");
 
@@ -157,7 +157,7 @@ public class SignUpPage extends HomePage{
     {
 
 
-        WebElement LinkLogin= driver.findElement(Login);
+        WebElement LinkLogin= driver.findElement(loginLocator);
         LinkLogin.click();
 
 
@@ -189,7 +189,7 @@ public class SignUpPage extends HomePage{
 
 
 
-        WebElement LinkLogin= driver.findElement(Login);
+        WebElement LinkLogin= driver.findElement(loginLocator);
         LinkLogin.click();
 
 
@@ -324,6 +324,8 @@ public class SignUpPage extends HomePage{
     public void VerifyLoginPage()
     {
         msgLoginPage=driver.findElement(LoginLocator);
+
+
         System.out.println(msgLoginPage.getText());
         assertThat(msgLoginPage.getText(), containsString("Login"));
     }

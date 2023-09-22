@@ -1,12 +1,22 @@
 package com.ti.tests;
 
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class TC19 extends Base{
 
+    @BeforeClass
+
+    void CloseAdblocker()
+    {
+
+        Home.WaitForAdblocker();
+    }
+
 
     @Test
     void ViewBrands() throws InterruptedException {
+
         Products.GotoProductPage();
         Products.VerifyBrand();
         Products.SelectBrand();

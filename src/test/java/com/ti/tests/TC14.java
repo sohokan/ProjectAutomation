@@ -1,13 +1,22 @@
 package com.ti.tests;
 
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class TC14 extends Base {
 
+@BeforeClass
+    void CloseAdblocker()
+    {
+
+      Home.WaitForAdblocker();
+    }
+
     @Test
 
     void VerifyPlaceOrder() throws InterruptedException {
+
         Products.GotoProductPage();
         Products.VerifyProductList();
         Products.SelecttoViewProducts(5);

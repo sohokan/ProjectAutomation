@@ -1,13 +1,22 @@
 package com.ti.tests;
 
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class TC15 extends Base {
 
+    @BeforeClass
+
+    void CloseAdblocker()
+    {
+
+        Home.WaitForAdblocker();
+    }
 
     @Test
     void PlaceOrderb4Checkout() throws InterruptedException {
+
         Home.HomePageTitle();
         Login.RegisterNewEmail();
         Login.AccountInformation();

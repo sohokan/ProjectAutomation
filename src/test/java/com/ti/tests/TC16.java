@@ -2,10 +2,21 @@ package com.ti.tests;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 public class TC16 extends Base{
+
+
+   @BeforeClass
+
+   void CloseAdblocker()
+   {
+
+      Home.WaitForAdblocker();
+   }
+
 
    @Test(priority = 1)
 
@@ -17,6 +28,7 @@ public class TC16 extends Base{
 
 @Test(priority = 2)
     void PlaceOrderLoginBeforeCheckout() throws InterruptedException {
+
      Home.HomePageTitle();
         Login.VerifyLogin(inputemail,password);
         Products.GotoProductPage();

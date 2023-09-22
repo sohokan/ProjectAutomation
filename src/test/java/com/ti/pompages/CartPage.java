@@ -207,14 +207,6 @@ public class CartPage extends HomePage{
 
     }
 
-    public List <WebElement> getStaleElement(By by) {
-        try {
 
-            return driver.findElements(by);
-        } catch (StaleElementReferenceException | NoSuchElementException e) {
-            System.out.println("Attempting to recover from " + e.getClass().getSimpleName() + "...");
-            return getStaleElement(by);
-        }
-    }
 
 }

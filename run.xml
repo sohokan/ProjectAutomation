@@ -1,27 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Automation Exercise" parallel="false" thread-count="1" preserve-order="true" >
-    <parameter name="browser" value="CHROME"/>
+<suite name="Automation Exercise" parallel="false"  preserve-order="true" verbose="2">
+ <listeners>
+  <listener class-name="org.ti.Listeners.AnnotationTransform"></listener>
+ </listeners>
+
 
     <test name="TestCases">
-
+     <parameter name="browser" value="CHROME"/>
         <classes>
-
-
-<!--            <class name="com.ti.tests.TC1"/>-->
-<!--            <class name="com.ti.tests.TC2"/>-->
-<!--            <class name="com.ti.tests.TC3"/>-->
-<!--            <class name="com.ti.tests.TC4"/>-->
-<!--            <class name="com.ti.tests.TC5"/>-->
-<!--            <class name="com.ti.tests.TC6"/>-->
-<!--            <class name="com.ti.tests.TC7"/>-->
-<!--            <class name="com.ti.tests.TC8"/>-->
-<!--            <class name="com.ti.tests.TC9"/>-->
-<!--            <class name="com.ti.tests.TC10"/>-->
-<!--            <class name="com.ti.tests.TC18"/>-->
-
-<!--            <class name="com.ti.tests.TC19"/>-->
-<!--            <class name="com.ti.tests.TC20"/>-->
+           <class name="com.ti.tests.TC1"/>
+            <class name="com.ti.tests.TC2"/>
+            <class name="com.ti.tests.TC3"/>
+            <class name="com.ti.tests.TC4"/>
+            <class name="com.ti.tests.TC5"/>
+            <class name="com.ti.tests.TC6"/>
+            <class name="com.ti.tests.TC7"/>
+            <class name="com.ti.tests.TC8"/>
+            <class name="com.ti.tests.TC9"/>
+            <class name="com.ti.tests.TC10"/>
+            <class name="com.ti.tests.TC11"/>
+            <class name="com.ti.tests.TC12"/>
+            <class name="com.ti.tests.TC13"/>
+            <class name="com.ti.tests.TC14"/>
+            <class name="com.ti.tests.TC15"/>
+            <class name="com.ti.tests.TC16"/>
+            <class name="com.ti.tests.TC17"/>
+            <class name="com.ti.tests.TC18"/>
+            <class name="com.ti.tests.TC19"/>
+            <class name="com.ti.tests.TC20"/>
+            <class name="com.ti.tests.TC21"/>
+            <class name="com.ti.tests.TC22"/>
+            <class name="com.ti.tests.TC22"/>
+            <class name="com.ti.tests.TC23"/>
+            <class name="com.ti.tests.TC24"/>
+            <class name="com.ti.tests.TC25"/>
             <class name="com.ti.tests.TC26"/>
         </classes>
     </test>

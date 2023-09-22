@@ -1,4 +1,4 @@
-package org.ti;
+package org.ti.DriverFactory;
 
 public enum BrowserType {
     CHROME,

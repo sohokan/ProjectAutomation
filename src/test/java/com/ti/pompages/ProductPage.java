@@ -2,6 +2,7 @@ package com.ti.pompages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -18,9 +19,9 @@ public class ProductPage extends HomePage {
 
     By productsLocator =By.xpath("//div[@class='productinfo text-center']");
 
-    By viewProductLocator=By.cssSelector("a[href *='/product_details/']");
-
-    By addCartLocator=By.xpath("//div[@class='productinfo text-center']//i[contains(@class,'cart')]");
+    By viewProductLocator=By.xpath("//a[contains(text(),'View Product')]");
+//    a[href*='product_details']
+    By addCartLocator=By.xpath("//div[@class='product-overlay']//a[contains(text(),'Add to cart')]");
 
      By searchProductLocator=By.id("search_product");
 
@@ -46,24 +47,26 @@ public class ProductPage extends HomePage {
     List<WebElement> panelBrand;
 
     JavascriptExecutor jse = (JavascriptExecutor)driver;
-
+    List<WebElement> overallContent;
 
 
 
 
     public void GotoProductPage() throws InterruptedException {
-        ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
-        driver.switchTo().window(tabs.get(0));
+
         linkProductsPage=driver.findElement(productsPageLocator);
         linkProductsPage.click();
         DisableAds();
         if(driver.getCurrentUrl().contains("google_vignette"))
             linkProductsPage.click();
 
+
+
     }
 
     public void VerifyProductList() throws InterruptedException {
         int countViewProducts=0;
+       overallContent= driver.findElements(By.xpath("(//img[@alt='ecommerce website products'])"));
 
 
         jse.executeScript("window.scrollBy(0,500)");
@@ -82,11 +85,13 @@ public class ProductPage extends HomePage {
 
             System.out.println(item.findElement( By.tagName("h2")).getText());
             System.out.println(item.findElement( By.tagName("p")).getText());
+            System.out.println(item.findElement( By.tagName("a")).getText());
 
 //            System.out.println(addCart.get(countViewProducts));
 //            System.out.println(linkViewProducts.get(countViewProducts).getText());
 
-            products.add(new ProductsObjects(item.findElement( By.tagName("p")).getText(),item.findElement( By.tagName("h2")).getText(),addCart.get(countViewProducts),linkViewProducts.get(countViewProducts),0));
+//            products.add(new ProductsObjects(item.findElement( By.tagName("p")).getText(),item.findElement( By.tagName("h2")).getText(),item.findElement( By.tagName("a")),linkViewProducts.get(countViewProducts),0));
+           products.add(new ProductsObjects(item.findElement( By.tagName("p")).getText(),item.findElement( By.tagName("h2")).getText(),addCart.get(countViewProducts),linkViewProducts.get(countViewProducts),0));
 
             countViewProducts++;
 
@@ -102,32 +107,64 @@ public class ProductPage extends HomePage {
     }
 
     public void SelecttoViewProducts(int selecteditem) throws InterruptedException {
+
+        Actions actions = new Actions(driver);
+
+        List<WebElement> iconViewProducts=driver.findElements(By.xpath("//a[contains(text(),'View Product')]"));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+
         position=selecteditem;
-        products.get(selecteditem).viewProduct.click();
+
+        System.out.println(products.get(selecteditem).viewProduct);
+
+        actions.moveToElement(overallContent.get(selecteditem)).perform();
+
+           getStaleElement(products.get(selecteditem).viewProduct,iconViewProducts.get(selecteditem));
+
+
 
         DisableAds();
 
         if (driver.getCurrentUrl().contains("google_vignette"))
             linkViewProducts.get(selecteditem).click();
 
-        DisableAds();
 
     }
 
     public void AddtoCart(int i) throws InterruptedException {
 
+
+        Actions actions = new Actions(driver);
+
+        List<WebElement> carticon=driver.findElements(By.xpath("//div[@class='product-overlay']//a[contains(text(),'Add to cart')]"));
+
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
+
+
+
         WebElement latestId = driver.findElement(By.xpath("//div[@id='cartModal']//button[normalize-space()='Continue Shopping']"));
-        products.get(i).addToCart.click();
+        System.out.println(products.get(i).addToCart);
+
+
+//        js.executeScript("arguments[0].scrollIntoView();", products.get(i).addToCart);
+
+        actions.moveToElement(overallContent.get(i)).perform();
+
+        wait.until(ExpectedConditions.visibilityOf(overallContent.get(i)));
+//        wait.until(ExpectedConditions.elementToBeClickable(products.get(i).addToCart));
+        getStaleElement(products.get(i).addToCart,carticon.get(i));
+     ;
+//        products.get(i).addToCart.click();
         products.get(i).intquantity=products.get(i).intquantity+1;
 
-        DisableAds();
 
-        if (driver.getCurrentUrl().contains("google_vignette"))
-            addCart.get(i).click();
 
-        DisableAds();
+//        if (driver.getCurrentUrl().contains("google_vignette"))
+//            addCart.get(i).click();
+//
+//        DisableAds();
 
 
 

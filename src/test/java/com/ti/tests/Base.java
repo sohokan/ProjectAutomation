@@ -4,8 +4,8 @@ import com.ti.pompages.*;
 
 import com.ti.restapi.HttpsMethod;
 import org.testng.annotations.*;
-import org.ti.DriverFactory;
-import org.ti.BrowserType;
+import org.ti.DriverFactory.DriverFactory;
+import org.ti.DriverFactory.BrowserType;
 
 
 public class Base {
@@ -36,11 +36,16 @@ public class Base {
 
     ProductBrandPage ProductBrand;
 
-    public static String inputemail="0n3xmd1wu-@testdata.com";
-    String password="krT41EiW";
+    public static String inputemail="535zbp1apt@testdata.com";
+    String password="FG3v9yU7";
 
 
-    @BeforeSuite
+
+
+    @BeforeClass
+
+
+
     @Parameters("browser")
     public void setup(String browser) {
 
@@ -48,13 +53,6 @@ public class Base {
         DriverFactory.getInstance().setDriver(BrowserType.valueOf(browser));
         DriverFactory.getInstance().getDriver().navigate().to(baseUrl);
 //        System.setProperty("log4j2.configuration", "C:\\Users\\scointe\\Documents\\Eclipse\\SeleniumPractice\\properties\\log4j2.xml");
-
-
-    }
-
-    @BeforeClass
-    public void runObjects()
-    {
         Login =new SignUpPage();
         Products= new ProductPage();
         Home= new HomePage();
@@ -68,18 +66,46 @@ public class Base {
         AutomationApi=new HttpsMethod();
         ProductCategory=new ProductCategoryPage();
         ProductBrand= new ProductBrandPage();
-        Home.WaitForAdblocker();
 
 
     }
 
-
-
-
-//    @AfterSuite
-//    void turnDown() {
+//    @BeforeClass
+//    public void runObjects()
+//    {
 //
-//        DriverFactory.getInstance().removeDriver();
+//
+//        Login =new SignUpPage();
+//        Products= new ProductPage();
+//        Home= new HomePage();
+//        ContactUs= new ContactUsPage();
+//        TestCase= new TestCasePage();
+//        ProductDetail=new ProductDetailPage();
+//        Carts=new CartPage();
+//        CheckOutPage=new CheckOutPage();
+//        Payment= new PaymentPage();
+//        PaymentDone=new PaymentDonePage();
+//        AutomationApi=new HttpsMethod();
+//        ProductCategory=new ProductCategoryPage();
+//        ProductBrand= new ProductBrandPage();
+//
 //    }
+
+
+
+
+
+
+
+
+
+    @AfterClass
+    void CloseBrowser()
+
+    {
+
+        DriverFactory.getInstance().removeDriver();
+    }
 }
+
 

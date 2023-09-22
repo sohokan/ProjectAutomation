@@ -1,9 +1,15 @@
 package com.ti.tests;
 
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 public class TC1 extends Base {
+    @BeforeClass
+
+    void CloseAdblocker()
+    {
+
+        Home.WaitForAdblocker();
+    }
 
     @Test(priority = 1,enabled = true)
     void VerifyHomePageTitle(){

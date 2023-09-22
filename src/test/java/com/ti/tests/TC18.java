@@ -1,13 +1,22 @@
 package com.ti.tests;
 
 import com.ti.pompages.HomePage;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class TC18  extends Base{
 
+    @BeforeClass
+
+    void CloseAdblocker()
+    {
+
+        Home.WaitForAdblocker();
+    }
 
     @Test
     void VerifyViewCategoryProducts() throws InterruptedException {
+
         Home.CategoryVisibility();
         Home.SelectWomanCategory();
         ProductCategory.VerifyCategoryPageisDisplayed();

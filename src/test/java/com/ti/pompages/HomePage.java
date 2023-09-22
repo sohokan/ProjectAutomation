@@ -1,20 +1,14 @@
 package com.ti.pompages;
 
-import com.ti.pompages.SignUpPage ;
-
-import org.apache.commons.lang3.ObjectUtils;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
-import org.ti.DriverFactory;
+import org.ti.DriverFactory.DriverFactory;
 
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.UUID;
 
@@ -123,25 +117,25 @@ public class HomePage {
     static public int position;
 
 
-    public void WaitForAdblocker()
-
-    {
+    public void WaitForAdblocker() {
         Set<String> AllWindowHandles = driver.getWindowHandles();
 //        ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
 //        driver.switchTo().window(tabs.get(1));
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.numberOfWindowsToBe(2));
         String window1 = (String) AllWindowHandles.toArray()[0];
         String window2 = (String) AllWindowHandles.toArray()[1];
 
-        driver.switchTo().window(window2);
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            wait.until(ExpectedConditions.numberOfWindowsToBe(2));
 
-        WebElement Adblock = driver.findElement(By.xpath("//h2[@class='installed__heading']"));
 
-        wait.until(ExpectedConditions.visibilityOf(Adblock));
-        driver.close();
+            driver.switchTo().window(window2);
 
-        driver.switchTo().window(window1);
+            WebElement Adblock = driver.findElement(By.xpath("//h2[@class='installed__heading']"));
+
+            wait.until(ExpectedConditions.visibilityOf(Adblock));
+            driver.close();
+
+            driver.switchTo().window(window1);
 
 
     }
@@ -204,6 +198,12 @@ public class HomePage {
         }
     }
 
+    public void CloseBrowser()
+    {
+
+        driver.quit();
+    }
+
 
 
 
@@ -234,7 +234,7 @@ public class HomePage {
 
     public void CheckSubscription()
     {
-
+        txtSubscription=driver.findElement(SubsLocator);
         System.out.println(txtSubscription.getText());
         assertThat(txtSubscription.getText(), containsString("SUBSCRIPTION"));
         inputsusbscribeEmail=driver.findElement(suscribeemailLocator);
@@ -247,7 +247,7 @@ public class HomePage {
     }
 
     public void ScrolltoBotom() throws InterruptedException {
-        Thread.sleep(2000);
+//        Thread.sleep(2000);
         js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
         txtSubscription=driver.findElement(SubsLocator);
         assertThat(txtSubscription.getText(), containsString("SUBSCRIPTION"));
@@ -406,5 +406,15 @@ public class HomePage {
 
 
 
+    }
+
+    public void getStaleElement(WebElement web ,WebElement webstale) {
+        try {
+
+            js.executeScript("arguments[0].click();", web);
+        } catch (StaleElementReferenceException | NoSuchElementException e) {
+            System.err.println("Attempting to recover from " + e.getClass().getSimpleName() + "...");
+            js.executeScript("arguments[0].click();", webstale);
+        }
     }
 }

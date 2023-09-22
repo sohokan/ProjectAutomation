@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Automation Exercise" parallel="false"  preserve-order="true" >
+    <listeners>
+        <listener class-name="org.ti.Listeners.AnnotationTransform"></listener>
+    </listeners>
+
+
+    <test name="TestCases">
+        <parameter name="browser" value="CHROME"/>
+        <classes>
+           <class name="com.ti.tests.TC4"/>
+
+        </classes>
+    </test>
+
+
+
+<!--<test preserve-order="true" name="User Endpoint Tests">-->
+<!--    <parameter name="endpoint" value="api/"></parameter>-->
+<!--    <classes>-->
+<!--        <class name="com.ti.restapi.FetchUserDetailsInfo"></class>-->
+<!--    </classes>-->
+<!--</test>-->
+</suite>

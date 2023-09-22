@@ -1,13 +1,22 @@
 package com.ti.tests;
 
 import com.ti.pompages.PaymentDonePage;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class TC24  extends Base {
 
+    @BeforeClass
+
+    void CloseAdblocker()
+    {
+
+        Home.WaitForAdblocker();
+    }
 
     @Test
     void VerifyAddressinCheckoutPage() throws InterruptedException {
+
         Home.HomePageTitle();
         Login.RegisterNewEmail();
         Login.AccountInformation();
