@@ -17,11 +17,11 @@ public class ProductPage extends HomePage {
 
     By productsPageLocator= By.cssSelector("a[href='/products']");
 
-    By productsLocator =By.xpath("//div[@class='productinfo text-center']");
+    By productsLocator =By.cssSelector("div[class*='productinfo']");
 
-    By viewProductLocator=By.xpath("//a[contains(text(),'View Product')]");
+    By viewProductLocator=By.cssSelector("div[class*='choose'] a[href*='product_details']");
 //    a[href*='product_details']
-    By addCartLocator=By.xpath("//div[@class='product-overlay']//a[contains(text(),'Add to cart')]");
+    By addCartLocator=By.cssSelector("div[class='productinfo text-center'] a[class*='cart']");
 
      By searchProductLocator=By.id("search_product");
 
@@ -66,6 +66,10 @@ public class ProductPage extends HomePage {
 
     public void VerifyProductList() throws InterruptedException {
         int countViewProducts=0;
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        wait.until(ExpectedConditions.urlContains("products"));
        overallContent= driver.findElements(By.xpath("(//img[@alt='ecommerce website products'])"));
 
 
@@ -91,7 +95,7 @@ public class ProductPage extends HomePage {
 //            System.out.println(linkViewProducts.get(countViewProducts).getText());
 
 //            products.add(new ProductsObjects(item.findElement( By.tagName("p")).getText(),item.findElement( By.tagName("h2")).getText(),item.findElement( By.tagName("a")),linkViewProducts.get(countViewProducts),0));
-           products.add(new ProductsObjects(item.findElement( By.tagName("p")).getText(),item.findElement( By.tagName("h2")).getText(),addCart.get(countViewProducts),linkViewProducts.get(countViewProducts),0));
+           products.add(new ProductsObjects(item.findElement( By.tagName("p")).getText(),item.findElement( By.tagName("h2")).getText(),item.findElement( By.tagName("a")),linkViewProducts.get(countViewProducts),0));
 
             countViewProducts++;
 
@@ -110,7 +114,10 @@ public class ProductPage extends HomePage {
 
         Actions actions = new Actions(driver);
 
-        List<WebElement> iconViewProducts=driver.findElements(By.xpath("//a[contains(text(),'View Product')]"));
+        overallContent= driver.findElements(By.xpath("(//img[@alt='ecommerce website products'])"));
+
+
+        List<WebElement> iconViewProducts=driver.findElements(By.cssSelector("a[href*='product_details']"));
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
 
@@ -118,18 +125,23 @@ public class ProductPage extends HomePage {
 
         System.out.println(products.get(selecteditem).viewProduct);
 
-        actions.moveToElement(overallContent.get(selecteditem)).perform();
+        System.out.println("size"+iconViewProducts.size());
+
+        js.executeScript("arguments[0].scrollIntoView(true);", iconViewProducts.get(selecteditem));
+
+//        actions.moveToElement(overallContent.get(selecteditem)).perform();
 
            getStaleElement(products.get(selecteditem).viewProduct,iconViewProducts.get(selecteditem));
 
 
 
-        DisableAds();
-
-        if (driver.getCurrentUrl().contains("google_vignette"))
-            linkViewProducts.get(selecteditem).click();
-
-
+//        DisableAds();
+//
+//        if (driver.getCurrentUrl().contains("google_vignette"))
+//            getStaleElement(products.get(selecteditem).viewProduct,iconViewProducts.get(selecteditem));
+//
+//
+//        DisableAds();
     }
 
     public void AddtoCart(int i) throws InterruptedException {
@@ -137,7 +149,7 @@ public class ProductPage extends HomePage {
 
         Actions actions = new Actions(driver);
 
-        List<WebElement> carticon=driver.findElements(By.xpath("//div[@class='product-overlay']//a[contains(text(),'Add to cart')]"));
+        List<WebElement> carticon=driver.findElements(By.cssSelector("div[class='product-overlay'] a[class*='cart']"));
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
@@ -148,9 +160,9 @@ public class ProductPage extends HomePage {
         System.out.println(products.get(i).addToCart);
 
 
-//        js.executeScript("arguments[0].scrollIntoView();", products.get(i).addToCart);
+   js.executeScript("arguments[0].scrollIntoView();", overallContent.get(i));
 
-        actions.moveToElement(overallContent.get(i)).perform();
+//        actions.moveToElement(overallContent.get(i)).perform();
 
         wait.until(ExpectedConditions.visibilityOf(overallContent.get(i)));
 //        wait.until(ExpectedConditions.elementToBeClickable(products.get(i).addToCart));

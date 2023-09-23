@@ -9,7 +9,7 @@
     <test name="TestCases">
         <parameter name="browser" value="CHROME"/>
         <classes>
-           <class name="com.ti.tests.TC4"/>
+           <class name="com.ti.tests.TC18"/>
 
         </classes>
     </test>

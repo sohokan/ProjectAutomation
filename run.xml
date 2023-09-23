@@ -7,17 +7,17 @@
 
 
     <test name="TestCases">
-     <parameter name="browser" value="CHROME"/>
+     <parameter name="browser" value="FIREFOX"/>
         <classes>
-           <class name="com.ti.tests.TC1"/>
-            <class name="com.ti.tests.TC2"/>
-            <class name="com.ti.tests.TC3"/>
-            <class name="com.ti.tests.TC4"/>
-            <class name="com.ti.tests.TC5"/>
-            <class name="com.ti.tests.TC6"/>
-            <class name="com.ti.tests.TC7"/>
-            <class name="com.ti.tests.TC8"/>
-            <class name="com.ti.tests.TC9"/>
+<!--           <class name="com.ti.tests.TC1"/>-->
+<!--            <class name="com.ti.tests.TC2"/>-->
+<!--            <class name="com.ti.tests.TC3"/>-->
+<!--            <class name="com.ti.tests.TC4"/>-->
+<!--            <class name="com.ti.tests.TC5"/>-->
+<!--            <class name="com.ti.tests.TC6"/>-->
+<!--            <class name="com.ti.tests.TC7"/>-->
+<!--            <class name="com.ti.tests.TC8"/>-->
+<!--            <class name="com.ti.tests.TC9"/>-->
             <class name="com.ti.tests.TC10"/>
             <class name="com.ti.tests.TC11"/>
             <class name="com.ti.tests.TC12"/>

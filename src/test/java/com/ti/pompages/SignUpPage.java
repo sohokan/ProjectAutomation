@@ -21,7 +21,7 @@ import static org.hamcrest.Matchers.*;
 
 public class SignUpPage extends HomePage{
 
-    By loginLocator= By.cssSelector("a[href=\"/login\"]");
+    By loginLocator= By.cssSelector("a[href*='login']");
 
     By NewUserNameLocator =By.cssSelector("input[placeholder='Name']");
     By NewEmailLocator= By.cssSelector("input[data-qa='signup-email']");
@@ -79,9 +79,9 @@ public class SignUpPage extends HomePage{
 
     By LoginLocator=By.xpath("(//h2[normalize-space()='Login to your account'])[1]");
 
-    By EmailexistLocator=By.xpath("//p[contains(normalize-space(),'exist!')]");
+    By EmailexistLocator=By.xpath("//p[contains(.,' exist')]");
 
-
+    WebElement linkLogin;
 
     WebElement txtBoxEmailLogin;
     WebElement txtBoxPassword;
@@ -156,13 +156,18 @@ public class SignUpPage extends HomePage{
     public void VerifyLogin(String email, String password)
     {
 
+        new WebDriverWait(driver, Duration.ofSeconds(15))
+                .until(ExpectedConditions.visibilityOfAllElements(driver.findElements(By.cssSelector("ul[class='nav navbar-nav']"))));
 
-        WebElement LinkLogin= driver.findElement(loginLocator);
-        LinkLogin.click();
+        WebElement newLogin=driver.findElement(By.cssSelector("a[href*='login']"));
+
+         linkLogin= driver.findElement(loginLocator);
+         getStaleElement(linkLogin,newLogin);
+//        linkLogin.click();
 
 
         new WebDriverWait(driver, Duration.ofSeconds(15))
-                .until(ExpectedConditions.visibilityOfAllElements(driver.findElements(By.xpath("(//h2[normalize-space()='New User Signup!'])[1]"))));
+                .until(ExpectedConditions.visibilityOfAllElements(driver.findElements(By.cssSelector("div[class='signup-form']"))));
 
 
         txtBoxEmailLogin=driver.findElement(LoginEmailLocator);
@@ -189,8 +194,8 @@ public class SignUpPage extends HomePage{
 
 
 
-        WebElement LinkLogin= driver.findElement(loginLocator);
-        LinkLogin.click();
+         linkLogin= driver.findElement(loginLocator);
+          linkLogin.click();
 
 
         new WebDriverWait(driver, Duration.ofSeconds(15))

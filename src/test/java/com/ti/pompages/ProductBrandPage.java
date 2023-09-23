@@ -14,9 +14,9 @@ import  com.ti.pompages.ProductPage;
 
 public class ProductBrandPage extends HomePage {
 
-    By productLocator=By.cssSelector(".title.text-center");
+    By productLocator=By.cssSelector("h2[class*='text-center']");
 
-    By panelBabyHugLocator=By.xpath("//a[@href=\"/brand_products/Babyhug\"]");
+    By panelBabyHugLocator=By.cssSelector("a[href*='Baby']");
 
     WebElement titleProduct;
 

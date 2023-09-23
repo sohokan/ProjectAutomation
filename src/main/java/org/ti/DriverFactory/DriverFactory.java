@@ -6,6 +6,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.firefox.ProfilesIni;
 
 import java.io.File;
 import java.util.HashMap;
@@ -33,6 +36,8 @@ public class DriverFactory {
 
         ChromeOptions options = new ChromeOptions();
 
+
+
         options.addExtensions(new File(ExtensionFile) );
         options.addArguments("start-maximized");
         options.addArguments("disable-notifications");
@@ -47,13 +52,17 @@ public class DriverFactory {
         prefs.put("download.default_directory", downloadPath);
         options.setExperimentalOption("prefs", prefs);
 
+        ProfilesIni profile = new ProfilesIni();
+        FirefoxProfile testprofile = profile.getProfile("Test");
+        FirefoxOptions opt = new FirefoxOptions();
+        opt.setProfile(testprofile);
 
         switch (browserType) {
 
             case CHROME -> driver.set(new ChromeDriver(options));
 //            case CHROME -> driver.set(new ChromeDriver());
             case EDGE -> driver.set(new EdgeDriver());
-            case FIREFOX -> driver.set(new FirefoxDriver());
+            case FIREFOX -> driver.set(new FirefoxDriver(opt));
         }
         driver.get().manage().window().maximize();
 

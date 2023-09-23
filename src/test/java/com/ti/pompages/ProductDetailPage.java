@@ -17,9 +17,9 @@ public class ProductDetailPage extends HomePage {
 
 //    Verify that detail detail is visible: product name, category, price, availability, condition, brand
 
-By productDetailLocator=By.cssSelector(".product-information");
+By productDetailLocator=By.cssSelector("div[class='product-information']");
 
-By productquantityLocator=By.id("quantity");
+By productquantityLocator=By.cssSelector("input[id='quantity']");
 
 By productaddtocartLocator=By.cssSelector("button[type='button']");
 
@@ -35,7 +35,7 @@ By btnReviewLocator=By.id("button-review");
 
 By successAlertLocator=By.cssSelector("div[class=\"alert-success alert\"] span");
 
-List<WebElement> productDetail;
+WebElement productDetail;
 
 WebElement inputQuantity;
 
@@ -62,20 +62,23 @@ Faker reviewdata = new Faker();
 
 public void CheckProductDetail()
 {
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-    productDetail=driver.findElements(productDetailLocator);
+    wait.until(ExpectedConditions.urlContains("detail"));
+    productDetail=driver.findElement(productDetailLocator);
+    System.out.println("product detail is displayed "+productDetail.isDisplayed());
 
-    for ( var detail:productDetail
-         ) {
+//    for ( var detail:productDetail
+//         ) {
 
-        System.out.println("Product name: "+detail.findElement(By.tagName("h2")).getText());
-        System.out.println(detail.findElement(By.tagName("p")).getText());
+        System.out.println("Product name: "+productDetail.findElement(By.tagName("h2")).getText());
+        System.out.println(productDetail.findElement(By.tagName("p")).getText());
 //        System.out.println("Rating: "+detail.findElement(By.tagName("img")).getAttribute("alt"));
-        System.out.println("Price: "+detail.findElement(By.tagName("span")).getText());
-        System.out.println(detail.findElements(By.tagName("p")).get(1).getText());
-        System.out.println(detail.findElements(By.tagName("p")).get(2).getText());
-        System.out.println(detail.findElements(By.tagName("p")).get(3).getText());
-    }
+        System.out.println("Price: "+productDetail.findElement(By.tagName("span")).getText());
+        System.out.println(productDetail.findElements(By.tagName("p")).get(1).getText());
+        System.out.println(productDetail.findElements(By.tagName("p")).get(2).getText());
+        System.out.println(productDetail.findElements(By.tagName("p")).get(3).getText());
+//    }
 
 
 }

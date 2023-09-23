@@ -1,8 +1,11 @@
 package com.ti.pompages;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Parameters;
+import org.ti.DriverFactory.BrowserType;
 import org.ti.DriverFactory.DriverFactory;
 
 import java.time.Duration;
@@ -52,7 +55,7 @@ public class HomePage {
 
     By categoryLocator=By.id("accordian");
 
-    By dressLocator=By.xpath("//div[@id=\"Women\"]//a[contains(text(),\"Dress\")]");
+    By dressLocator=By.cssSelector("a[href*='category_products/1']");
 
    By lblRecommendedLocator=By.cssSelector("div[class=\"recommended_items\"] h2[class=\"title text-center\"]");
 
@@ -110,19 +113,24 @@ public class HomePage {
     boolean checkexistent;
     String UserId= "";
 
-    static public List<ProductsObjects> products = new ArrayList<>();
+     public static List<ProductsObjects> products = new ArrayList<>();
 
-    static public List<ProductsObjects> recommendProducts = new ArrayList<>();
+     public static List<ProductsObjects> recommendProducts = new ArrayList<>();
 
-    static public int position;
+      public static int position;
 
-
+    @Parameters("browser")
     public void WaitForAdblocker() {
-        Set<String> AllWindowHandles = driver.getWindowHandles();
+
+        String browser=((RemoteWebDriver) driver).getCapabilities().getBrowserName().toLowerCase();
+        System.out.println("Browser Name is : "+browser);
+
+        if (browser.contains("chrome")) {
+            Set<String> AllWindowHandles = driver.getWindowHandles();
 //        ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
 //        driver.switchTo().window(tabs.get(1));
-        String window1 = (String) AllWindowHandles.toArray()[0];
-        String window2 = (String) AllWindowHandles.toArray()[1];
+            String window1 = (String) AllWindowHandles.toArray()[0];
+            String window2 = (String) AllWindowHandles.toArray()[1];
 
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
             wait.until(ExpectedConditions.numberOfWindowsToBe(2));
@@ -136,7 +144,7 @@ public class HomePage {
             driver.close();
 
             driver.switchTo().window(window1);
-
+        }
 
     }
     public void GotoHomePage()
@@ -408,12 +416,14 @@ public class HomePage {
 
     }
 
+
+
     public void getStaleElement(WebElement web ,WebElement webstale) {
         try {
-
+           Thread.sleep(1000);
             js.executeScript("arguments[0].click();", web);
-        } catch (StaleElementReferenceException | NoSuchElementException e) {
-            System.err.println("Attempting to recover from " + e.getClass().getSimpleName() + "...");
+        } catch (StaleElementReferenceException | org.openqa.selenium.NoSuchElementException | InterruptedException e) {
+            System.err.println("Attempting to recover from Exception using instead" + webstale);
             js.executeScript("arguments[0].click();", webstale);
         }
     }

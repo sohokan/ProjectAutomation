@@ -3,6 +3,10 @@ package com.ti.pompages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
@@ -10,9 +14,9 @@ import static org.hamcrest.Matchers.containsStringIgnoringCase;
 
 public class ProductCategoryPage extends HomePage {
 
-    By productLocator=By.cssSelector(".title.text-center");
+    By productLocator=By.cssSelector("h2[class*='text-center']");
 
-    By panelJeanLocator=By.xpath("//a[normalize-space()='Jeans']");
+    By panelJeanLocator=By.cssSelector("a[href*='category_products/6']");
 
     WebElement titleProduct;
 
@@ -28,6 +32,10 @@ public class ProductCategoryPage extends HomePage {
 
    {
 
+       WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+       wait.until(ExpectedConditions.urlContains("products"));
+
        urlCategoryPage= driver.getCurrentUrl();
 
        assertThat(urlCategoryPage, containsString("category_products"));
@@ -38,8 +46,11 @@ public class ProductCategoryPage extends HomePage {
    public void VerifyCategoryTitle(String s)
 
    {
-       titleProduct=driver.findElement(productLocator);
-       assertThat(s, containsStringIgnoringCase(titleProduct.getText()));
+       WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+       wait.until(ExpectedConditions.urlContains("products"));
+
+       assertThat(s, containsStringIgnoringCase(driver.findElement(productLocator).getText()));
 
    }
 

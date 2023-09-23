@@ -7,6 +7,8 @@ import org.testng.annotations.*;
 import org.ti.DriverFactory.DriverFactory;
 import org.ti.DriverFactory.BrowserType;
 
+import java.util.concurrent.TimeUnit;
+
 
 public class Base {
 
@@ -52,7 +54,8 @@ public class Base {
 //        String LogFile=System.getProperty("user.dir")+"\\imgs\\"+;
         DriverFactory.getInstance().setDriver(BrowserType.valueOf(browser));
         DriverFactory.getInstance().getDriver().navigate().to(baseUrl);
-//        System.setProperty("log4j2.configuration", "C:\\Users\\scointe\\Documents\\Eclipse\\SeleniumPractice\\properties\\log4j2.xml");
+        DriverFactory.getInstance().getDriver().manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+
         Login =new SignUpPage();
         Products= new ProductPage();
         Home= new HomePage();
