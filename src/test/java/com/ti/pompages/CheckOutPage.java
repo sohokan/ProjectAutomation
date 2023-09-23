@@ -15,6 +15,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import static com.ti.pompages.SignUpPage.users;
+import static com.ti.restapi.HttpsMethod.usersgo;
+import static java.util.Objects.isNull;
+import static java.util.Objects.nonNull;
 import static org.testng.AssertJUnit.assertTrue;
 
 public class CheckOutPage extends HomePage {
@@ -90,11 +93,12 @@ public class CheckOutPage extends HomePage {
 
         System.out.println("size "+listAddressDelivery.size());
 
+
+
         if (users.size()>0) //  can only be use with a register user in the webpage
         {
+
             VerifyDeliveryAddress(users.get(0).strUserFirstName,users.get(0).strUserLastName,users.get(0).strCompany,users.get(0).strAddress1,users.get(0).strAddress2,users.get(0).strState,users.get(0).strCountry,users.get(0).strCity,users.get(0).strZipecode,users.get(0).strPhoneNumber);
-
-
 
         }
 else  //  can only be use with a restapi user
@@ -104,6 +108,7 @@ else  //  can only be use with a restapi user
             System.out.println("REST zipcode"+usersgo.users.zipcode);
 
             VerifyDeliveryAddress(usersgo.users.firstName,usersgo.users.lastName,usersgo.users.company,usersgo.users.address1,usersgo.users.address2,usersgo.users.state,usersgo.users.country,usersgo.users.city,usersgo.users.zipcode,"usersgo.phone");
+
 
         }
 

@@ -44,8 +44,8 @@ public class Base {
 
 
 
-    public static String inputemail="urt0d5bez_@testdata.com";
-    String password="0pFO6Zkt";
+    public static String inputemail="1k51iov-n.@testdata.com";
+    String password="piNhcMbG";
 
     ExtentReports extent;
 
