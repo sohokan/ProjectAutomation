@@ -7,9 +7,9 @@
 
 
     <test name="TestCases">
-        <parameter name="browser" value="CHROME"/>
+        <parameter name="browser" value="FIREFOX"/>
         <classes>
-           <class name="com.ti.tests.TC18"/>
+           <class name="com.ti.tests.TC16"/>
 
         </classes>
     </test>

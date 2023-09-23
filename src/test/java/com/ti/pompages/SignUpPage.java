@@ -159,15 +159,16 @@ public class SignUpPage extends HomePage{
         new WebDriverWait(driver, Duration.ofSeconds(15))
                 .until(ExpectedConditions.visibilityOfAllElements(driver.findElements(By.cssSelector("ul[class='nav navbar-nav']"))));
 
-        WebElement newLogin=driver.findElement(By.cssSelector("a[href*='login']"));
+        List<WebElement> newLogin=driver.findElements(By.cssSelector("div[class='shop-menu pull-right'] li"));
 
          linkLogin= driver.findElement(loginLocator);
-         getStaleElement(linkLogin,newLogin);
+         getStaleElement(linkLogin,newLogin.get(3));
 //        linkLogin.click();
 
+//        js.executeScript("arguments[0].click();", newLogin.get(3));
 
-        new WebDriverWait(driver, Duration.ofSeconds(15))
-                .until(ExpectedConditions.visibilityOfAllElements(driver.findElements(By.cssSelector("div[class='signup-form']"))));
+//        new WebDriverWait(driver, Duration.ofSeconds(15))
+//                .until(ExpectedConditions.visibilityOf(driver.findElement(By.cssSelector("div[class*='signup']"))));
 
 
         txtBoxEmailLogin=driver.findElement(LoginEmailLocator);

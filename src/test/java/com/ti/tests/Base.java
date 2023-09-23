@@ -38,8 +38,8 @@ public class Base {
 
     ProductBrandPage ProductBrand;
 
-    public static String inputemail="535zbp1apt@testdata.com";
-    String password="FG3v9yU7";
+    public static String inputemail="fxnxf1hx-2@testdata.com";
+    String password="AjdbTEEQ";
 
 
 
