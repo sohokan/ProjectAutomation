@@ -2,7 +2,8 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Automation Exercise" parallel="false"  preserve-order="true" >
     <listeners>
-        <listener class-name="org.ti.Listeners.AnnotationTransform"></listener>
+        <listener class-name="org.ti.utils.listeners.TestListener"/>
+        <listener class-name="org.ti.utils.listeners.AnnotationTransform"/>
     </listeners>
 
 

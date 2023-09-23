@@ -135,13 +135,13 @@ public class ProductPage extends HomePage {
 
 
 
-//        DisableAds();
-//
-//        if (driver.getCurrentUrl().contains("google_vignette"))
-//            getStaleElement(products.get(selecteditem).viewProduct,iconViewProducts.get(selecteditem));
-//
-//
-//        DisableAds();
+        DisableAds();
+
+        if (driver.getCurrentUrl().contains("google_vignette"))
+            getStaleElement(products.get(selecteditem).viewProduct,iconViewProducts.get(selecteditem));
+
+
+        DisableAds();
     }
 
     public void AddtoCart(int i) throws InterruptedException {
@@ -171,12 +171,12 @@ public class ProductPage extends HomePage {
 //        products.get(i).addToCart.click();
         products.get(i).intquantity=products.get(i).intquantity+1;
 
+        DisableAds();
 
+        if (driver.getCurrentUrl().contains("google_vignette"))
+            getStaleElement(products.get(i).addToCart,carticon.get(i));
 
-//        if (driver.getCurrentUrl().contains("google_vignette"))
-//            addCart.get(i).click();
-//
-//        DisableAds();
+        DisableAds();
 
 
 

@@ -1,11 +1,15 @@
 package com.ti.tests;
 
+import com.aventstack.extentreports.ExtentReports;
 import com.ti.pompages.*;
 
 import com.ti.restapi.HttpsMethod;
 import org.testng.annotations.*;
 import org.ti.DriverFactory.DriverFactory;
 import org.ti.DriverFactory.BrowserType;
+
+import static org.ti.utils.extentreports.ExtentTestManager.startTest;
+
 
 import java.util.concurrent.TimeUnit;
 
@@ -38,9 +42,12 @@ public class Base {
 
     ProductBrandPage ProductBrand;
 
-    public static String inputemail="fxnxf1hx-2@testdata.com";
-    String password="AjdbTEEQ";
 
+
+    public static String inputemail="urt0d5bez_@testdata.com";
+    String password="0pFO6Zkt";
+
+    ExtentReports extent;
 
 
 
@@ -69,7 +76,7 @@ public class Base {
         AutomationApi=new HttpsMethod();
         ProductCategory=new ProductCategoryPage();
         ProductBrand= new ProductBrandPage();
-
+         extent = new ExtentReports();
 
     }
 

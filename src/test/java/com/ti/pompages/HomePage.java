@@ -11,7 +11,6 @@ import org.ti.DriverFactory.DriverFactory;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.UUID;
 
@@ -22,6 +21,8 @@ import static org.testng.AssertJUnit.assertTrue;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import static org.ti.utils.ui.SeleniumUtil.*;
 
 
 public class HomePage {
@@ -161,6 +162,8 @@ public class HomePage {
 
         WebsiteText=driver.findElement(automationImageLocator);
         System.out.println(WebsiteText.getAttribute("alt"));
+
+
         assertThat(WebsiteText.getAttribute("alt"), containsString("automation"));
 
     }
@@ -427,4 +430,17 @@ public class HomePage {
             js.executeScript("arguments[0].click();", webstale);
         }
     }
+
+    public void getNoSuchElement( WebElement e) {
+        new WebDriverWait(driver, Duration.ofSeconds(5))
+                .ignoring(NoSuchElementException.class)
+                .until((WebDriver d) -> {
+                    highLight(e);
+                   e.click(); ;
+                    return true;
+
+                });
+    }
+
+
 }

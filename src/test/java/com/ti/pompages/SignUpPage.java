@@ -18,10 +18,13 @@ import java.util.UUID;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
+import static org.ti.utils.ui.SeleniumUtil.findElement;
+import static org.ti.utils.ui.SeleniumUtil.highLight;
+import static org.ti.utils.ui.WaitUtil.elementNotVisible;
 
 public class SignUpPage extends HomePage{
 
-    By loginLocator= By.cssSelector("a[href*='login']");
+    By loginLocator= By.cssSelector("ul[class='nav navbar-nav'] li:nth-child(4)");
 
     By NewUserNameLocator =By.cssSelector("input[placeholder='Name']");
     By NewEmailLocator= By.cssSelector("input[data-qa='signup-email']");
@@ -159,16 +162,14 @@ public class SignUpPage extends HomePage{
         new WebDriverWait(driver, Duration.ofSeconds(15))
                 .until(ExpectedConditions.visibilityOfAllElements(driver.findElements(By.cssSelector("ul[class='nav navbar-nav']"))));
 
-        List<WebElement> newLogin=driver.findElements(By.cssSelector("div[class='shop-menu pull-right'] li"));
+        linkLogin= driver.findElement(loginLocator);
 
-         linkLogin= driver.findElement(loginLocator);
-         getStaleElement(linkLogin,newLogin.get(3));
-//        linkLogin.click();
+//        highLight(linkLogin);
 
-//        js.executeScript("arguments[0].click();", newLogin.get(3));
+//        getNoSuchElement(linkLogin);
 
-//        new WebDriverWait(driver, Duration.ofSeconds(15))
-//                .until(ExpectedConditions.visibilityOf(driver.findElement(By.cssSelector("div[class*='signup']"))));
+        linkLogin.click();
+
 
 
         txtBoxEmailLogin=driver.findElement(LoginEmailLocator);

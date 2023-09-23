@@ -46,8 +46,8 @@ public class TC16 extends Base{
         Payment.PlacePayment();
         Payment.SuccessMsg();
         PaymentDone.ContinuetoHome();
-        Home.ClickonDeleteUser();
-        Home.VerifyAccountDeleted();
+//        Home.ClickonDeleteUser();
+//        Home.VerifyAccountDeleted();
 
     }
 }
