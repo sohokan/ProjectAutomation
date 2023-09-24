@@ -1,7 +1,7 @@
 package com.ti.pompages;
 
 import static com.ti.restapi.HttpsMethod.usersgo;
-
+import static com.ti.pompages.SignUpPage.users;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -9,7 +9,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
-import static com.ti.pompages.SignUpPage.users;
+
+import static org.apache.commons.lang3.ObjectUtils.isEmpty;
 import static org.testng.AssertJUnit.assertTrue;
 
 public class CheckOutPage extends HomePage {
@@ -67,10 +68,10 @@ public class CheckOutPage extends HomePage {
         listAddressDelivery =element.findElements(By.tagName("li"));
 
         System.out.println("size "+listAddressDelivery.size());
+        System.out.println("User size");
 
 
-
-        if (users.size()==0)//  can only be use with a register user in the webpage
+     if (usersgo.users!=null) // can only be use with a register user in the webpage
         {
 
             System.out.println("REST Name"+usersgo.users.firstName);
@@ -81,7 +82,7 @@ public class CheckOutPage extends HomePage {
 
 
         }
-        else
+        else if (users.size()>0)
 
         {
 
