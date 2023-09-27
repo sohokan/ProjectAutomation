@@ -351,7 +351,7 @@ public class HomePage {
     public void CategoryVisibility()
 
     {
-        js.executeScript("window.scrollBy(0,300)");
+        js.executeScript("window.scrollBy(0,400)");
 
         panelCategory=driver.findElements(categoryLocator);
 
@@ -369,6 +369,8 @@ public class HomePage {
     }
 
     public void SelectWomanCategory() throws InterruptedException {
+
+        js.executeScript("arguments[0].click();", driver.findElement(By.cssSelector("a[href$='Women']")));
 
 
         panelDress=driver.findElement(dressLocator);

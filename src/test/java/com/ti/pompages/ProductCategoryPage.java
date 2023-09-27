@@ -25,6 +25,8 @@ public class ProductCategoryPage extends HomePage {
 
 
     String urlCategoryPage;
+    String productCategoryName;
+
 
     JavascriptExecutor js = (JavascriptExecutor) driver;
 
@@ -46,15 +48,26 @@ public class ProductCategoryPage extends HomePage {
    public void VerifyCategoryTitle(String s)
 
    {
+
        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-       wait.until(ExpectedConditions.urlContains("products"));
+       if (s.contains("Jeans"))
+           wait.until(ExpectedConditions.urlContains("category_products/6"));
 
-       assertThat(s, containsStringIgnoringCase(driver.findElement(productLocator).getText()));
+       else
+           wait.until(ExpectedConditions.urlContains("category_products/1"));
+
+       productCategoryName=driver.findElement(productLocator).getText();
+       System.out.println(productCategoryName);
+
+       assertThat(s, containsStringIgnoringCase(productCategoryName));
 
    }
 
    public void SelectManCategory() throws InterruptedException {
+
+       js.executeScript("arguments[0].click();", driver.findElement(By.cssSelector("a[href$='#Men']")));
+
        panelJean=driver.findElement(panelJeanLocator) ;
 
        js.executeScript("arguments[0].click();", panelJean);

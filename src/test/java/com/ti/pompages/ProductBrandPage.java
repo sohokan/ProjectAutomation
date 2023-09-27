@@ -9,7 +9,10 @@ import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.containsStringIgnoringCase;
 
 import  com.ti.pompages.ProductPage;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 
 
 public class ProductBrandPage extends HomePage {
@@ -34,7 +37,13 @@ public class ProductBrandPage extends HomePage {
 
 
    public void VerifyCategoryTitle(String s) throws InterruptedException {
+       WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
+       if (s.contains("Baby"))
+           wait.until(ExpectedConditions.urlContains("brand_products/Babyhug"));
+
+       else
+           wait.until(ExpectedConditions.urlContains("brand_products/Madame"));
 
        DisableAds();
        titleProduct=driver.findElement(productLocator);
