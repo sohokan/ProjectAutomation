@@ -88,7 +88,7 @@ public class CheckOutPage extends HomePage {
 
             VerifyDeliveryAddress(users.get(0).strUserFirstName,users.get(0).strUserLastName,users.get(0).strCompany,users.get(0).strAddress1,users.get(0).strAddress2,users.get(0).strState,users.get(0).strCountry,users.get(0).strCity,users.get(0).strZipecode);
 
-                verifyWebelementPhoneNumber = listAddressDelivery.stream().filter((e) -> e.getText().contains(users.get(0).strPhoneNumber)).findFirst().orElse(null);
+                verifyWebelementPhoneNumber = listAddressDelivery.stream().filter((e) -> e.getText().contains(users.get(0).strPhoneNumber)).findFirst().get();
                 assertTrue(verifyWebelementPhoneNumber.isDisplayed());
         }
 

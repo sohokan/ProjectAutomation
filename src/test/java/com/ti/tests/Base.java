@@ -109,13 +109,13 @@ public class Base {
 
 
 
-//    @AfterClass
-//    void CloseBrowser()
-//
-//    {
-//
-//        DriverFactory.getInstance().removeDriver();
-//    }
+    @AfterClass
+    void CloseBrowser()
+
+    {
+
+        DriverFactory.getInstance().removeDriver();
+    }
 }
 
 
