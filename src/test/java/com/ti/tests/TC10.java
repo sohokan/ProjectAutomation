@@ -5,20 +5,20 @@ import org.testng.annotations.Test;
 
 public class TC10  extends Base{
 
-    @BeforeClass
+//    @BeforeClass
+//
+//    void CloseAdblocker()
+//    {
+//
+//        Home.WaitForAdblocker();
+//    }
 
-    void CloseAdblocker()
-    {
+    @Test (description = "View all the products")
+    void VerifySubscriptionHomePage() throws InterruptedException {
 
-        Home.WaitForAdblocker();
+        Home.GotoHomePage();
+        Home.ScrolltoBotom();
+        Home.CheckSubscription();
+
     }
-
-    @Test
-void VerifySubscriptionHomePage() throws InterruptedException {
-
-Home.GotoHomePage();
-Home.ScrolltoBotom();
-Home.CheckSubscription();
-
-}
 }

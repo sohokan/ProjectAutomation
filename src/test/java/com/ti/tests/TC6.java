@@ -5,15 +5,15 @@ import org.testng.annotations.Test;
 
 public class TC6 extends Base{
 
-    @BeforeClass
+//    @BeforeClass
+//
+//    void CloseAdblocker()
+//    {
+//
+//        Home.WaitForAdblocker();
+//    }
 
-    void CloseAdblocker()
-    {
-
-        Home.WaitForAdblocker();
-    }
-
-    @Test()
+    @Test(description = "User input Contact Us Form")
 
     void VerifyContacUsForm()
     {

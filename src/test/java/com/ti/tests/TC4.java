@@ -8,13 +8,13 @@ public class TC4 extends Base{
 
     @BeforeClass
 
-    void CloseAdblocker()
-    {
+//    void CloseAdblocker()
+//    {
+//
+//        Home.WaitForAdblocker();
+//    }
 
-        Home.WaitForAdblocker();
-    }
-
-    @Test(priority = 1,enabled = true)
+    @Test(priority = 1,enabled = true,description = "Login with valid credentials")
     void LoginUserValidCreds() throws InterruptedException {
 
         Home.LoggedUser();
@@ -23,7 +23,7 @@ public class TC4 extends Base{
         Home.LoggedUser();
 
     }
-    @Test(priority = 2/*dependsOnMethods = {"com.ti.tests.TC2.LoginUserValidCreds"}*/)
+    @Test(priority = 2,description = "Verify Logout")
     public void Logout() throws InterruptedException {
 
         Home.Logout();

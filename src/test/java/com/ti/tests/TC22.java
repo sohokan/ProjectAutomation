@@ -5,13 +5,13 @@ import org.testng.annotations.Test;
 
 public class TC22 extends Base{
 
-    @BeforeClass
-
-    void CloseAdblocker()
-    {
-
-        Home.WaitForAdblocker();
-    }
+//    @BeforeClass
+//
+//    void CloseAdblocker()
+//    {
+//
+//        Home.WaitForAdblocker();
+//    }
 
     @Test
     void VerifyAddtoCartRecommended() throws InterruptedException {

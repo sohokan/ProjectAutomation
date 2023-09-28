@@ -8,15 +8,15 @@ import org.testng.annotations.Test;
 
 public class TC2 extends Base {
 
-    @BeforeClass
+//    @BeforeClass
+//
+//    void CloseAdblocker()
+//    {
+//
+//        Home.WaitForAdblocker();
+//    }
 
-    void CloseAdblocker()
-    {
-
-        Home.WaitForAdblocker();
-    }
-
-    @Test(priority = 1,enabled = true)
+    @Test(priority = 1,enabled = true,description = "Login with valid Credentials")
     void LoginUserValidCreds() throws InterruptedException {
 
         Home.LoggedUser();

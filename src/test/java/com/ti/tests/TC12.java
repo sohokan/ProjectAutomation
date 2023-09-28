@@ -4,13 +4,13 @@ import org.testng.annotations.*;
 
 public class TC12 extends Base{
 
-    @BeforeClass
-
-    void CloseAdblocker()
-    {
-
-        Home.WaitForAdblocker();
-    }
+//    @BeforeClass
+//
+//    void CloseAdblocker()
+//    {
+//
+//        Home.WaitForAdblocker();
+//    }
 
     @Test
 

@@ -1,5 +1,6 @@
 package com.ti.pompages;
 
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -15,12 +16,14 @@ import java.util.Set;
 import java.util.UUID;
 
 import static com.ti.pompages.SignUpPage.*;
+import static java.sql.DriverManager.getDriver;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.testng.AssertJUnit.assertTrue;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.ti.utils.logs.Log;
 
 import static org.ti.utils.ui.SeleniumUtil.*;
 
@@ -66,7 +69,7 @@ public class HomePage {
 
 
    By btnAngelUpLocator=By.cssSelector(".fa.fa-angle-up");
-   WebDriver driver = DriverFactory.getInstance().getDriver();
+   static WebDriver driver = DriverFactory.getInstance().getDriver();
 
     WebElement WebsiteText;
     List<WebElement> carrouselText;
@@ -147,7 +150,24 @@ public class HomePage {
             driver.switchTo().window(window1);
         }
 
+
     }
+
+    public static String getBrowser() {
+        Log.info("Getting system browser name . . .");
+        Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+        String browserName = cap.getBrowserName().toLowerCase();
+        return StringUtils.capitalize(browserName);
+    }
+
+    public static String getVersion() {
+        Log.info("Getting browser version . . .");
+        Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+        String v = cap.getBrowserVersion().toString();
+        Log.info("Browser version: " + v);
+        return v;
+    }
+
     public void GotoHomePage()
     {
 

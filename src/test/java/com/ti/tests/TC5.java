@@ -6,15 +6,15 @@ import org.testng.annotations.Test;
 public class TC5 extends Base{
 
 
-    @BeforeClass
+//    @BeforeClass
+//
+//    void CloseAdblocker()
+//    {
+//
+//        Home.WaitForAdblocker();
+//    }
 
-    void CloseAdblocker()
-    {
-
-        Home.WaitForAdblocker();
-    }
-
-    @Test()
+    @Test(description = "New user created")
 
     void RegisteredUser()
     {

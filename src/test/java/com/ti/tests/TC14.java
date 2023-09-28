@@ -6,12 +6,12 @@ import org.testng.annotations.Test;
 
 public class TC14 extends Base {
 
-@BeforeClass
-    void CloseAdblocker()
-    {
-
-      Home.WaitForAdblocker();
-    }
+//@BeforeClass
+//    void CloseAdblocker()
+//    {
+//
+//      Home.WaitForAdblocker();
+//    }
 
     @Test
 

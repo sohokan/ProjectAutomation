@@ -2,11 +2,12 @@ package com.ti.tests;
 
 
 import org.testng.annotations.*;
-import org.ti.utils.extentreports.ExtentTestManager;
 
-import static org.ti.utils.extentreports.ExtentManager.extentReports;
 
 public class TC1 extends Base {
+
+
+
     @BeforeClass
 
     void CloseAdblocker()
@@ -14,10 +15,10 @@ public class TC1 extends Base {
 
         Home.WaitForAdblocker();
 
-        ExtentTestManager.startTest("TC1","Register User");
+
     }
 
-    @Test(priority = 1,enabled = true)
+    @Test(priority = 1,enabled = true,description = "Verify HomePage Title")
     void VerifyHomePageTitle(){
 
         Home.HomePageTitle();
@@ -25,20 +26,20 @@ public class TC1 extends Base {
 
     }
 
-    @Test(priority = 2)
+    @Test(priority = 2,description = "Input new user data")
     void CreateNewRegistration() {
 
         Login.RegisterNewEmail();
     }
 
-    @Test(priority = 3)
+    @Test(priority = 3,description = "New user created")
     void BeginNewRegister() throws InterruptedException {
 
         Login.AccountInformation();
         Login.AccountCreated();
 
     }
-    @Test(priority = 4,dependsOnMethods = {"BeginNewRegister"})
+    @Test(priority = 4,dependsOnMethods = {"BeginNewRegister"},description = "Check user is logged")
     void VerifyUserisLogged() throws InterruptedException {
 
         Home.LoggedUser();
@@ -46,7 +47,7 @@ public class TC1 extends Base {
 
 
 
-    @Test(priority = 5,dependsOnMethods = {"BeginNewRegister"},enabled = false)
+    @Test(priority = 5,dependsOnMethods = {"BeginNewRegister"},enabled = true,description = "New user is deleted")
     void VerifyUserisDeleted() throws InterruptedException {
 
 
@@ -59,7 +60,7 @@ public class TC1 extends Base {
     public void Logger()
     {
         Home.GenerateLogs();
-        extentReports.flush();
+
 
     }
 
