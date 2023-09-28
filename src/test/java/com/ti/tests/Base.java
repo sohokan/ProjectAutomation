@@ -7,6 +7,7 @@ import com.ti.restapi.HttpsMethod;
 import org.testng.annotations.*;
 import org.ti.DriverFactory.DriverFactory;
 import org.ti.DriverFactory.BrowserType;
+import org.ti.utils.extentreports.ExtentTestManager;
 
 import static org.ti.utils.extentreports.ExtentTestManager.startTest;
 

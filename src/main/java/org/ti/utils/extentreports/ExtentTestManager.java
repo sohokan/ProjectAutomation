@@ -3,12 +3,21 @@ package org.ti.utils.extentreports;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ExtentTestManager {
     static Map<Integer, ExtentTest> extentTestMap = new HashMap<>();
-    static ExtentReports extent = ExtentManager.createExtentReports();
+    static ExtentReports extent;
+
+    static {
+        try {
+            extent = ExtentManager.createExtentReports();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public static synchronized ExtentTest getTest(){
         return extentTestMap.get((int)Thread.currentThread().getId());
@@ -19,4 +28,10 @@ public class ExtentTestManager {
         extentTestMap.put((int)Thread.currentThread().getId(), test);
         return test;
     }
+
+
+
+
+
+
 }

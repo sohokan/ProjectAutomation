@@ -1,6 +1,10 @@
 package com.ti.tests;
 
+
 import org.testng.annotations.*;
+import org.ti.utils.extentreports.ExtentTestManager;
+
+import static org.ti.utils.extentreports.ExtentManager.extentReports;
 
 public class TC1 extends Base {
     @BeforeClass
@@ -9,6 +13,8 @@ public class TC1 extends Base {
     {
 
         Home.WaitForAdblocker();
+
+        ExtentTestManager.startTest("TC1","Register User");
     }
 
     @Test(priority = 1,enabled = true)
@@ -53,6 +59,7 @@ public class TC1 extends Base {
     public void Logger()
     {
         Home.GenerateLogs();
+        extentReports.flush();
 
     }
 

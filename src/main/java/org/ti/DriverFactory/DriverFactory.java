@@ -59,10 +59,18 @@ public class DriverFactory {
 
         switch (browserType) {
 
-            case CHROME -> driver.set(new ChromeDriver(options));
-//            case CHROME -> driver.set(new ChromeDriver());
-            case EDGE -> driver.set(new EdgeDriver());
-            case FIREFOX -> driver.set(new FirefoxDriver(opt));
+//            case CHROME -> driver.set(new ChromeDriver(options));
+////            case CHROME -> driver.set(new ChromeDriver());
+//            case EDGE -> driver.set(new EdgeDriver());
+//            case FIREFOX -> driver.set(new FirefoxDriver(opt));
+
+            case CHROME:  driver.set(new ChromeDriver(options));
+                break;
+
+            case EDGE:  driver.set(new EdgeDriver());
+                break;
+            case FIREFOX: driver.set(new FirefoxDriver(opt));
+                break;
         }
         driver.get().manage().window().maximize();
 
