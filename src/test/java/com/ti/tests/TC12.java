@@ -12,7 +12,7 @@ public class TC12 extends Base{
 //        Home.WaitForAdblocker();
 //    }
 
-    @Test
+    @Test(description = "Add Products in Cart")
 
     void VerifyAddtoCart() throws InterruptedException {
 

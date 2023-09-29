@@ -13,7 +13,7 @@ public class TC13 extends Base {
 //        Home.WaitForAdblocker();
 //    }
 
-    @Test
+    @Test(description = " Verify Product quantity in Cart")
     void VerifyProductQuantity() throws InterruptedException {
 
         Products.GotoProductPage();

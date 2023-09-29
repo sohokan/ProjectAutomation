@@ -14,7 +14,7 @@ public class TC17 extends Base{
 //    }
 
 
-    @Test
+ @Test(description = "Place Order: Register before Checkout")
     void RemoveProducts() throws InterruptedException {
 
         Products.GotoProductPage();

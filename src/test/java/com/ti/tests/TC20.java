@@ -15,7 +15,7 @@ public class TC20 extends Base {
 
 
 
-    @Test
+    @Test(description = "Search Products and Verify Cart After Login")
     void VerifyProductSearch() throws InterruptedException {
 
         Products.GotoProductPage();

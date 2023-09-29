@@ -13,7 +13,7 @@ public class TC22 extends Base{
 //        Home.WaitForAdblocker();
 //    }
 
-    @Test
+    @Test(description = "Add to cart from Recommended items")
     void VerifyAddtoCartRecommended() throws InterruptedException {
 
         Home.GotoHomePage();

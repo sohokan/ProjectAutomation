@@ -13,7 +13,7 @@ public class TC25 extends Base{
 //        Home.WaitForAdblocker();
 //    }
 
-    @Test
+    @Test(description = "Verify Scroll Up using 'Arrow' button and Scroll Down functionality")
     public void VerifyScrollUpArrowbutton() throws InterruptedException {
 
       Home.HomePageTitle();

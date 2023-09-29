@@ -14,7 +14,7 @@ public class TC24  extends Base {
 //        Home.WaitForAdblocker();
 //    }
 
-    @Test
+    @Test(description = "Download Invoice after purchase order")
     void VerifyAddressinCheckoutPage() throws InterruptedException {
 
         Home.HomePageTitle();

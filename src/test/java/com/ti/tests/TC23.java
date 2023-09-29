@@ -15,7 +15,7 @@ public class TC23 extends Base{
 //    }
 
 
-    @Test
+    @Test(description = "Verify address details in checkout page")
     void VerifyAddressinCheckoutPage() throws InterruptedException {
 
         Home.HomePageTitle();

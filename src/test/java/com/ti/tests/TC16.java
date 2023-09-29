@@ -18,7 +18,7 @@ public class TC16 extends Base{
 //   }
 
 
-   @Test(priority = 1)
+   @Test(priority = 1, description = " Api scrapping for User data")
 
    void GetUserData() throws JsonProcessingException {
 
@@ -26,7 +26,7 @@ public class TC16 extends Base{
 
    }
 
-@Test(priority = 2)
+   @Test(priority = 2, description = "Place Order: Login before Checkout")
     void PlaceOrderLoginBeforeCheckout() throws InterruptedException {
 
      Home.HomePageTitle();

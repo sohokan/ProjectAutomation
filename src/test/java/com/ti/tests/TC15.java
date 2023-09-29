@@ -14,7 +14,7 @@ public class TC15 extends Base {
 //        Home.WaitForAdblocker();
 //    }
 
-    @Test
+    @Test(description = "Place Order: Register before Checkout")
     void PlaceOrderb4Checkout() throws InterruptedException {
 
         Home.HomePageTitle();

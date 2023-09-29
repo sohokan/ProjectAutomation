@@ -13,7 +13,7 @@ public class TC14 extends Base {
 //      Home.WaitForAdblocker();
 //    }
 
-    @Test
+    @Test(description = "Place Order: Register while Checkout")
 
     void VerifyPlaceOrder() throws InterruptedException {
 

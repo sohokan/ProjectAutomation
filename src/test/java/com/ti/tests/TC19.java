@@ -14,7 +14,7 @@ public class TC19 extends Base{
 //    }
 
 
-    @Test
+    @Test(description = "View & Cart Brand Products")
     void ViewBrands() throws InterruptedException {
 
         Products.GotoProductPage();

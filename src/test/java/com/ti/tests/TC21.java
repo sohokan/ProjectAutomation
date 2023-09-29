@@ -15,7 +15,7 @@ public class TC21 extends Base{
 //    }
 
 
-    @Test(priority = 1)
+    @Test(priority = 1,description = "Add review on product")
     void VerifyProductsVisible() throws InterruptedException {
 
         Products.GotoProductPage();

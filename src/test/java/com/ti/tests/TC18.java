@@ -14,7 +14,7 @@ public class TC18  extends Base{
 //        Home.WaitForAdblocker();
 //    }
 
-    @Test
+    @Test(description = "View Category Products")
     void VerifyViewCategoryProducts() throws InterruptedException {
 
         Home.CategoryVisibility();

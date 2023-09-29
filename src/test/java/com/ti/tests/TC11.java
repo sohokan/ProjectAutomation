@@ -13,7 +13,7 @@ public class TC11  extends Base{
 //        Home.WaitForAdblocker();
 //    }
 
-    @Test
+    @Test(description = "Verify Subscription in Cart page")
     void VerifySubscriptionCartPage()
     {
 
