@@ -16,7 +16,7 @@ public class TC19 extends Base{
 
     @Test(description = "View & Cart Brand Products")
     void ViewBrands() throws InterruptedException {
-
+        Home.GotoHomePage();
         Products.GotoProductPage();
         Products.VerifyBrand();
         Products.SelectBrand();

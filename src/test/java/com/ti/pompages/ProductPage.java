@@ -200,7 +200,8 @@ public class ProductPage extends HomePage {
     public void VerifyBrand()
 
     {
-
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.urlContains("products"));
         js.executeScript("window.scrollBy(0,400)");
         panelBrand=driver.findElements(panelBrandLocator);
 

@@ -16,7 +16,7 @@ public class TC18  extends Base{
 
     @Test(description = "View Category Products")
     void VerifyViewCategoryProducts() throws InterruptedException {
-
+        Home.GotoHomePage();
         Home.CategoryVisibility();
         Home.SelectWomanCategory();
         ProductCategory.VerifyCategoryPageisDisplayed();

@@ -1,10 +1,7 @@
 package com.ti.tests;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 public class TC16 extends Base{
 
@@ -50,4 +47,12 @@ public class TC16 extends Base{
 //        Home.VerifyAccountDeleted();
 
     }
+
+   @AfterClass
+
+  void SetNull()
+ {
+
+    AutomationApi.removehttpObject();
+   }
 }

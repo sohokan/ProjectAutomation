@@ -48,4 +48,11 @@ public class HttpsMethod {
          usersgo = objectMapper.readValue(getUserDetailByEmail()  , Root.class);
 //        System.out.println(usersgo.users.firstName);
     }
+
+     public void removehttpObject()
+    {
+        usersgo.users=null;
+
+    }
+
 }

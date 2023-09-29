@@ -126,9 +126,9 @@ void CreateObjects()
     public void getResult(ITestResult result)
     {
         String feature = result.getMethod().getRealClass().getName() + ":" + result.getMethod().getMethodName();
-         extentTest = extentReports.createTest(feature.substring(13), result.getMethod().getDescription()+ " "+ getBrowser() +" "+  getVersion());
+         extentTest = extentReports.createTest(feature.substring(13), result.getMethod().getDescription()+ " on "+ getBrowser() +" v."+  getVersion());
 
-        extentReports.setSystemInfo(getBrowser(), getVersion());
+
 //        extentTest = extentReports.createTest(result.getTestClass().toString());
         if(result.getStatus() == ITestResult.FAILURE)
         {
@@ -172,7 +172,7 @@ void CreateObjects()
 
     void CloseReport()
     {
-
+        extentReports.setSystemInfo(getBrowser(), getVersion());
         extentReports.flush();
     }
 }

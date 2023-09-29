@@ -30,7 +30,7 @@ import static org.ti.utils.ui.SeleniumUtil.*;
 
 public class HomePage {
 
-    By HomePageLocator=By.xpath("//a[normalize-space()='Home']");
+    By HomePageLocator=By.cssSelector("ul[class='nav navbar-nav'] li:nth-child(1)");
 
     By automationImageLocator= By.cssSelector("img[alt*='automation']");
 
@@ -68,7 +68,7 @@ public class HomePage {
    By btnContinueLocator=By.xpath("//div[@class='modal-content']//button[normalize-space()='Continue Shopping']");
 
 
-   By btnAngelUpLocator=By.cssSelector(".fa.fa-angle-up");
+   By btnAngelUpLocator=By.cssSelector("i[class='fa fa-angle-up']");
    static WebDriver driver = DriverFactory.getInstance().getDriver();
 
     WebElement WebsiteText;
@@ -229,11 +229,7 @@ public class HomePage {
         }
     }
 
-    public void CloseBrowser()
-    {
 
-        driver.quit();
-    }
 
 
 
@@ -294,7 +290,9 @@ public class HomePage {
     public void btnScrolltoUp()  {
 
         btnAngelUp=driver.findElement(btnAngelUpLocator);
-        btnAngelUp.click();
+
+        js.executeScript("arguments[0].click();", btnAngelUp);
+
 
 
     }
@@ -389,6 +387,8 @@ public class HomePage {
     }
 
     public void SelectWomanCategory() throws InterruptedException {
+
+
 
         js.executeScript("arguments[0].click();", driver.findElement(By.cssSelector("a[href$='Women']")));
 
