@@ -52,10 +52,16 @@ public class TC1 extends Base {
 
 
         Home.ClickonDeleteUser();
-        Home.VerifyAccountDeleted();
-        Home.LoggedUser(); //verify if user is logged or not
+
+
     }
 
+
+    @Test(priority = 6,dependsOnMethods = {"VerifyUserisDeleted"},description = "Check deleted user is not logged")
+    void VerifyDeletedUserNotShown() throws InterruptedException {
+        Home.VerifyAccountDeleted();
+        Home.LoggedUser();
+    }
     @AfterClass
     public void Logger()
     {

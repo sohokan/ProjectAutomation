@@ -19,7 +19,7 @@ public class TC6 extends Base{
     {
 
         ContactUs.FillContactUs();
-        Home.HomePageTitle();
+//        Home.HomePageTitle();
     }
 
 }

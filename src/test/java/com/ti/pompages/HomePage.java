@@ -6,8 +6,10 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Parameters;
-import org.ti.DriverFactory.BrowserType;
+
 import org.ti.DriverFactory.DriverFactory;
+
+import org.ti.utils.ui.SeleniumUtil.*;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -25,7 +27,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.ti.utils.logs.Log;
 
-import static org.ti.utils.ui.SeleniumUtil.*;
+import static org.ti.utils.ui.SeleniumUtil.getScreenShot;
+import static org.ti.utils.ui.SeleniumUtil.highLight;
+
+import org.testng.ITestResult;
 
 
 public class HomePage {
@@ -69,7 +74,7 @@ public class HomePage {
 
 
    By btnAngelUpLocator=By.cssSelector("i[class='fa fa-angle-up']");
-   static WebDriver driver = DriverFactory.getInstance().getDriver();
+  public static WebDriver driver = DriverFactory.getInstance().getDriver();
 
     WebElement WebsiteText;
     List<WebElement> carrouselText;
@@ -113,6 +118,9 @@ public class HomePage {
     JavascriptExecutor js = (JavascriptExecutor) driver;
 
     private static Logger log = LogManager.getLogger(HomePage.class);
+
+
+    ITestResult result;
 
     boolean checkexistent;
     String UserId= "";
@@ -199,6 +207,8 @@ public class HomePage {
             assertThat(hiddenText, containsStringIgnoringCase("Full-Fledged"));
 
         }
+
+//        getScreenShot(carrouselText.get(0),getBrowser());
 
 
 

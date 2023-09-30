@@ -95,12 +95,12 @@ public class SeleniumUtil {
     return element;
   }
 
-  public static String getScreenShot(WebElement element) {
+  public static String getScreenShot(WebElement element,String Browser) {
     String ssDateTime = new SimpleDateFormat("yyMMddHHmmss")
         .format(Calendar.getInstance().getTime());
     String file = null;
     try {
-      file = createFolder(SCREENSHOT_FOLDER) + "/" + ssDateTime + ".png";
+      file = createFolder(SCREENSHOT_FOLDER) + "/"+Browser+ "/"+ ssDateTime + ".png";
     } catch (FrameworkException e) {
       e.printStackTrace();
     }
