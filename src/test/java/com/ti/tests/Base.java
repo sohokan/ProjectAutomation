@@ -1,9 +1,11 @@
 package com.ti.tests;
 
 import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.MediaEntityBuilder;
 import com.ti.pompages.*;
 import com.google.common.base.Throwables;
 import com.ti.restapi.HttpsMethod;
+import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.Capabilities;
@@ -31,7 +33,11 @@ import org.ti.utils.logs.Log;
 
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -132,10 +138,11 @@ void CreateObjects()
 
 
     @AfterMethod
-    public void getResult(ITestResult result)
-    {
+    public void getResult(ITestResult result) throws IOException {
 
         String TestStatus= null;
+        Path path;
+        Path absolutePath;
         String feature = result.getMethod().getRealClass().getName() + ":" + result.getMethod().getMethodName();
          extentTest = extentReports.createTest(feature.substring(13), result.getMethod().getDescription()+ " on "+ getBrowser() +" v."+  getVersion());
 
@@ -143,10 +150,15 @@ void CreateObjects()
         {
             System.out.println(driver.getCurrentUrl());
             TestStatus="Fail";
+
+
 //            extentTest.fail(String.valueOf(Status.FAIL));
-//            extentTest.log(Status.FAIL, MarkupHelper.createLabel("FAILED", ExtentColor.RED));
-            extentTest.log(Status.FAIL, MarkupHelper.createLabel(" Result: " + result.getMethod().getRealClass().getName(), ExtentColor.RED));
+            extentTest.log(Status.FAIL, MarkupHelper.createLabel("FAILED", ExtentColor.RED));
+//            extentTest.log(Status.FAIL, MarkupHelper.createLabel(" Result: " + result.getMethod().getRealClass().getName(), ExtentColor.RED));
 //            extentTest.log(Status.FAIL, "StackTrace Result: " + Thread.currentThread().getStackTrace());
+//            extentTest.fail(String.valueOf(Status.FAIL)).addScreenCaptureFromPath(invokeScreenshotMethod( result,TestStatus));
+
+
             extentTest.fail(result.getThrowable());
 
         }
@@ -154,28 +166,39 @@ void CreateObjects()
         {
             TestStatus="Pass";
 
+            System.out.println("path "+invokeScreenshotMethod( result,TestStatus));
+
 //            extentTest.pass(String.valueOf(Status.PASS));
             extentTest.log(Status.PASS, MarkupHelper.createLabel("PASS", ExtentColor.GREEN));
+//            extentTest.pass(String.valueOf(Status.PASS)).addScreenCaptureFromPath(invokeScreenshotMethod( result,TestStatus));
+//            extentTest.pass(result.getMethod().getDescription(),MediaEntityBuilder.createScreenCaptureFromPath(invokeScreenshotMethod( result,TestStatus)).build());
 
+            extentTest.addScreenCaptureFromBase64String(getBase64Screenshot(result,TestStatus));
         }
         else
         {
             TestStatus="Skip";
+
+
             extentTest.log(Status.SKIP, MarkupHelper.createLabel(" Result: " + result.getMethod().getRealClass().getName(), ExtentColor.ORANGE));
+//            extentTest.skip(String.valueOf(Status.SKIP)).addScreenCaptureFromPath(invokeScreenshotMethod( result,TestStatus));
 
 //            extentTest.log(Status.SKIP, MarkupHelper.createLabel("SKIPPED", ExtentColor.ORANGE));
             extentTest.skip(result.getThrowable());
 //            extentTest.skip(String.valueOf(Status.SKIP));
+
         }
-        invokeScreenshotMethod( result,TestStatus);
+
     }
 
 
-    public void invokeScreenshotMethod(ITestResult res, String Status) {
+    public static File invokeScreenshotMethod(ITestResult res, String Status) {
 
-        String imageName = res.getMethod().getMethodName()+" "+new SimpleDateFormat("MM-dd-yyyy_HH-ss").format(new GregorianCalendar().getTime()) + ".png";
+        String imageName = res.getMethod().getMethodName()+"-"+new SimpleDateFormat("MM-dd-yyyy_HH-ss").format(new GregorianCalendar().getTime()) + ".png";
+//        String imageName = res.getMethod().getMethodName()+".png";
 
         String file = null;
+        File target;
         try {
             file = createFolder(SCREENSHOT_FOLDER) + "/"+getBrowser()+ "/"+Status+"/"+res.getMethod().getRealClass().getName().substring(13)+"/"+imageName;
         } catch (FrameworkException e) {
@@ -194,11 +217,32 @@ void CreateObjects()
                         "Class SeleniumUtils | Method takeSnapShot | Exception desc: " + e.getMessage());
             }
 
+        target= new File(file);
 
 
+        return target;
 
         }
 
+
+    public static String getBase64Screenshot(ITestResult res, String Status) throws IOException {
+
+        FileInputStream fileInputStream = null;
+        String encodedBase64 = null;
+        File target=invokeScreenshotMethod( res,Status).getAbsoluteFile();
+
+        try {
+            fileInputStream =new FileInputStream(target);
+            byte[] bytes =new byte[(int)target.length()];
+            fileInputStream.read(bytes);
+            encodedBase64 = new String(Base64.encodeBase64(bytes));
+
+        }catch (FileNotFoundException e){
+            e.printStackTrace();
+        }
+        return "data:image/png;base64,"+encodedBase64;
+
+    }
 
 
 
