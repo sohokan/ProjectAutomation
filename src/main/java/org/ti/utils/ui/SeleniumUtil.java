@@ -1,5 +1,8 @@
 package org.ti.utils.ui;
 
+import org.apache.commons.lang3.StringUtils;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.ITestResult;
 import org.ti.DriverFactory.DriverFactory;
 import org.ti.DriverFactory.FrameworkException;
 import org.ti.utils.logs.Log;
@@ -10,6 +13,7 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import static org.ti.config.Constants.SCREENSHOT_FOLDER;
 import static org.ti.config.CreateFolder.createFolder;
@@ -128,5 +132,57 @@ public class SeleniumUtil {
 
   public static void refresh(){
     driver.navigate().refresh();
+  }
+
+
+  public static String getBrowser() {
+    Log.info("Getting system browser name . . .");
+    Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+    String browserName = cap.getBrowserName().toLowerCase();
+    return StringUtils.capitalize(browserName);
+  }
+
+  public static String getVersion() {
+    Log.info("Getting browser version . . .");
+    Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+    String v = cap.getBrowserVersion().toString();
+    Log.info("Browser version: " + v);
+    return v;
+  }
+
+  public static File invokeScreenshotMethod(ITestResult res, String Status) {
+
+    String imageName = res.getMethod().getMethodName()+"-"+new SimpleDateFormat("MM-dd-yyyy_HH-mm-ss").format(new GregorianCalendar().getTime()) + ".png";
+
+
+    String file = null;
+    File target;
+
+    try {
+      file = createFolder(SCREENSHOT_FOLDER) + "/"+getBrowser()+ "/"+Status+"/"+new SimpleDateFormat("MM-dd-yyyy_HH").format(new GregorianCalendar().getTime()) +"/"+res.getMethod().getRealClass().getName().substring(13)+"/"+imageName;
+    } catch (FrameworkException e) {
+      e.printStackTrace();
+    }
+
+
+
+    try {
+
+
+
+      File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+//
+
+      FileUtils.copyFile(srcFile, new File(file));
+    } catch (Exception e) {
+      Log.error(
+              "Class SeleniumUtils | Method takeSnapShot | Exception desc: " + e.getMessage());
+    }
+
+    target= new File(file);
+
+
+    return target;
+
   }
 }

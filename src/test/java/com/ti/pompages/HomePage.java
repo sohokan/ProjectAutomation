@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 import static com.ti.pompages.SignUpPage.*;
 import static java.sql.DriverManager.getDriver;
@@ -161,20 +162,20 @@ public class HomePage {
 
     }
 
-    public static String getBrowser() {
-        Log.info("Getting system browser name . . .");
-        Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
-        String browserName = cap.getBrowserName().toLowerCase();
-        return StringUtils.capitalize(browserName);
-    }
-
-    public static String getVersion() {
-        Log.info("Getting browser version . . .");
-        Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
-        String v = cap.getBrowserVersion().toString();
-        Log.info("Browser version: " + v);
-        return v;
-    }
+//    public static String getBrowser() {
+//        Log.info("Getting system browser name . . .");
+//        Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+//        String browserName = cap.getBrowserName().toLowerCase();
+//        return StringUtils.capitalize(browserName);
+//    }
+//
+//    public static String getVersion() {
+//        Log.info("Getting browser version . . .");
+//        Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+//        String v = cap.getBrowserVersion().toString();
+//        Log.info("Browser version: " + v);
+//        return v;
+//    }
 
     public void GotoHomePage()
     {
@@ -207,8 +208,6 @@ public class HomePage {
             assertThat(hiddenText, containsStringIgnoringCase("Full-Fledged"));
 
         }
-
-//        getScreenShot(carrouselText.get(0),getBrowser());
 
 
 
@@ -249,6 +248,11 @@ public class HomePage {
     {
 
         iconDelete= driver.findElement(iconDeletedLocator);
+
+
+//        getScreenShot(carrouselText.get(0),getBrowser());
+
+
 
         iconDelete.click();
 
