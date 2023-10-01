@@ -24,17 +24,12 @@ public class TestListener extends DriverFactory implements ITestListener {
 
 
 
-    private static String getTestMethodName(ITestResult iTestResult) {
-        return iTestResult.getMethod().getConstructorOrMethod().getName();
-    }
-
-
 
 
     @Override
     public void onStart(ITestContext context) {
 
-        context.setAttribute("myDriver",getInstance().getDriver());
+//        context.setAttribute("myDriver",getInstance().getDriver());
 
         logger.log(Level.INFO, "Starting test method {}", context.getName());
 
@@ -97,10 +92,10 @@ public class TestListener extends DriverFactory implements ITestListener {
 //                "data:image/png;base64," + ((TakesScreenshot) Objects.requireNonNull(driver)).getScreenshotAs(OutputType.BASE64);
         String base64Screenshot =
                 "data:image/png;base64," + ((TakesScreenshot)  getInstance().getDriver()).getScreenshotAs(OutputType.BASE64);
-        getTest().log(Status.FAIL, "Test failed",
-                getTest().addScreenCaptureFromBase64String(base64Screenshot).getModel().getMedia().get(0));
-
-
+//        getTest().log(Status.FAIL, "Test failed",
+//                getTest().addScreenCaptureFromBase64String(base64Screenshot).getModel().getMedia().get(0));
+        getTest().log(Status.FAIL , MediaEntityBuilder.createScreenCaptureFromBase64String(base64Screenshot).build());
+        extentTest.fail(result.getThrowable());
 
     }
 
@@ -110,8 +105,8 @@ public class TestListener extends DriverFactory implements ITestListener {
 
         String base64Screenshot =
                 "data:image/png;base64," + ((TakesScreenshot) Objects.requireNonNull(getInstance().getDriver())).getScreenshotAs(OutputType.BASE64);
-        getTest().log(Status.SKIP, "Test skipped",
-                getTest().addScreenCaptureFromBase64String(base64Screenshot).getModel().getMedia().get(0));
 
-    }
+
+        getTest().log(Status.SKIP , MediaEntityBuilder.createScreenCaptureFromBase64String(base64Screenshot).build());
+        extentTest.skip(result.getThrowable());    }
 }
