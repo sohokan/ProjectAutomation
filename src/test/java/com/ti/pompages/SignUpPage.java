@@ -207,7 +207,7 @@ public class SignUpPage extends HomePage{
         txtBoxNewEmail =driver.findElement(NewEmailLocator);
         txtBoxNewName=driver.findElement(NewUserNameLocator);
 
-        btnSignup=driver.findElement(SignupLocator);
+        btnSignup=decorated.findElement(SignupLocator);
 
 
         txtBoxNewName.sendKeys(random);
@@ -268,7 +268,7 @@ public class SignUpPage extends HomePage{
 
         textBoxMobile_Number=driver.findElement(mobile_numberLocator);
 
-        btnCreate=driver.findElement(createLocator);
+        btnCreate=decorated.findElement(createLocator);
 
 
         assertThat(labelAccountInformation.getText(), containsString("ACCOUNT"));
@@ -306,6 +306,7 @@ public class SignUpPage extends HomePage{
 
         textBoxMobile_Number.sendKeys(users.get(0).strPhoneNumber);
 
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", btnCreate);
 
         btnCreate.click();
 
@@ -316,7 +317,7 @@ public class SignUpPage extends HomePage{
     public void AccountCreated() throws InterruptedException {
         labelaccountCreated=driver.findElement(accountCreatedLocator);
 
-        btnContinue=driver.findElement(continueLocator);
+        btnContinue=decorated.findElement(continueLocator);
 
         assertThat(labelaccountCreated.getText(), containsString("CREATED"));
         btnContinue.click();

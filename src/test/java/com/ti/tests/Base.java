@@ -150,85 +150,10 @@ void CreateObjects()
 
      }
 
-//    @AfterMethod
-//    public void getResult(ITestResult result) throws IOException {
-//
-//        String TestStatus;
-//
-//        String feature = result.getMethod().getRealClass().getName() + ":" + result.getMethod().getMethodName();
-//         extentTest = extentReports.createTest(feature.substring(13), result.getMethod().getDescription()+ " on "+ getBrowser() +" v."+  getVersion());
-////        extentReports.setAnalysisStrategy(AnalysisStrategy.CLASS);
-//        if(result.getStatus() == ITestResult.FAILURE)
-//        {
-//            System.out.println(driver.getCurrentUrl());
-//            TestStatus="Fail";
-//            extentTest.log(Status.FAIL , MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64Screenshot(result,TestStatus)).build());
-//
-//
-//            extentTest.fail(result.getThrowable());
-//
-//        }
-//        else if(result.getStatus() == ITestResult.SUCCESS)
-//        {
-//            TestStatus="Pass";
-//
-//
-//            extentTest.log(Status.PASS , MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64Screenshot(result,TestStatus)).build());
-//
-//
-//
-//
-//        }
-//        else
-//        {
-//            TestStatus="Skip";
-//
-//
-//            extentTest.log(Status.SKIP , MediaEntityBuilder.createScreenCaptureFromBase64String(getBase64Screenshot(result,TestStatus)).build());
-//
-//            extentTest.skip(result.getThrowable());
-//
-//
-//        }
-//
-//    }
 
 
-//    public static File invokeScreenshotMethod(ITestResult res, String Status) {
-//
-//        String imageName = res.getMethod().getMethodName()+"-"+new SimpleDateFormat("MM-dd-yyyy_HH-mm-ss").format(new GregorianCalendar().getTime()) + ".png";
-//
-//
-//        String file = null;
-//        File target;
-//        JavascriptExecutor js = (JavascriptExecutor) driver;
-//        try {
-//            file = createFolder(SCREENSHOT_FOLDER) + "/"+getBrowser()+ "/"+Status+"/"+new SimpleDateFormat("MM-dd-yyyy_HH").format(new GregorianCalendar().getTime()) +"/"+res.getMethod().getRealClass().getName().substring(13)+"/"+imageName;
-//        } catch (FrameworkException e) {
-//            e.printStackTrace();
-//        }
-//
-//
-//
-//            try {
-//
-//
-//
-//                File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-////
-//
-//                FileUtils.copyFile(srcFile, new File(file));
-//            } catch (Exception e) {
-//                Log.error(
-//                        "Class SeleniumUtils | Method takeSnapShot | Exception desc: " + e.getMessage());
-//            }
-//
-//        target= new File(file);
-//
-//
-//        return target;
-//
-//        }
+
+
 
 
 //    public static String getBase64Screenshot(ITestResult res, String Status) throws IOException {

@@ -7,11 +7,16 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
+import org.openqa.selenium.support.events.WebDriverListener;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 import  org.ti.DriverFactory.DriverFactory;
 import org.ti.utils.extentreports.ExtentTest;
+import org.openqa.selenium.support.events.EventFiringDecorator;
 
 
 import java.util.Objects;
@@ -19,15 +24,22 @@ import java.util.Objects;
 import static org.ti.utils.extentreports.ExtentTestManager.*;
 
 
+
+
 public class TestListener extends DriverFactory implements ITestListener {
     private static final Logger logger = LogManager.getLogger(TestListener.class.getName());
 
+    WebDriver decorated;
 
+   public static ITestResult execution;
 
-
+public static String ExecutionStatus;
 
     @Override
     public void onStart(ITestContext context) {
+
+
+        context.setAttribute("CurrentElement",getInstance().getDriver());
 
 //        context.setAttribute("myDriver",getInstance().getDriver());
 
@@ -49,8 +61,17 @@ public class TestListener extends DriverFactory implements ITestListener {
     @Override
     public void onTestStart(ITestResult result) {
 
-
+        execution=result;
         startTest(result);
+
+        WebDriverEventListener  driverEventListener = new WebDriverEventListener ();
+
+
+//        EventFiringDecorator<WebDriver> decorator = new EventFiringDecorator<>( driverEventListener);
+
+         decorated = new EventFiringDecorator<>( driverEventListener).decorate(getInstance().getDriver());
+
+
 
         logger.info("**************************************************************************************************************");
         logger.log(Level.INFO, "{} test starting!!! ", result.getMethod().getConstructorOrMethod().getName());
@@ -60,24 +81,37 @@ public class TestListener extends DriverFactory implements ITestListener {
     @Override
     public void onTestSuccess(ITestResult result) {
 
+        ExecutionStatus="Pass";
 
+//        eventDriver = new EventFiringWebDriver( getInstance().getDriver());
+
+
+//        if (decorated == null) {
+//            logger.log(Level.INFO,"object is null");
+//        }
+//        else
+//        {
+//            logger.log(Level.INFO,"object is not null");
+//
+//        }
 
 
         logger.log(Level.INFO, "{} test execution success", result.getMethod().getConstructorOrMethod().getName());
 
-//        File screenShot = ((TakesScreenshot)result
-//                .getTestContext()
-//                .getAttribute("myDriver")).getScreenshotAs(OutputType.FILE);
         String base64Screenshot =
-                "data:image/png;base64," + ((TakesScreenshot)  getInstance().getDriver()).getScreenshotAs(OutputType.BASE64);
+                "data:image/png;base64," + ((TakesScreenshot) decorated).getScreenshotAs(OutputType.BASE64);
 //        getTest().log(Status.PASS, "Test passed",
 //                getTest().addScreenCaptureFromBase64String(base64Screenshot).getModel().getMedia().get(0));
-            getTest().log(Status.PASS , MediaEntityBuilder.createScreenCaptureFromBase64String(base64Screenshot).build());
+            getTest().log(Status.PASS  ,MediaEntityBuilder.createScreenCaptureFromBase64String(base64Screenshot).build());
+
 
     }
 
+
     @Override
     public void onTestFailure(ITestResult result) {
+
+        ExecutionStatus="Fail";
 //        WebDriver driver = null;
 //
 //        try {
@@ -101,6 +135,8 @@ public class TestListener extends DriverFactory implements ITestListener {
 
     @Override
     public void onTestSkipped(ITestResult result) {
+
+        ExecutionStatus="Skip";
         logger.log(Level.WARN, "{} test execution skipped", result.getMethod().getConstructorOrMethod().getName());
 
         String base64Screenshot =

@@ -19,7 +19,7 @@ public class TC1 extends Base {
     }
 
     @Test(priority = 1,enabled = true,description = "Verify HomePage Carrousel Text")
-    void VerifyHomePageTitle(){
+    void VerifyCarouselText(){
 
         Home.CheckCarouselText();
 

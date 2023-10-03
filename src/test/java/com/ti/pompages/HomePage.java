@@ -3,12 +3,14 @@ package com.ti.pompages;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.events.EventFiringDecorator;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Parameters;
 
 import org.ti.DriverFactory.DriverFactory;
 
+import org.ti.utils.listeners.WebDriverEventListener;
 import org.ti.utils.ui.SeleniumUtil.*;
 
 import java.time.Duration;
@@ -28,7 +30,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.ti.utils.logs.Log;
 
-import static org.ti.utils.ui.SeleniumUtil.getScreenShot;
 import static org.ti.utils.ui.SeleniumUtil.highLight;
 
 import org.testng.ITestResult;
@@ -76,6 +77,12 @@ public class HomePage {
 
    By btnAngelUpLocator=By.cssSelector("i[class='fa fa-angle-up']");
   public static WebDriver driver = DriverFactory.getInstance().getDriver();
+    WebDriverEventListener driverEventListener = new WebDriverEventListener ();
+
+
+//        EventFiringDecorator<WebDriver> decorator = new EventFiringDecorator<>( driverEventListener);
+
+    public WebDriver decorated= new EventFiringDecorator<>( driverEventListener).decorate(driver);
 
     WebElement WebsiteText;
     List<WebElement> carrouselText;
@@ -199,8 +206,10 @@ public class HomePage {
 
     public void CheckCarouselText()
     {
-        carrouselText=driver.findElements(automationCarouselLocator);
+        carrouselText=decorated.findElements(automationCarouselLocator);
         String hiddenText ;
+        System.out.println("Carossel elements "+   carrouselText.size());
+
 
         for ( var carrousel:carrouselText) {
             hiddenText = (String)((JavascriptExecutor)driver).executeScript(
@@ -218,7 +227,7 @@ public class HomePage {
     public void LoggedUser() throws InterruptedException {
 
 
-        checkexistent= driver.findElements(userLocator).size()>0;
+        checkexistent= decorated.findElements(userLocator).size()>0;
         if (checkexistent){
             labeluser=driver.findElement(userLocator);
             UserId=labeluser.getText();
@@ -247,7 +256,7 @@ public class HomePage {
     public void ClickonDeleteUser()
     {
 
-        iconDelete= driver.findElement(iconDeletedLocator);
+        iconDelete= decorated.findElement(iconDeletedLocator);
 
 
 //        getScreenShot(carrouselText.get(0),getBrowser());
@@ -259,7 +268,7 @@ public class HomePage {
     }
 
     public void VerifyAccountDeleted() throws InterruptedException {
-        labelaccountDeleted=driver.findElement(accountDeletedLocator);
+        labelaccountDeleted=decorated.findElement(accountDeletedLocator);
 
         btnContinue=driver.findElement(continueLocator);
         log.info("User deleted");
