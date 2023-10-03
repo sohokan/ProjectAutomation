@@ -62,6 +62,9 @@ public class CartPage extends HomePage{
         productsCart=driver.findElements(productscartLocator);
 
         int counterProductSelected=0;
+        int dItemPrice;
+        int iItemQuantity;
+        int TotalItemPrice;
 
 
 
@@ -70,9 +73,6 @@ public class CartPage extends HomePage{
 
         String[] strItemPrice;
 
-        int dItemPrice;
-        int iItemQuantity;
-        int TotalItemPrice;
 
         for (var objcart:productsCart)
         {
@@ -139,25 +139,12 @@ public class CartPage extends HomePage{
 
 
 
-//       List<WebElement> newproductsCart=getStaleElement(prodsNameDeletedLocator);
-
         List<WebElement> newproductsCart=driver.findElements(prodsNameDeletedLocator);
         ArrayList<String> NewCartProducts = new ArrayList<String>();
         for (WebElement p : newproductsCart ) {
             NewCartProducts.add(p.getText());
         }
-//        System.out.println("Old Products");
-//       arrayclothes.forEach(System.out::println);
-//        System.out.println("New Products");
-//        NewCartProducts.forEach(System.out::println);
 
-//        newproductsCart.forEach(p-> System.out.println(p.getText()));
-//        System.out.println(arrayclothes.containsAll(NewCartProducts));
-
-
-//        List<String> result = arrayclothes.stream()
-//                .filter(not(new HashSet<>(NewCartProducts)::contains))
-//                .collect(Collectors.toList());
 
         List<String> result = arrayclothes.stream().filter(elem -> !NewCartProducts.contains(elem)).collect(Collectors.toList());
 
@@ -175,7 +162,7 @@ public class CartPage extends HomePage{
         btnCheckout=driver.findElement(checkoutLocator);
         btnCheckout.click();
 
-//        Thread.sleep(1000);
+
 
         if (driver.findElements(CartRegisterLocator).size()>0) // if user is not logged in
             driver.findElement(CartRegisterLocator).click();

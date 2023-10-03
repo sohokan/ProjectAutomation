@@ -8,7 +8,8 @@ import com.ti.pompages.SignUpPage;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
-import static org.ti.RandomDataGeneration.GenerateUserData.GenerateRandomEmail;
+import static org.ti.RandomDataGeneration.GenerateUserData.*;
+import static org.ti.utils.ui.SeleniumUtil.*;
 
 public class ContactUsPage extends HomePage {
 
@@ -71,10 +72,10 @@ public class ContactUsPage extends HomePage {
         inputEmail=driver.findElement(emailLocator);
         inputSubject=driver.findElement(subjectLocator);
         inputMessage=driver.findElement(messageLocator);
-        inputName.sendKeys(random);
-        inputEmail.sendKeys(GenerateRandomEmail(10));
-        inputSubject.sendKeys(random);
-        inputMessage.sendKeys(random);
+        inputName.sendKeys(GenerateRandomFName() +" "+GenerateRandomLName());
+        inputEmail.sendKeys(GenerateRandomEmail());
+        inputSubject.sendKeys(random());
+        inputMessage.sendKeys(random());
         uploadFile=driver.findElement(uploadfileLocator);
         uploadFile.sendKeys(filetoUpload);
         btnSubmit=driver.findElement(submitlocator);
@@ -97,17 +98,6 @@ public class ContactUsPage extends HomePage {
     }
 
 
-    public boolean IsAlertPresent()
-    {
-        try
-        {
-            driver.switchTo().alert().accept();
-            return true;
-        }   // try
-        catch (NoAlertPresentException Ex)
-        {
-            return false;
-        }   // catch
-    }
+
 
 }

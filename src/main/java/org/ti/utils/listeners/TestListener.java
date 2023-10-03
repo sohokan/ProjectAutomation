@@ -24,10 +24,9 @@ import java.util.Objects;
 import static org.ti.utils.extentreports.ExtentTestManager.*;
 import static org.ti.utils.ui.SeleniumUtil.getBrowser;
 import static org.ti.utils.ui.SeleniumUtil.getVersion;
-
+import org.ti.utils.logs.Log;
 
 public class TestListener extends DriverFactory implements ITestListener {
-    private static final Logger logger = LogManager.getLogger(TestListener.class.getName());
 
     WebDriver decorated;
 
@@ -42,7 +41,7 @@ public static String ExecutionStatus;
 
 //        context.setAttribute("myDriver",getInstance().getDriver());
 
-        logger.log(Level.INFO, "Starting test method {}", context.getName());
+        Log.info( "Starting test method {}"+ context.getName());
 
 
 
@@ -51,8 +50,8 @@ public static String ExecutionStatus;
 
     @Override
     public void onFinish(ITestContext context) {
-        logger.log(Level.INFO, "Finishing test method {}", context.getName());
-        logger.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX    -E--N--D      XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+        Log.info( "Finishing test method {}"+context.getName());
+        Log.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX    -E--N--D      XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
 
         ExtentTest.extentReports.setSystemInfo(getBrowser(), getVersion());
         ExtentTest.extentReports.flush();
@@ -74,9 +73,9 @@ public static String ExecutionStatus;
 
 
 
-        logger.info("**************************************************************************************************************");
-        logger.log(Level.INFO, "{} test starting!!! ", result.getMethod().getConstructorOrMethod().getName());
-        logger.info("**************************************************************************************************************");
+        Log.info("**************************************************************************************************************");
+        Log.info(" Test starting!!! "+ result.getMethod().getConstructorOrMethod().getName());
+        Log.info("**************************************************************************************************************");
     }
 
     @Override
@@ -84,7 +83,7 @@ public static String ExecutionStatus;
 
         ExecutionStatus="Pass";
 
-        logger.log(Level.INFO, "{} test execution success", result.getMethod().getConstructorOrMethod().getName());
+        Log.info("test execution success"+ result.getMethod().getConstructorOrMethod().getName());
 
         String base64Screenshot =
                 "data:image/png;base64," + ((TakesScreenshot) getInstance().getDriver()).getScreenshotAs(OutputType.BASE64);
@@ -100,7 +99,7 @@ public static String ExecutionStatus;
     public void onTestFailure(ITestResult result) {
 
         ExecutionStatus="Fail";
-        logger.log(Level.ERROR, "{} test execution failed", result.getMethod().getConstructorOrMethod().getName());
+        Log.error("test execution failed "+ result.getMethod().getConstructorOrMethod().getName());
 //        String base64Screenshot =
 //                "data:image/png;base64," + ((TakesScreenshot) Objects.requireNonNull(driver)).getScreenshotAs(OutputType.BASE64);
         String base64Screenshot =
@@ -116,7 +115,7 @@ public static String ExecutionStatus;
     public void onTestSkipped(ITestResult result) {
 
         ExecutionStatus="Skip";
-        logger.log(Level.WARN, "{} test execution skipped", result.getMethod().getConstructorOrMethod().getName());
+        Log.warn("Test execution skipped "+ result.getMethod().getConstructorOrMethod().getName());
 
         String base64Screenshot =
                 "data:image/png;base64," + ((TakesScreenshot) Objects.requireNonNull(getInstance().getDriver())).getScreenshotAs(OutputType.BASE64);

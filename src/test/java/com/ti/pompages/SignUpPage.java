@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import org.ti.DriverFactory.FrameworkException;
+import org.ti.RandomDataGeneration.GenerateUserData;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -143,9 +144,9 @@ public class SignUpPage extends HomePage{
 
 //    private static Logger log = LogManager.getLogger(SignUpPage.class);
 
-    public static String email = "";
+    public static String randomEmail = GenerateRandomEmail();
 
-    public static String password = "";
+    public static String password = GenerateRandomPassword(10);
 
 
 
@@ -204,12 +205,12 @@ public class SignUpPage extends HomePage{
         btnSignup=decorated.findElement(SignupLocator);
 
 
-        txtBoxNewName.sendKeys(random);
+        txtBoxNewName.sendKeys(random());
         if (email.length>0) {
             txtBoxNewEmail.sendKeys(email[0]);
         }
         else{
-            txtBoxNewEmail.sendKeys(GenerateRandomEmail(10));
+            txtBoxNewEmail.sendKeys(randomEmail);
 
         }
         btnSignup.click();
@@ -267,7 +268,7 @@ public class SignUpPage extends HomePage{
         assertThat(labelAccountInformation.getText(), containsString("ACCOUNT"));
         radioTitle.click();
 
-        textBoxPassword.sendKeys(GenerateRandomPassword(8));
+        textBoxPassword.sendKeys(password);
 
 
 

@@ -12,6 +12,7 @@ import java.util.List;
 
 import static org.apache.commons.lang3.ObjectUtils.isEmpty;
 import static org.testng.AssertJUnit.assertTrue;
+import static org.ti.utils.ui.SeleniumUtil.random;
 
 public class CheckOutPage extends HomePage {
     //YOUR DELIVERY ADDRESS
@@ -116,7 +117,7 @@ public class CheckOutPage extends HomePage {
 
         textBoxComment=driver.findElement(commentLocator);
 
-        textBoxComment.sendKeys(random);
+        textBoxComment.sendKeys(random());
 
     }
 

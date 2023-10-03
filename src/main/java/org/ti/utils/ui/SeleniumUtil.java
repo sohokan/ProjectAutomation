@@ -31,7 +31,14 @@ public class SeleniumUtil {
 
   protected static File srcFile;
 
+  public static String random()
+  {
 
+  return UUID.randomUUID()
+          .toString()
+          .substring(0, 6);
+
+  }
 
   public static void WaitForAdblocker() {
 
@@ -231,4 +238,55 @@ public class SeleniumUtil {
         return "data:image/png;base64,"+encodedBase64;
 
     }
+
+
+  public static void getStaleElement(WebElement web ,WebElement webstale) {
+    JavascriptExecutor js = (JavascriptExecutor) driver;
+    try {
+      Thread.sleep(1000);
+      js.executeScript("arguments[0].click();", web);
+    } catch (StaleElementReferenceException | org.openqa.selenium.NoSuchElementException | InterruptedException e) {
+      System.err.println("Attempting to recover from Exception using instead" + webstale);
+      js.executeScript("arguments[0].click();", webstale);
+    }
+  }
+
+  public static void getNoSuchElement( WebElement e) {
+    new WebDriverWait(driver, Duration.ofSeconds(5))
+            .ignoring(NoSuchElementException.class)
+            .until((WebDriver d) -> {
+              highLight(e);
+              e.click(); ;
+              return true;
+
+            });
+  }
+
+  public  static void DisableAds() throws InterruptedException {
+
+    if(driver.getCurrentUrl().contains("google_vignette"))  {
+
+      Thread.sleep(1000);
+
+      JavascriptExecutor js = (JavascriptExecutor) driver;
+      js.executeScript("const elements = document.getElementsByClassName('adsbygoogle adsbygoogle-noablate'); while (elements.length > 0) elements[0].remove()");
+
+    }
+
+
+  }
+
+  public static boolean IsAlertPresent()
+  {
+    try
+    {
+      driver.switchTo().alert().accept();
+      return true;
+    }   // try
+    catch (NoAlertPresentException Ex)
+    {
+      return false;
+    }   // catch
+  }
+
 }

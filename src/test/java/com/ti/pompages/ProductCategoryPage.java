@@ -11,6 +11,7 @@ import java.time.Duration;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.containsStringIgnoringCase;
+import static org.ti.utils.ui.SeleniumUtil.DisableAds;
 
 public class ProductCategoryPage extends HomePage {
 

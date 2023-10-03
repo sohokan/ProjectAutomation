@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.containsStringIgnoringCase;
+import static org.ti.utils.ui.SeleniumUtil.DisableAds;
 
 import  com.ti.pompages.ProductPage;
 import org.openqa.selenium.support.ui.ExpectedConditions;

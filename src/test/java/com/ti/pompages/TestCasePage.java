@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
+import static org.ti.utils.ui.SeleniumUtil.DisableAds;
+
 public class TestCasePage extends HomePage{
 
     By testcaseLinkLocator=By.cssSelector("a[href='/test_cases']");

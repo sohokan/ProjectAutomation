@@ -12,7 +12,8 @@ import org.ti.DriverFactory.DriverFactory;
 
 import org.ti.utils.listeners.WebDriverEventListener;
 import org.ti.utils.ui.SeleniumUtil.*;
-
+import static com.ti.pompages.SignUpPage.randomEmail;
+import static com.ti.pompages.SignUpPage.password;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +32,7 @@ import org.apache.logging.log4j.Logger;
 import org.ti.utils.logs.Log;
 
 import static org.ti.RandomDataGeneration.GenerateUserData.GenerateRandomEmail;
+import static org.ti.utils.ui.SeleniumUtil.DisableAds;
 import static org.ti.utils.ui.SeleniumUtil.highLight;
 
 import org.testng.ITestResult;
@@ -120,16 +122,14 @@ public class HomePage {
 
     List<WebElement> carouselRecommendedProduct;
 
-    String random = UUID.randomUUID()
-            .toString()
-            .substring(0, 6);
+
 
     JavascriptExecutor js = (JavascriptExecutor) driver;
 
     private static Logger log = LogManager.getLogger(HomePage.class);
 
 
-    ITestResult result;
+
 
     boolean checkexistent;
     String UserId= "";
@@ -248,7 +248,7 @@ public class HomePage {
         System.out.println(txtSubscription.getText());
         assertThat(txtSubscription.getText(), containsString("SUBSCRIPTION"));
         inputsusbscribeEmail=driver.findElement(suscribeemailLocator);
-        inputsusbscribeEmail.sendKeys(GenerateRandomEmail(10));
+        inputsusbscribeEmail.sendKeys(GenerateRandomEmail());
         btnsubscribe=driver.findElement(subscribeLocator);
         btnsubscribe.click();
         alertSuscribe=driver.findElement(sucessalertLocator);
@@ -357,8 +357,6 @@ public class HomePage {
         panelCategory=driver.findElements(categoryLocator);
 
 
-
-
         panelCategory.forEach(c-> System.out.println(c.getText()));
 
         panelCategory.forEach(c-> assertTrue(c.isDisplayed()));
@@ -388,64 +386,12 @@ public class HomePage {
 
 
 //        log.info("User is Register: "+ checkexistent);
-        log.info(email);
+        log.info(randomEmail);
         log.info(password);
         log.info("________________________________________________________");
 
     }
 
-
-
-    void DisableAds() throws InterruptedException {
-
-        if(driver.getCurrentUrl().contains("google_vignette"))  {
-// Comparing the web URL
-//            assertEquals("https://practice.automationtesting.in/#google_vignette", driver.getCurrentUrl());
-
-//            new WebDriverWait(driver, Duration.ofSeconds(10))
-//                    .until(ExpectedConditions.visibilityOfAllElements(driver.findElements(By.xpath("//div[contains(@class,'close')]"))));
-
-
-
-            Thread.sleep(1000);
-
-
-            JavascriptExecutor js = (JavascriptExecutor) driver;
-            js.executeScript("const elements = document.getElementsByClassName('adsbygoogle adsbygoogle-noablate'); while (elements.length > 0) elements[0].remove()");
-          /*  WebElement AdButton = driver.findElement(By.xpath("//div[contains(@class,'close')]"));
-            AdButton.click();*/
-
-// Comparing the web URL
-//            String newURL = driver.getCurrentUrl();
-//            assertEquals("https://practice.automationtesting.in/my-account/", newURL);
-        }
-
-
-
-    }
-
-
-
-    public void getStaleElement(WebElement web ,WebElement webstale) {
-        try {
-           Thread.sleep(1000);
-            js.executeScript("arguments[0].click();", web);
-        } catch (StaleElementReferenceException | org.openqa.selenium.NoSuchElementException | InterruptedException e) {
-            System.err.println("Attempting to recover from Exception using instead" + webstale);
-            js.executeScript("arguments[0].click();", webstale);
-        }
-    }
-
-    public void getNoSuchElement( WebElement e) {
-        new WebDriverWait(driver, Duration.ofSeconds(5))
-                .ignoring(NoSuchElementException.class)
-                .until((WebDriver d) -> {
-                    highLight(e);
-                   e.click(); ;
-                    return true;
-
-                });
-    }
 
 
 }

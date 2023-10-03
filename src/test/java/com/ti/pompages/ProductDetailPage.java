@@ -12,6 +12,7 @@ import java.util.List;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.containsStringIgnoringCase;
+import static org.ti.utils.ui.SeleniumUtil.random;
 
 public class ProductDetailPage extends HomePage {
 
@@ -126,7 +127,7 @@ public void AddReview()
     btnReview=driver.findElement(btnReviewLocator);
     inputName.sendKeys(reviewdata.name().firstName()+ " "+reviewdata.name().lastName());
     inputemail.sendKeys(reviewdata.internet().emailAddress());
-    textAreaReview.sendKeys(random);
+    textAreaReview.sendKeys(random());
     btnReview.click();
 
     successAlert=driver.findElement(successAlertLocator);

@@ -11,6 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.testng.AssertJUnit.assertTrue;
+import static org.ti.utils.ui.SeleniumUtil.DisableAds;
+import static org.ti.utils.ui.SeleniumUtil.getStaleElement;
+
+import org.ti.utils.ui.SeleniumUtil;
 
 
 public class ProductPage extends HomePage {
