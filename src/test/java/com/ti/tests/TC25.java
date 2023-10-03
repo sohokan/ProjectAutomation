@@ -5,13 +5,6 @@ import org.testng.annotations.Test;
 
 public class TC25 extends Base{
 
-//    @BeforeClass
-//
-//    void CloseAdblocker()
-//    {
-//
-//        Home.WaitForAdblocker();
-//    }
 
     @Test(description = "Verify Scroll Up using 'Arrow' button and Scroll Down functionality")
     public void VerifyScrollUpArrowbutton() throws InterruptedException {

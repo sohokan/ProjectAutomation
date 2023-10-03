@@ -5,13 +5,7 @@ import org.testng.annotations.Test;
 
 public class TC13 extends Base {
 
-//    @BeforeClass
-//
-//    void CloseAdblocker()
-//    {
-//
-//        Home.WaitForAdblocker();
-//    }
+
 
     @Test(description = " Verify Product quantity in Cart")
     void VerifyProductQuantity() throws InterruptedException {

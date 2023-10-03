@@ -8,6 +8,7 @@ import com.ti.pompages.SignUpPage;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
+import static org.ti.RandomDataGeneration.GenerateUserData.GenerateRandomEmail;
 
 public class ContactUsPage extends HomePage {
 
@@ -71,7 +72,7 @@ public class ContactUsPage extends HomePage {
         inputSubject=driver.findElement(subjectLocator);
         inputMessage=driver.findElement(messageLocator);
         inputName.sendKeys(random);
-        inputEmail.sendKeys(SignUpPage.GenerateRandomEmail(10));
+        inputEmail.sendKeys(GenerateRandomEmail(10));
         inputSubject.sendKeys(random);
         inputMessage.sendKeys(random);
         uploadFile=driver.findElement(uploadfileLocator);

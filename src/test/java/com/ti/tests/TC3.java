@@ -7,13 +7,7 @@ import org.testng.annotations.Test;
 
 public  class TC3 extends Base{
 
-    @BeforeClass
 
-//    void CloseAdblocker()
-//    {
-//
-//        Home.WaitForAdblocker();
-//    }
 
     @Test(priority = 1,enabled = true,description = "Login with invalid Credentials")
     void LoginUserInValidCreds() throws InterruptedException {

@@ -5,13 +5,6 @@ import org.testng.annotations.Test;
 
 public class TC20 extends Base {
 
-//    @BeforeClass
-//
-//    void CloseAdblocker()
-//    {
-//
-//        Home.WaitForAdblocker();
-//    }
 
 
 

@@ -2,6 +2,9 @@ package com.ti.tests;
 
 
 import org.testng.annotations.*;
+import org.ti.DriverFactory.FrameworkException;
+
+import static org.ti.utils.ui.SeleniumUtil.WaitForAdblocker;
 
 
 public class TC1 extends Base {
@@ -13,7 +16,7 @@ public class TC1 extends Base {
     void CloseAdblocker()
     {
 
-        Home.WaitForAdblocker();
+        WaitForAdblocker();
 
 
     }
@@ -33,7 +36,7 @@ public class TC1 extends Base {
     }
 
     @Test(priority = 3,description = "New user created")
-    void BeginNewRegister() throws InterruptedException {
+    void BeginNewRegister() throws InterruptedException, FrameworkException {
 
         Login.AccountInformation();
         Login.AccountCreated();

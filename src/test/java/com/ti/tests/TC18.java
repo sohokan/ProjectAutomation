@@ -6,13 +6,6 @@ import org.testng.annotations.Test;
 
 public class TC18  extends Base{
 
-//    @BeforeClass
-//
-//    void CloseAdblocker()
-//    {
-//
-//        Home.WaitForAdblocker();
-//    }
 
     @Test(description = "View Category Products")
     void VerifyViewCategoryProducts() throws InterruptedException {

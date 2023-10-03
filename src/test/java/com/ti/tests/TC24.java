@@ -3,19 +3,14 @@ package com.ti.tests;
 import com.ti.pompages.PaymentDonePage;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import org.ti.DriverFactory.FrameworkException;
 
 public class TC24  extends Base {
 
-//    @BeforeClass
-//
-//    void CloseAdblocker()
-//    {
-//
-//        Home.WaitForAdblocker();
-//    }
+
 
     @Test(description = "Download Invoice after purchase order")
-    void VerifyAddressinCheckoutPage() throws InterruptedException {
+    void VerifyAddressinCheckoutPage() throws InterruptedException, FrameworkException {
 
         Home.HomePageTitle();
         Login.RegisterNewEmail();

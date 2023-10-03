@@ -6,14 +6,6 @@ import org.testng.annotations.*;
 public class TC16 extends Base{
 
 
-//   @BeforeClass
-//
-//   void CloseAdblocker()
-//   {
-//
-//      Home.WaitForAdblocker();
-//   }
-
 
    @Test(priority = 1, description = " Api scrapping for User data")
 

@@ -3,20 +3,13 @@ package com.ti.tests;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import org.ti.DriverFactory.FrameworkException;
 
 public class TC23 extends Base{
 
-//    @BeforeClass
-//
-//    void CloseAdblocker()
-//    {
-//
-//        Home.WaitForAdblocker();
-//    }
-
 
     @Test(description = "Verify address details in checkout page")
-    void VerifyAddressinCheckoutPage() throws InterruptedException {
+    void VerifyAddressinCheckoutPage() throws InterruptedException, FrameworkException {
 
         Home.HomePageTitle();
         Login.RegisterNewEmail();

@@ -30,6 +30,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.ti.utils.logs.Log;
 
+import static org.ti.RandomDataGeneration.GenerateUserData.GenerateRandomEmail;
 import static org.ti.utils.ui.SeleniumUtil.highLight;
 
 import org.testng.ITestResult;
@@ -139,50 +140,9 @@ public class HomePage {
 
       public static int position;
 
-    @Parameters("browser")
-    public void WaitForAdblocker() {
-
-        String browser=((RemoteWebDriver) driver).getCapabilities().getBrowserName().toLowerCase();
-        System.out.println("Browser Name is : "+browser);
-
-        if (browser.contains("chrome")) {
-            Set<String> AllWindowHandles = driver.getWindowHandles();
-//        ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
-//        driver.switchTo().window(tabs.get(1));
-            String window1 = (String) AllWindowHandles.toArray()[0];
-            String window2 = (String) AllWindowHandles.toArray()[1];
-
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-            wait.until(ExpectedConditions.numberOfWindowsToBe(2));
 
 
-            driver.switchTo().window(window2);
 
-            WebElement Adblock = driver.findElement(By.xpath("//h2[@class='installed__heading']"));
-
-            wait.until(ExpectedConditions.visibilityOf(Adblock));
-            driver.close();
-
-            driver.switchTo().window(window1);
-        }
-
-
-    }
-
-//    public static String getBrowser() {
-//        Log.info("Getting system browser name . . .");
-//        Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
-//        String browserName = cap.getBrowserName().toLowerCase();
-//        return StringUtils.capitalize(browserName);
-//    }
-//
-//    public static String getVersion() {
-//        Log.info("Getting browser version . . .");
-//        Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
-//        String v = cap.getBrowserVersion().toString();
-//        Log.info("Browser version: " + v);
-//        return v;
-//    }
 
     public void GotoHomePage()
     {
@@ -227,9 +187,9 @@ public class HomePage {
     public void LoggedUser() throws InterruptedException {
 
 
-        checkexistent= decorated.findElements(userLocator).size()>0;
+        checkexistent= driver.findElements(userLocator).size()>0;
         if (checkexistent){
-            labeluser=driver.findElement(userLocator);
+            labeluser=decorated.findElement(userLocator);
             UserId=labeluser.getText();
             System.out.println("User "+UserId +" is Logged:"+checkexistent);}
         else{

@@ -3,19 +3,13 @@ package com.ti.tests;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import org.ti.DriverFactory.FrameworkException;
 
 public class TC15 extends Base {
 
-//    @BeforeClass
-//
-//    void CloseAdblocker()
-//    {
-//
-//        Home.WaitForAdblocker();
-//    }
 
     @Test(description = "Place Order: Register before Checkout")
-    void PlaceOrderb4Checkout() throws InterruptedException {
+    void PlaceOrderb4Checkout() throws InterruptedException, FrameworkException {
 
         Home.HomePageTitle();
         Login.RegisterNewEmail();

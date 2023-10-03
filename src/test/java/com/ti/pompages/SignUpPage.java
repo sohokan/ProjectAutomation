@@ -1,26 +1,23 @@
 package com.ti.pompages;
 
-import com.github.javafaker.Faker;
-import org.apache.commons.lang3.RandomStringUtils;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
+
+import org.ti.DriverFactory.FrameworkException;
 
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
+
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
-import static org.ti.utils.ui.SeleniumUtil.findElement;
-import static org.ti.utils.ui.SeleniumUtil.highLight;
-import static org.ti.utils.ui.WaitUtil.elementNotVisible;
+import static org.ti.RandomDataGeneration.GenerateUserData.*;
+import static org.ti.utils.ui.SeleniumUtil.*;
+
 
 public class SignUpPage extends HomePage{
 
@@ -151,7 +148,7 @@ public class SignUpPage extends HomePage{
     public static String password = "";
 
 
-    static Faker faker = new Faker();
+
 
 
     static public List<UserObjects> users = new ArrayList<>();
@@ -164,9 +161,6 @@ public class SignUpPage extends HomePage{
 
         linkLogin= driver.findElement(loginLocator);
 
-//        highLight(linkLogin);
-
-//        getNoSuchElement(linkLogin);
 
         linkLogin.click();
 
@@ -230,8 +224,7 @@ public class SignUpPage extends HomePage{
 
     }
 
-    public void AccountInformation()
-    {
+    public void AccountInformation() throws FrameworkException {
 
         labelAccountInformation=  driver.findElement(AccountLocator);
 
@@ -306,8 +299,7 @@ public class SignUpPage extends HomePage{
 
         textBoxMobile_Number.sendKeys(users.get(0).strPhoneNumber);
 
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", btnCreate);
-
+        scrollToElement(btnCreate);
         btnCreate.click();
 
 
@@ -340,116 +332,6 @@ public class SignUpPage extends HomePage{
 
 
 
-
-
-
-
-
-    public static String GenerateRandomEmail(int length) {
-
-        String allowedChars = "abcdefghijklmnopqrstuvwxyz" + "1234567890" + "_-.";
-
-        String temp = RandomStringUtils.random(length, allowedChars);
-        email = temp.substring(0, temp.length()) + "@testdata.com";
-        System.out.println(email);
-//        log.info(email);
-        return email;
-    }
-
-
-    public static String GenerateRandomPassword(int length) {
-//        System.out.println("Generating a Random PW ");
-        String allowedChars = "abcdefghijklmnopqrstuvwxyz" +"ABCDEFGHIJKLMNOPQRSTUVWXYZ"+ "1234567890" + "$";
-
-        String temp = RandomStringUtils.random(length, allowedChars);
-        password = temp.substring(0, temp.length());
-        System.out.println(password);
-//        log.info(password);
-        return password;
-    }
-
-
-    public final String GenerateRandomFName()
-    {
-        String strFname= faker.name().firstName();
-
-        return strFname;
-
-    }
-
-    public final String GenerateRandomLName()
-    {
-        String strLname= faker.name().lastName();
-
-        return strLname;
-
-    }
-
-
-    public final String GenerateRandomFullAddress()
-    {
-        String strAddress= faker.address().fullAddress();
-
-        return strAddress;
-
-    }
-
-
-    public final String GenerateRandomBuilding()
-    {
-        String strAddress= faker.address().buildingNumber();
-
-        return strAddress;
-
-    }
-
-    public final String GenerateRandomComponany()
-    {
-        String strCompany= faker.company().name();
-
-        return strCompany;
-
-    }
-
-    public final String GenerateRandomCountry()
-    {
-        String strCountry= faker.country().name();
-
-        return strCountry;
-
-    }
-
-    public final String GenerateRandomCapital()
-    {
-        String strCapital= faker.country().capital();
-
-        return strCapital;
-
-    }
-
-
-    public final String GenerateRandomCity()
-    {
-        String strCapital= faker.country().countryCode2();
-
-        return strCapital;
-
-    }
-    public final String GenerateRandomZipcode()
-    {
-        String strZipcode= faker.address().zipCode();
-
-        return strZipcode;
-
-    }
-
-    public final String GenerateRandomPhoneNumber()
-    {
-        String strPhoneNumber= faker.phoneNumber().phoneNumber();
-
-        return strPhoneNumber;
-
-    }
 
 
 

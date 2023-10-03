@@ -1,21 +1,16 @@
 package com.ti.tests;
 
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+
 import org.testng.annotations.Test;
+import org.ti.DriverFactory.FrameworkException;
 
 public class TC14 extends Base {
 
-//@BeforeClass
-//    void CloseAdblocker()
-//    {
-//
-//      Home.WaitForAdblocker();
-//    }
 
     @Test(description = "Place Order: Register while Checkout")
 
-    void VerifyPlaceOrder() throws InterruptedException {
+    void VerifyPlaceOrder() throws InterruptedException, FrameworkException {
 
         Products.GotoProductPage();
         Products.VerifyProductList();

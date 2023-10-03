@@ -6,13 +6,6 @@ import org.testng.annotations.Test;
 public class TC21 extends Base{
 
 
-//    @BeforeClass
-//
-//    void CloseAdblocker()
-//    {
-//
-//        Home.WaitForAdblocker();
-//    }
 
 
     @Test(priority = 1,description = "Add review on product")

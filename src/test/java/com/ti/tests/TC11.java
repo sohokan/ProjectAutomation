@@ -5,13 +5,7 @@ import org.testng.annotations.Test;
 
 public class TC11  extends Base{
 
-//    @BeforeClass
-//
-//    void CloseAdblocker()
-//    {
-//
-//        Home.WaitForAdblocker();
-//    }
+
 
     @Test(description = "Verify Subscription in Cart page")
     void VerifySubscriptionCartPage()

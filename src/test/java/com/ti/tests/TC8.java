@@ -5,13 +5,7 @@ import org.testng.annotations.Test;
 
 public class TC8 extends Base{
 
-//    @BeforeClass
-//
-//    void CloseAdblocker()
-//    {
-//
-//        Home.WaitForAdblocker();
-//    }
+
     @Test(priority = 1,description = "View all the products")
     void VerifyProductsVisible() throws InterruptedException {
 

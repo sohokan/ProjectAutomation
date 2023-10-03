@@ -5,13 +5,7 @@ import org.testng.annotations.Test;
 
 public class TC7 extends Base{
 
-//    @BeforeClass
-//
-//    void CloseAdblocker()
-//    {
-//
-//        Home.WaitForAdblocker();
-//    }
+
 
     @Test(description = "Check TestCases")
 
