@@ -86,10 +86,10 @@ public class CheckOutPage extends HomePage {
         else if (users.size()>0)
 
         {
-            System.out.println("Webelement first Name:"+users.get(0).strUserFirstName);
-            VerifyDeliveryAddress(users.get(0).strUserFirstName,users.get(0).strUserLastName,users.get(0).strCompany,users.get(0).strAddress1,users.get(0).strAddress2,users.get(0).strState,users.get(0).strCountry,users.get(0).strCity,users.get(0).strZipecode);
+            System.out.println("Webelement first Name:"+ users.get(0).getStrUserFirstName());
+            VerifyDeliveryAddress(users.get(0).getStrUserFirstName(), users.get(0).getStrUserLastName(), users.get(0).getStrCompany(), users.get(0).getStrAddress1(), users.get(0).getStrAddress2(), users.get(0).getStrState(), users.get(0).getStrCountry(), users.get(0).getStrCity(), users.get(0).getStrZipecode());
 
-                verifyWebelementPhoneNumber = listAddressDelivery.stream().filter((e) -> e.getText().contains(users.get(0).strPhoneNumber)).findFirst().get();
+                verifyWebelementPhoneNumber = listAddressDelivery.stream().filter((e) -> e.getText().contains(users.get(0).getStrPhoneNumber())).findFirst().get();
                 assertTrue(verifyWebelementPhoneNumber.isDisplayed());
         }
 

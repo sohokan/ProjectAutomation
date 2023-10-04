@@ -1,30 +1,14 @@
 package com.ti.restapi;
 
-import com.fasterxml.jackson.annotation.JsonRootName;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.type.CollectionType;
-import com.google.gson.GsonBuilder;
-import com.ti.dao.Root;
-import com.ti.dao.UserGoRest;
-import io.restassured.RestAssured;
+import com.ti.dao.UserGoRoot;
 import io.restassured.http.ContentType;
-import io.restassured.http.Method;
 import io.restassured.path.json.JsonPath;
-import io.restassured.path.json.mapper.factory.GsonObjectMapperFactory;
-import io.restassured.response.Response;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
-
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -114,7 +98,7 @@ public class HttpMethodsExample {
             throws JsonProcessingException {
         objectMapper.configure(SerializationFeature.WRAP_ROOT_VALUE, true);
 
-     Root usersgo = objectMapper.readValue(res, Root.class);
+     UserGoRoot usersgo = objectMapper.readValue(res, UserGoRoot.class);
         System.out.println(usersgo.users.firstName);
     }
 

@@ -1,17 +1,14 @@
 package com.ti.pompages;
 
-import org.checkerframework.checker.units.qual.A;
+import com.ti.dao.ProductsObjects;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.*;
-import java.util.NoSuchElementException;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-import static java.util.function.Predicate.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 import static org.testng.AssertJUnit.assertTrue;
@@ -186,7 +183,7 @@ public class CartPage extends HomePage{
     }
 
 
-     void ReturnMatch(List<ProductsObjects> object,String itemname,  String itemprice ,String quantity, String text)
+     void ReturnMatch(List<ProductsObjects> object, String itemname, String itemprice , String quantity, String text)
 
     {
         object.forEach(o ->{ if(Integer.parseInt(quantity)==o.getIntquantity() && itemname.contains(o.getStrItemType()) && itemprice.contains(o.getStrItemPrice()))

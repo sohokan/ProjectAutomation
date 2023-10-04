@@ -1,20 +1,20 @@
-package com.ti.pompages;
+package com.ti.dao;
 
 public class UserObjects {
-    String strUserFirstName;
-    String strUserLastName;
-    String strCompany;
-    String strAddress1;
-    String strAddress2;
-    String strCity;
+   public String strUserFirstName;
+ public   String strUserLastName;
+  public String strCompany;
+    public  String strAddress1;
+    public String strAddress2;
+    public String strCity;
 
-    String strState;
+    public String strState;
 
-    String strZipecode;
+    public String strZipecode;
 
-    String strCountry;
+    public String strCountry;
 
-    String strPhoneNumber;
+    public  String strPhoneNumber;
 
     public UserObjects(String strUserFirstName, String strUserLastName, String strCompany, String strAddress1, String strAddress2, String strCity, String strState, String strZipecode, String strCountry, String strPhoneNumber) {
         this.strUserFirstName = strUserFirstName;

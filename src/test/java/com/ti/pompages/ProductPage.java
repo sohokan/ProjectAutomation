@@ -1,4 +1,5 @@
 package com.ti.pompages;
+import com.ti.dao.ProductsObjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -7,14 +8,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.testng.AssertJUnit.assertTrue;
 import static org.ti.utils.ui.SeleniumUtil.DisableAds;
 import static org.ti.utils.ui.SeleniumUtil.getStaleElement;
-
-import org.ti.utils.ui.SeleniumUtil;
 
 
 public class ProductPage extends HomePage {

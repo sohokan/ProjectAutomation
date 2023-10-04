@@ -6,8 +6,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.Data;
 
-import java.util.List;
-
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -15,7 +13,7 @@ import java.util.List;
         "user"
 })
 
-public class Root {
+public class UserGoRoot {
 
     @JsonProperty("responseCode")
     public String responseCode;

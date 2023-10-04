@@ -1,6 +1,6 @@
 package com.ti.restapi;
 
-import com.ti.dao.Root;
+import com.ti.dao.UserGoRoot;
 import static com.ti.tests.Base.inputemail;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
@@ -18,7 +18,7 @@ public class HttpsMethod {
 
     private static final String BASE_URL = "https://automationexercise.com/api/";
 
-    public static Root usersgo= new Root();
+    public static UserGoRoot usersgo= new UserGoRoot();
 
 
 //    String res;
@@ -45,7 +45,7 @@ public class HttpsMethod {
             throws JsonProcessingException {
         objectMapper.configure(SerializationFeature.WRAP_ROOT_VALUE, true);
 
-         usersgo = objectMapper.readValue(getUserDetailByEmail()  , Root.class);
+         usersgo = objectMapper.readValue(getUserDetailByEmail()  , UserGoRoot.class);
 //        System.out.println(usersgo.users.firstName);
     }
 

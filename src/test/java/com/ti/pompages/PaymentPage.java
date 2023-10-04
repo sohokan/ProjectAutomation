@@ -65,7 +65,7 @@ public class PaymentPage extends HomePage{
 
         if(users.size()>0)
         {
-            inputCardName.sendKeys(users.get(0).strUserFirstName+" "+users.get(0).strUserLastName);
+            inputCardName.sendKeys(users.get(0).getStrUserFirstName() +" "+ users.get(0).getStrUserLastName());
 
 
         }

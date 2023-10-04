@@ -29,7 +29,7 @@ import lombok.Data;
         "zipcode"
 })
 
-public class UserGoRest extends Root{
+public class UserGoRest extends UserGoRoot {
 
     @JsonProperty("id")
     public int id;

@@ -1,13 +1,13 @@
 package com.ti.pompages;
 
 
+import com.ti.dao.UserObjects;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import org.ti.DriverFactory.FrameworkException;
-import org.ti.RandomDataGeneration.GenerateUserData;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -283,22 +283,22 @@ public class SignUpPage extends HomePage{
 
         users.add(new UserObjects(GenerateRandomFName(),GenerateRandomLName(),GenerateRandomComponany(),GenerateRandomFullAddress(),GenerateRandomBuilding(),GenerateRandomCapital(),GenerateRandomCity(),GenerateRandomZipcode(),"Canada",GenerateRandomPhoneNumber()));
 
-        textBoxFirstName.sendKeys(users.get(0).strUserFirstName);
-        textBoxLastName.sendKeys(users.get(0).strUserLastName);
-        textBoxCompany.sendKeys(users.get(0).strCompany);
-        textBoxAddress1.sendKeys(users.get(0).strAddress1);
+        textBoxFirstName.sendKeys(users.get(0).getStrUserFirstName());
+        textBoxLastName.sendKeys(users.get(0).getStrUserLastName());
+        textBoxCompany.sendKeys(users.get(0).getStrCompany());
+        textBoxAddress1.sendKeys(users.get(0).getStrAddress1());
 
-        textBoxAddress2.sendKeys(users.get(0).strAddress2);
+        textBoxAddress2.sendKeys(users.get(0).getStrAddress2());
 
         selectCountry.selectByVisibleText("Canada");
 
-        textBoxState.sendKeys(users.get(0).strState);
+        textBoxState.sendKeys(users.get(0).getStrState());
 
-        textBoxCity.sendKeys(users.get(0).strCity);
+        textBoxCity.sendKeys(users.get(0).getStrCity());
 
-        textBoxZipcode.sendKeys(users.get(0).strZipecode);
+        textBoxZipcode.sendKeys(users.get(0).getStrZipecode());
 
-        textBoxMobile_Number.sendKeys(users.get(0).strPhoneNumber);
+        textBoxMobile_Number.sendKeys(users.get(0).getStrPhoneNumber());
 
         scrollToElement(btnCreate);
         btnCreate.click();

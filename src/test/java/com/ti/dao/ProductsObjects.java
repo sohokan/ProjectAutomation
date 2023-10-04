@@ -1,16 +1,16 @@
-package com.ti.pompages;
+package com.ti.dao;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class ProductsObjects {
 
-    String strItemType;
-    String strItemPrice;
-    WebElement addToCart;
-    WebElement viewProduct;
+   public String strItemType;
+   public String strItemPrice;
+  public  WebElement addToCart;
+   public WebElement viewProduct;
 
-    int  intquantity;
+   public int  intquantity;
 
     public ProductsObjects(String strItemType, String strItemPrice, WebElement addToCart, WebElement viewProduct, int intquantity) {
         this.strItemType = strItemType;

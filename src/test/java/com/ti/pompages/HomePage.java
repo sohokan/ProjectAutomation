@@ -1,41 +1,30 @@
 package com.ti.pompages;
 
-import org.apache.commons.lang3.StringUtils;
+import com.ti.dao.ProductsObjects;
 import org.openqa.selenium.*;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.events.EventFiringDecorator;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.Parameters;
 
 import org.ti.DriverFactory.DriverFactory;
 
 import org.ti.utils.listeners.WebDriverEventListener;
-import org.ti.utils.ui.SeleniumUtil.*;
+
 import static com.ti.pompages.SignUpPage.randomEmail;
 import static com.ti.pompages.SignUpPage.password;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-import java.util.UUID;
-import java.util.concurrent.TimeUnit;
 
-import static com.ti.pompages.SignUpPage.*;
-import static java.sql.DriverManager.getDriver;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.testng.AssertJUnit.assertTrue;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.ti.utils.logs.Log;
 
 import static org.ti.RandomDataGeneration.GenerateUserData.GenerateRandomEmail;
 import static org.ti.utils.ui.SeleniumUtil.DisableAds;
-import static org.ti.utils.ui.SeleniumUtil.highLight;
-
-import org.testng.ITestResult;
 
 
 public class HomePage {
@@ -333,7 +322,7 @@ public class HomePage {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        js.executeScript("arguments[0].click();", recommendProducts.get(itemSelection).addToCart);
+        js.executeScript("arguments[0].click();", recommendProducts.get(itemSelection).getAddToCart());
 
 
         btnContinueShooping= driver.findElement(btnContinueLocator);
